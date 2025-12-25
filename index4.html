@@ -50,8 +50,32 @@
 </head>
 <body>
 
-<h1>📘 今日の学習</h1>
+<h1>📘 ドラちゃんのお話</h1>
 
+<textarea id="text" rows="4" cols="40">
+こんにちは、ぼくドラえもんです。
+</textarea><br><br>
+
+<button onclick="speak()">読み上げ</button>
+<script>
+function speak() {
+  const text = document.getElementById("text").value;
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "ja-JP";
+
+  // 声の調整（ドラえもん“風”を狙うなら）
+  utterance.pitch = 1.5;   // 高さ（1が標準）
+  utterance.rate  = 0.9;   // 速度（1が標準）
+  utterance.volume = 1.0;  // 音量
+
+  speechSynthesis.speak(utterance);
+}
+</script>
+
+
+
+  
 <div class="section">
   <h2>🧮 算数</h2>
   <div class="card">
@@ -71,6 +95,7 @@
     <a href="https://www.youtube.com/watch?v=Ie0duFVNY4E">▶ www.youtube.com/watch?v=Ie0duFVNY4E</a>
     <a href="https://www.youtubekids.com/">▶ www.youtubekids.com/</a>
     <a href="https://iidrill.com/">▶ iidrill.com/</a>
+    <a href="https://www.youtube.com/results?sp=mAEB&search_query=%E3%83%89%E3%83%A9%E3%81%88%E3%82%82%E3%82%93+%E3%82%A2%E3%83%8B%E3%83%A1">▶ ドラえもん アニメ</a>
 
   
   
