@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>再生</title>
+
+<style>
+body { margin:0; background:#000; }
+iframe {
+  width:100vw;
+  height:100vh;
+  border:none;
+}
+.close {
+  position:fixed;
+  top:10px;
+  right:15px;
+  font-size:28px;
+  color:white;
+  text-decoration:none;
+  z-index:9999;
+}
+</style>
+</head>
+
+<body>
+
+<a class="close" href="index.html">×</a>
+
+<iframe id="yt"></iframe>
+
+<script>
+const params = new URLSearchParams(location.search);
+const videoId = params.get("v");
+
+if (videoId) {
+  document.getElementById("yt").src =
+    "https://www.youtube.com/embed/" + videoId +
+    "?rel=0&modestbranding=1";
+} else {
+  location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
