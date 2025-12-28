@@ -46,7 +46,8 @@ console.log("乱数:", rand);
 let selectedV;
 
 // 乱数が0.5以上の場合のみ配列からランダムに選択
-if (rand >= 0.5) {
+//if (rand >= 0.5) {
+if (rand >= 0.67) {
     selectedV = vArray[Math.floor(Math.random() * vArray.length)];
     console.log("置き換えました:", selectedV);
 } else {
