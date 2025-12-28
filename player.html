@@ -24,23 +24,46 @@ iframe {
 </head>
 
 <body>
+
 <a id="back" href="index4.html">← 一覧に戻る</a>
 <a class="close" href="index4.html">×</a>
 
 <iframe id="yt"></iframe>
 
-<script>
-const params = new URLSearchParams(location.search);
-const videoId = params.get("v");
+<!-- 元のHTML -->
+<p id="video">v=hsf2-xxoKKo</p>
 
-if (videoId) {
-  document.getElementById("yt").src =
-    "https://www.youtube.com/embed/" + videoId +
-    "?rel=0&modestbranding=1";
+
+<script>
+// 配列を定義
+const vArray = ["hsf2-xxoKKo", "ZhBjsiYGigQ", "EkJgegIjN3A"];
+
+// 乱数を生成
+const rand = Math.random(); // 0 <= rand < 1
+console.log("乱数:", rand);
+
+let selectedV;
+
+// 乱数が0.5以上の場合のみ配列からランダムに選択
+if (rand >= 0.5) {
+    selectedV = vArray[Math.floor(Math.random() * vArray.length)];
+    console.log("置き換えました:", selectedV);
 } else {
-  location.href = "index.html";
+    // URLパラメータから取得
+    const params = new URLSearchParams(location.search);
+    selectedV = params.get("v");
+    console.log("置き換えませんでした:", selectedV);
+}
+
+// HTMLの表示を更新
+document.getElementById("video").textContent = "v=" + selectedV;
+
+// iframeのsrcを設定
+if (selectedV) {
+    document.getElementById("yt").src =
+      "https://www.youtube.com/embed/" + selectedV +
+      "?rel=0&modestbranding=1";
+} else {
+    location.href = "index.html";
 }
 </script>
-
-</body>
-</html>
