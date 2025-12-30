@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>学習ログ出力</title>
+<style>
+body { font-family: sans-serif; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #999; padding: 4px; font-size: 12px; }
+th { background: #eee; }
+button { margin: 8px 0; }
+</style>
+</head>
+
+<body>
+
+<h2>保存されている学習ログ</h2>
+
+<button onclick="downloadJSON()">JSONダウンロード</button>
+<button onclick="downloadCSV()">CSVダウンロード</button>
+
+<table id="logTable">
+  <tr>
+    <th>日付</th>
+    <th>学年</th>
+    <th>教科</th>
+    <th>ページ</th>
+    <th>動画ID</th>
+    <th>入室</th>
+    <th>退室</th>
+    <th>再生分</th>
+  </tr>
+</table>
+
+<script>
+const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
+const table = document.getElementById("logTable");
+
+logs.forEach(l => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td>${l.date}</td>
+    <td>小${l.grade}</td>
+    <td>${l.subject}</td>
+    <td>${l.page}</td>
+    <td>${l.videoId || ""}</td>
+    <td>${l.enter}</td>
+    <td>${l.exit}</td>
+    <td>${Math.round(l.playSeconds / 60)}</td>
+  `;
+  table.appendChild(tr);
+});
+
+/* ===== JSON出力 ===== */
+function downloadJSON() {
+  const blob = new Blob(
+    [JSON.stringify(logs, null, 2)],
+    { type: "application/json" }
+  );
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "studyLog.json";
+  a.click();
+}
+
+/* ===== CSV出力 ===== */
+function downloadCSV() {
+  let csv = "date,grade,subject,page,videoId,enter,exit,playMinutes\n";
+  logs.forEach(l => {
+    csv += `${l.date},${l.grade},${l.subject},${l.page},${l.videoId || ""},${l.enter},${l.exit},${Math.round(l.playSeconds/60)}\n`;
+  });
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "studyLog.csv";
+  a.click();
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+ChatGPT の回答は必ずしも正しいとは限りません。重要な情報は確認するようにしてく
