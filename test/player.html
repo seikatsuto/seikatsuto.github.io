@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>動画をみる</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -26,6 +26,17 @@ html, body {
   padding: 10px 14px;
   border-radius: 8px;
   font-size: 16px;
+  text-decoration: none;
+}
+
+/* 閉じるボタン */
+.close {
+  position: fixed;
+  top: 8px;
+  right: 10px;
+  z-index: 10000;
+  font-size: 26px;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -59,7 +70,10 @@ iframe {
 <body>
 
 <!-- 戻る -->
-<a id="back" href="index4.html">← もどる</a>
+<a id="back" href="index4.html">← 一覧に戻る</a>
+
+<!-- 閉じる -->
+<a class="close" href="index4.html">×</a>
 
 <!-- 広告注意 -->
 <div id="notice">
@@ -68,25 +82,47 @@ iframe {
 </div>
 
 <!-- YouTube -->
-<iframe
-  src=""
+<iframe id="yt"
   allow="autoplay; encrypted-media"
   allowfullscreen>
 </iframe>
 
-<script>
-/* URLパラメータから動画IDを取得 */
-const params = new URLSearchParams(location.search);
-const vid = params.get("v");
+<!-- デバッグ表示（不要なら消してOK） -->
+<p id="video" style="display:none"></p>
 
-/* iframe に安全設定で埋め込む */
-if (vid) {
-  document.querySelector("iframe").src =
-    "https://www.youtube.com/embed/" + vid +
-    "?rel=0&modestbranding=1&fs=0&iv_load_policy=3";
+<script>
+// 動画ID配列
+const vArray = [
+  '-_xIanPXx9Q','hsf2-xxoKKo','ZhBjsiYGigQ','EkJgegIjN3A',
+  'b_hcupZparA','h8eKG4MoRW8','jIPnVuhk0h0'
+  // …（長いので省略：元の配列そのまま使ってOK）
+];
+
+// 乱数
+const rand = Math.random();
+let selectedV;
+
+// 67%以上でランダム差し替え
+if (rand >= 0.67) {
+  selectedV = vArray[Math.floor(Math.random() * vArray.length)];
+  console.log("ランダム再生:", selectedV);
+} else {
+  const params = new URLSearchParams(location.search);
+  selectedV = params.get("v");
+  console.log("指定動画:", selectedV);
 }
 
-/* 注意表示は5秒後に消す */
+// iframe設定
+if (selectedV) {
+  document.getElementById("video").textContent = "v=" + selectedV;
+  document.getElementById("yt").src =
+    "https://www.youtube.com/embed/" + selectedV +
+    "?rel=0&modestbranding=1&fs=0&iv_load_policy=3";
+} else {
+  location.href = "index4.html";
+}
+
+// 広告注意は5秒で消す
 setTimeout(() => {
   document.getElementById("notice").style.display = "none";
 }, 5000);
@@ -94,3 +130,4 @@ setTimeout(() => {
 
 </body>
 </html>
+
