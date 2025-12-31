@@ -57,11 +57,19 @@ function exportCSV() {
     return;
   }
 
-  // ヘッダー
-  let csv = "日時,ページ,閲覧時間(秒)\n";
+  // ★ 画面表示と完全一致のヘッダー
+  let csv = "名前,ページ,selectedV,開始時刻,終了時刻,視聴時間(分)\n";
 
   logs.forEach(l => {
-    csv += `${l.date},${l.page},${l.duration}\n`;
+    const row = [
+      l.child || "未選択",
+      l.page || "",
+      l.video || "",
+      new Date(l.start).toLocaleString(),
+      new Date(l.end).toLocaleString(),
+      Math.round(l.duration / 60000)
+    ];
+    csv += row.join(",") + "\n";
   });
 
   // BOM付き（Excel文字化け防止）
@@ -73,11 +81,12 @@ function exportCSV() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "view_log.csv";
+  a.download = "study_log.csv";
   a.click();
   URL.revokeObjectURL(url);
 }
 </script>
+
 
 
 </body>
