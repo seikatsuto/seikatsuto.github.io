@@ -78,6 +78,30 @@ function downloadCSV() {
 }
 </script>
 
+  
+/* ===== 視聴時間など出力 ===== */
+<script>
+const pageName = location.pathname;
+const startTime = Date.now();
+
+window.addEventListener("beforeunload", () => {
+  const endTime = Date.now();
+  const duration = Math.round((endTime - startTime) / 1000); // 秒
+
+  const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
+  logs.push({
+    page: pageName,
+    start: new Date(startTime).toISOString(),
+    seconds: duration
+  });
+
+  localStorage.setItem("viewLog", JSON.stringify(logs));
+});
+</script>
+
+
+
+  
 </body>
 </html>
 
