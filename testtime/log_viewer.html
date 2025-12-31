@@ -51,7 +51,7 @@ logs.forEach(l => {
 
 <script>
 function exportCSV() {
-  const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   if (logs.length === 0) {
     alert("ログがありません");
     return;
