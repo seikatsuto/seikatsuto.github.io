@@ -197,10 +197,19 @@ let selectedV;
 if (rand >= 0.67) {
   selectedV = vArray[Math.floor(Math.random() * vArray.length)];
   console.log("ランダム再生:", selectedV);
+  
+  console.log(selectedV, typeof selectedV);
+
+  
 } else {
   const params = new URLSearchParams(location.search);
   selectedV = params.get("v");
   console.log("指定動画:", selectedV);
+  
+  console.log(selectedV, typeof selectedV);
+
+  
+  
 }
 
 // iframe設定
