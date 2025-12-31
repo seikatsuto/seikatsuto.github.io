@@ -218,6 +218,11 @@ if (selectedV) {
 
 /* ★追加①：入室ログ */
 //const startTime = new Date().toISOString();   //削除した　　
+
+const child = localStorage.getItem("childName") || "未選択";
+
+
+
 const logId = Date.now();
 
 const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
@@ -225,6 +230,7 @@ logs.push({
   id: logId,
   page: "player.html",
   video: selectedV,
+  child: child,
   enter: startTime,
   leave: null
 });
