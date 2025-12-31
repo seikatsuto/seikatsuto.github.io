@@ -1,186 +1,123 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>学習スタート</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f4f6f8;
-      color: #222;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .section {
-      margin-bottom: 24px;
-    }
-    .section h2 {
-      font-size: 1.2em;
-      margin-bottom: 12px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
-    a {
-      display: block;
-      text-decoration: none;
-      color: #0066cc;
-      font-size: 1.05em;
-      margin: 6px 0;
-    }
-    a:active {
-      color: #003366;
-    }
-    .note {
-      text-align: center;
-      font-size: 0.9em;
-      color: #666;
-      margin-top: 30px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>学習スタート</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f4f6f8;
+  color: #222;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* ===== 名前選択 ===== */
+#childArea {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.child-btn {
+  padding: 12px 18px;
+  margin: 6px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2px solid #888;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.child-btn.active {
+  background: #4CAF50;
+  color: #fff;
+  border-color: #2e7d32;
+}
+
+/* 選択前の点滅 */
+.blink {
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* メッセージ */
+#message {
+  margin-top: 16px;
+  font-size: 1.1em;
+  text-align: center;
+  min-height: 1.5em;
+}
+
+/* ===== リンク ===== */
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin: 6px 0;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1.05em;
+  color: #0066cc;
+}
+
+a:active {
+  color: #003366;
+}
+</style>
 </head>
+
 <body>
 
-<h1>📘 ドラちゃんのお話 </h1>
+<h1>📘 ドラちゃんの学習部屋</h1>
 
-<textarea id="text" rows="3" cols="60">
-こんにちは、ぼくドラちゃんです。
-君は惟人君？惺太郎君？日花里君？啓人君？
+<!-- 名前選択 -->
+<div id="childArea">
+  <p id="prompt" class="blink">👇 きみの名前をえらんでね</p>
 
-</textarea><br><br>
+  <button class="child-btn" onclick="setChild(this, '惟人')">惟人</button>
+  <button class="child-btn" onclick="setChild(this, '惺太郎')">惺太郎</button>
+  <button class="child-btn" onclick="setChild(this, '日花里')">日花里</button>
+  <button class="child-btn" onclick="setChild(this, '啓人')">啓人</button>
 
-<form id="childForm">
-  <label><input type="radio" name="child" value="惟人君"> 惟人君</label><br>
-  <label><input type="radio" name="child" value="惺太郎君"> 惺太郎君</label><br>
-  <label><input type="radio" name="child" value="日花里君"> 日花里君</label><br>
-  <label><input type="radio" name="child" value="啓人君"> 啓人君</label><br>
-
-  <button type="button" onclick="saveChild()">決定</button>
-</form>
-
-
-<button onclick="setChild('惟人')">惟人</button>
-<button onclick="setChild('惺太郎')">惺太郎</button>
-<button onclick="setChild('日花里')">日花里</button>
-<button onclick="setChild('啓人')">啓人</button>
-
-<script>
-function setChild(name) {
-  localStorage.setItem("childName", name);
-  alert("選択中：" + name);
-}
-</script>
-
-
-
-
-
-<script>
-function saveChild() {
-  const selected = document.querySelector('input[name="child"]:checked');
-  if (!selected) {
-    alert("名前を選んでください");
-    return;
-  }
-  localStorage.setItem("childName", selected.value);
-  alert("選択中：" + selected.value);
-}
-</script>
-
-
-<textarea id="text" rows="4" cols="60">
-どれでも好きな動画を見て。
-難しくても辛抱して何回も見ていればわかるようになるからね。
-３回に1回の割合で「ドラえもん」の漫画が見られるよ。
-</textarea><br><br>
-
-
-
-<!--  <button onclick="speak()">読み上げ</button>   -->
-
-
-<script>
-alert(localStorage.getItem("studyLogs"));
-</script>
-
-
-  
-<script>
-console.log("logs =", localStorage.getItem("studyLogs"));
-alert("logs = " + localStorage.getItem("studyLogs"));
-
-localStorage.getItem("childName");
-
-
-</script>
-
-
-
-
-  
-  
-<script>
-function speak() {
-  const text = document.getElementById("text").value;
-
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "ja-JP";
-
-  // 声の調整（ドラえもん“風”を狙うなら）
-  utterance.pitch = 1.5;   // 高さ（1が標準）
-  utterance.rate  = 0.9;   // 速度（1が標準）
-  utterance.volume = 1.0;  // 音量
-
-  speechSynthesis.speak(utterance);
-}
-</script>
-
-<div class="section">
-  <h2>📖 小学生　算数</h2>
-
-<ul>
-
-<!-- 小学1年生 -->
-  <li><a href="player.html?v=LbYijVgaqhs">小1算数「時計のよみかた」</a></li>
-  <li><a href="player.html?v=m5zWD0b6Qtk">小1算数「くり上がりのたしざん」</a></li>
-  <li><a href="player.html?v=EeMsKOu7gSM">【はじめてのたしざん】ポケモンと一緒に目指せたし算マスター！幼児向け 子供向け 足し算の教え方</a></li>
-  <li><a href="player.html?v=mNnF8VEs7Pw">【はじめてのたしざん】かんたん!　すみっコぐらしのなかまたちと足し算をやってみよう！算数</a></li>
-  <li><a href="player.html?v=9FGnbwrmGSI">小６国語_漢字を正しく使えるように②（漢字）</a></li>
-  <li><a href="player.html?v=mZXAMDZ2sog">小６国語（東京書籍）話し合って考えを深めよう⑤</a></li>
-  <li><a href="player.html?v=eNOcbYSvnOc">「カレーライス」小６国語４月第３週 - 海外に暮らす子どもたちへ by JPN Class</a></li>
-  <li><a href="player.html?v=qHdST4GFNxY">小学6年生国語教材「カレーライス重松清」を60秒で　#国語 #物語 #重松清</a></li>
-  <li><a href="player.html?v=RFBVkc_2UQE">「森へ」　小６国語７月第１週 - 海外に暮らす子どもたちへ by JPN Class</a></li>
-   
-</ul>
- 
-
+  <div id="message"></div>
 </div>
 
-<div class="note">
-  見られる教材はここにあるものだけです
-</div>
 <hr>
 
+<!-- 学習リンク（例） -->
+<h2>📖 算数</h2>
+<ul>
+  <li><a href="player.html?v=m5zWD0b6Qtk">小1 算数 くり上がりのたしざん</a></li>
+  <li><a href="player.html?v=LbYijVgaqhs">小1 算数 時計のよみかた</a></li>
+</ul>
 
+<hr>
 
-<!-- index4.html に埋め込む「履歴表示」コード（最小）-->
-<hr>  
-<h3>学習履歴</h3>
+<!-- 履歴表示 -->
+<h3>🕒 学習履歴</h3>
 <button onclick="showLogs()">履歴を表示</button>
 
-<table id="logTable" style="display:none; border-collapse:collapse; width:100%;">
+<table id="logTable" style="display:none; width:100%; border-collapse:collapse;">
   <thead>
     <tr>
-      <th>ページ</th>
+      <th>名前</th>
+      <th>動画</th>
       <th>開始</th>
       <th>終了</th>
       <th>分</th>
@@ -190,19 +127,55 @@ function speak() {
 </table>
 
 <script>
+/* ===== 名前選択 ===== */
+function setChild(btn, name) {
+  document.querySelectorAll('.child-btn').forEach(b => {
+    b.classList.remove('active');
+  });
+
+  btn.classList.add('active');
+  localStorage.setItem("childName", name);
+
+  document.getElementById("prompt").style.display = "none";
+  document.getElementById("message").textContent =
+    name + "くん、いっしょにがんばろう！📺";
+}
+
+/* 初期化（再訪問時） */
+window.addEventListener("load", () => {
+  const saved = localStorage.getItem("childName");
+  if (!saved) return;
+
+  document.querySelectorAll('.child-btn').forEach(btn => {
+    if (btn.textContent === saved) {
+      btn.classList.add('active');
+    }
+  });
+
+  document.getElementById("prompt").style.display = "none";
+  document.getElementById("message").textContent =
+    saved + "くん、つづきからはじめよう！";
+});
+
+/* ===== 履歴表示 ===== */
 function showLogs() {
-  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
   const table = document.getElementById("logTable");
   const tbody = table.querySelector("tbody");
   tbody.innerHTML = "";
 
   logs.forEach(l => {
+    if (!l.leave) return;
+
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${l.page}</td>
-      <td>${new Date(l.start).toLocaleString()}</td>
-      <td>${new Date(l.end).toLocaleString()}</td>
-      <td>${Math.round(l.duration / 60000)}</td>
+      <td>${l.child}</td>
+      <td>${l.video || "-"}</td>
+      <td>${new Date(l.enter).toLocaleString()}</td>
+      <td>${new Date(l.leave).toLocaleString()}</td>
+      <td>${Math.round(
+        (new Date(l.leave) - new Date(l.enter)) / 60000
+      )}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -213,4 +186,3 @@ function showLogs() {
 
 </body>
 </html>
-
