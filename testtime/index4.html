@@ -711,6 +711,48 @@ function speak() {
 <div class="note">
   見られる教材はここにあるものだけです
 </div>
+<hr>
+
+
+
+<!-- index4.html に埋め込む「履歴表示」コード（最小）-->
+<hr>  
+<h3>学習履歴</h3>
+<button onclick="showLogs()">履歴を表示</button>
+
+<table id="logTable" style="display:none; border-collapse:collapse; width:100%;">
+  <thead>
+    <tr>
+      <th>ページ</th>
+      <th>開始</th>
+      <th>終了</th>
+      <th>分</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+function showLogs() {
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  const table = document.getElementById("logTable");
+  const tbody = table.querySelector("tbody");
+  tbody.innerHTML = "";
+
+  logs.forEach(l => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${l.page}</td>
+      <td>${new Date(l.start).toLocaleString()}</td>
+      <td>${new Date(l.end).toLocaleString()}</td>
+      <td>${Math.round(l.duration / 60000)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  table.style.display = "table";
+}
+</script>
 
 </body>
 </html>
