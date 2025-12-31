@@ -118,6 +118,27 @@ if ('getBattery' in navigator) {
 <!-- デバッグ表示（不要なら消してOK） -->
 <p id="video" style="display:none"></p>
 
+
+  
+<script>
+let startTime = Date.now();
+
+window.addEventListener("beforeunload", () => {
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  logs.push({
+    page: location.pathname,
+    start: startTime,
+    end: Date.now(),
+    duration: Date.now() - startTime
+  });
+  localStorage.setItem("studyLogs", JSON.stringify(logs));
+});
+</script>
+
+
+
+
+  
 <script>
 // 動画ID配列
 const vArray = [
@@ -193,6 +214,8 @@ if (selectedV) {
 }
 
 
+  
+<!--
 /* ★追加①：入室ログ */
 const startTime = new Date().toISOString();
 const logId = Date.now();
@@ -216,8 +239,10 @@ window.addEventListener("beforeunload", () => {
     localStorage.setItem("studyLog", JSON.stringify(logs));
   }
 });
+-->
 
 
+  
 
 // 広告注意は5秒で消す
 setTimeout(() => {
