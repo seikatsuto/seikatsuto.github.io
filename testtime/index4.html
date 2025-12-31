@@ -67,6 +67,23 @@
   <button type="button" onclick="saveChild()">決定</button>
 </form>
 
+
+<button onclick="setChild('惟人')">惟人</button>
+<button onclick="setChild('惺太郎')">惺太郎</button>
+<button onclick="setChild('日花里')">日花里</button>
+<button onclick="setChild('啓人')">啓人</button>
+
+<script>
+function setChild(name) {
+  localStorage.setItem("childName", name);
+  alert("選択中：" + name);
+}
+</script>
+
+
+
+
+
 <script>
 function saveChild() {
   const selected = document.querySelector('input[name="child"]:checked');
