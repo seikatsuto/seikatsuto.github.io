@@ -73,38 +73,6 @@ iframe {
 
 <body>
 
-
-/* ===== 視聴時間など出力 ===== */
-
-<script>
-const pageName = location.pathname;
-const startTime = Date.now();
-
-window.addEventListener("beforeunload", () => {
-  const endTime = Date.now();
-  const duration = Math.round((endTime - startTime) / 1000); // 秒
-
-  const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
-  logs.push({
-    page: pageName,
-    start: new Date(startTime).toISOString(),
-    seconds: duration
-  });
-
-  localStorage.setItem("viewLog", JSON.stringify(logs));
-});
-</script>
-
-<pre id="log"></pre>
-<script>
-document.getElementById("log").textContent =
-  localStorage.getItem("viewLog");
-</script>
-
-
-
-
-  
 <!-- 戻る -->
 <a id="back" href="index4.html">← 一覧に戻る</a>
 
@@ -216,7 +184,7 @@ if (rand >= 0.67) {
 
 // iframe設定
 if (selectedV) {
-  document.getElementById("video").textContent = "v=" + selectedV;
+  document.getElementById("video").textContent = "v=" + selectedV;    <!-- 削除か　前に出すか　このままか -->
   document.getElementById("yt").src =
     "https://www.youtube.com/embed/" + selectedV +
     "?rel=0&modestbranding=1&fs=0&iv_load_policy=3";
@@ -224,18 +192,38 @@ if (selectedV) {
   location.href = "index4.html";
 }
 
+
+/* ★追加①：入室ログ */
+const startTime = new Date().toISOString();
+const logId = Date.now();
+
+const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
+logs.push({
+  id: logId,
+  page: "player.html",
+  video: selectedV,
+  enter: startTime,
+  leave: null
+});
+localStorage.setItem("studyLog", JSON.stringify(logs));
+
+/* ★追加②：退出ログ */
+window.addEventListener("beforeunload", () => {
+  const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
+  const log = logs.find(l => l.id === logId);
+  if (log) {
+    log.leave = new Date().toISOString();
+    localStorage.setItem("studyLog", JSON.stringify(logs));
+  }
+});
+
+
+
 // 広告注意は5秒で消す
 setTimeout(() => {
   document.getElementById("notice").style.display = "none";
 }, 5000);
 </script>
 
-
-
-
-  
 </body>
 </html>
-
-
-
