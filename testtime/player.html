@@ -126,7 +126,10 @@ let startTime = Date.now();
 window.addEventListener("beforeunload", () => {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   logs.push({
+    id: logId,
     page: location.pathname,
+    video: selectedV,
+    child: child,
     start: startTime,
     end: Date.now(),
     duration: Date.now() - startTime
@@ -134,8 +137,6 @@ window.addEventListener("beforeunload", () => {
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
 </script>
-
-
 
 
   
@@ -244,8 +245,12 @@ logs.push({
   
   
   start: startTime,
-  end: null,
-  duration: 0
+
+
+  end: Date.now(),
+  duration: Date.now() - startTime
+  //end: null,
+  //duration: 0
   
   
   //enter: startTime,
