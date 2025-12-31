@@ -217,7 +217,7 @@ if (selectedV) {
   
 
 /* ★追加①：入室ログ */
-const startTime = new Date().toISOString();
+//const startTime = new Date().toISOString();   //削除した　　
 const logId = Date.now();
 
 const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
