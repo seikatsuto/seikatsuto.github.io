@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>学習ログ閲覧</title>
+<style>
+  body { font-family: sans-serif; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #999; padding: 4px; }
+  th { background: #eee; }
+</style>
+</head>
+<body>
+
+<h2>学習ログ</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ページ</th>
+      <th>開始時刻</th>
+      <th>終了時刻</th>
+      <th>視聴時間(分)</th>
+    </tr>
+  </thead>
+  <tbody id="logBody"></tbody>
+</table>
+
+<script>
+const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+const tbody = document.getElementById("logBody");
+
+logs.forEach(l => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td>${l.page}</td>
+    <td>${new Date(l.start).toLocaleString()}</td>
+    <td>${new Date(l.end).toLocaleString()}</td>
+    <td>${Math.round(l.duration / 60000)}</td>
+  `;
+  tbody.appendChild(tr);
+});
+</script>
+
+</body>
+</html>
