@@ -73,6 +73,38 @@ iframe {
 
 <body>
 
+
+/* ===== 視聴時間など出力 ===== */
+
+<script>
+const pageName = location.pathname;
+const startTime = Date.now();
+
+window.addEventListener("beforeunload", () => {
+  const endTime = Date.now();
+  const duration = Math.round((endTime - startTime) / 1000); // 秒
+
+  const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
+  logs.push({
+    page: pageName,
+    start: new Date(startTime).toISOString(),
+    seconds: duration
+  });
+
+  localStorage.setItem("viewLog", JSON.stringify(logs));
+});
+</script>
+
+<pre id="log"></pre>
+<script>
+document.getElementById("log").textContent =
+  localStorage.getItem("viewLog");
+</script>
+
+
+
+
+  
 <!-- 戻る -->
 <a id="back" href="index4.html">← 一覧に戻る</a>
 
@@ -196,27 +228,6 @@ if (selectedV) {
 setTimeout(() => {
   document.getElementById("notice").style.display = "none";
 }, 5000);
-</script>
-
-/* ===== 視聴時間など出力 ===== */
-
-<script>
-const pageName = location.pathname;
-const startTime = Date.now();
-
-window.addEventListener("beforeunload", () => {
-  const endTime = Date.now();
-  const duration = Math.round((endTime - startTime) / 1000); // 秒
-
-  const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
-  logs.push({
-    page: pageName,
-    start: new Date(startTime).toISOString(),
-    seconds: duration
-  });
-
-  localStorage.setItem("viewLog", JSON.stringify(logs));
-});
 </script>
 
 
