@@ -52,13 +52,41 @@
 
 <h1>📘 ドラちゃんのお話 </h1>
 
-<textarea id="text" rows="7" cols="60">
+<textarea id="text" rows="3" cols="60">
 こんにちは、ぼくドラちゃんです。
 君は惟人君？惺太郎君？日花里君？啓人君？
+
+</textarea><br><br>
+
+<form id="childForm">
+  <label><input type="radio" name="child" value="惟人君"> 惟人君</label><br>
+  <label><input type="radio" name="child" value="惺太郎君"> 惺太郎君</label><br>
+  <label><input type="radio" name="child" value="日花里君"> 日花里君</label><br>
+  <label><input type="radio" name="child" value="啓人君"> 啓人君</label><br>
+
+  <button type="button" onclick="saveChild()">決定</button>
+</form>
+
+<script>
+function saveChild() {
+  const selected = document.querySelector('input[name="child"]:checked');
+  if (!selected) {
+    alert("名前を選んでください");
+    return;
+  }
+  localStorage.setItem("childName", selected.value);
+  alert("選択中：" + selected.value);
+}
+</script>
+
+
+<textarea id="text" rows="4" cols="60">
 どれでも好きな動画を見て。
 難しくても辛抱して何回も見ていればわかるようになるからね。
 ３回に1回の割合で「ドラえもん」の漫画が見られるよ。
 </textarea><br><br>
+
+
 
 <!--  <button onclick="speak()">読み上げ</button>   -->
 
@@ -72,6 +100,10 @@ alert(localStorage.getItem("studyLogs"));
 <script>
 console.log("logs =", localStorage.getItem("studyLogs"));
 alert("logs = " + localStorage.getItem("studyLogs"));
+
+localStorage.getItem("childName");
+
+
 </script>
 
 
