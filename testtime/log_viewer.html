@@ -16,7 +16,9 @@
 <table>
   <thead>
     <tr>
+      <th>名前</th>
       <th>ページ</th>
+      <th>selectedV</th>
       <th>開始時刻</th>
       <th>終了時刻</th>
       <th>視聴時間(分)</th>
@@ -32,7 +34,10 @@ const tbody = document.getElementById("logBody");
 logs.forEach(l => {
   const tr = document.createElement("tr");
   tr.innerHTML = `
+
+    <td>${l.child || "未選択"}</td>
     <td>${l.page}</td>
+    <td>${l.video || "-"}</td>
     <td>${new Date(l.start).toLocaleString()}</td>
     <td>${new Date(l.end).toLocaleString()}</td>
     <td>${Math.round(l.duration / 60000)}</td>
