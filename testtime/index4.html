@@ -72,7 +72,7 @@
 こんにちは、ぼくドラちゃんです。
 君は惟人君？惺太郎君？日花里君？啓人君？
 
-</textarea><br><br>
+</textarea><br>
 
 <!--
 <form id="childForm">
@@ -87,10 +87,10 @@
 
 <h2>名前を選んでください</h2>
 
-<button class="child-btn" onclick="setChild(this, '惟人')">惟人</button>
-<button class="child-btn" onclick="setChild(this, '惺太郎')">惺太郎</button>
-<button class="child-btn" onclick="setChild(this, '日花里')">日花里</button>
-<button class="child-btn" onclick="setChild(this, '啓人')">啓人</button>
+<button class="child-btn" onclick="setChild(this, '惟人君')">惟人</button>
+<button class="child-btn" onclick="setChild(this, '惺太郎君')">惺太郎</button>
+<button class="child-btn" onclick="setChild(this, '日花里君')">日花里</button>
+<button class="child-btn" onclick="setChild(this, '啓人君')">啓人</button>
 
 <script>
 function setChild(btn, name) {
@@ -151,7 +151,7 @@ function saveChild() {
 }
 </script>
 
-
+<br><br>
 <textarea id="text" rows="4" cols="60">
 どれでも好きな動画を見て。
 難しくても辛抱して何回も見ていればわかるようになるからね。
@@ -164,14 +164,14 @@ function saveChild() {
 
 
 <script>
-alert(localStorage.getItem("studyLogs"));
+//alert(localStorage.getItem("studyLogs"));
 </script>
 
 
   
 <script>
 console.log("logs =", localStorage.getItem("studyLogs"));
-alert("logs = " + localStorage.getItem("studyLogs"));
+//alert("logs = " + localStorage.getItem("studyLogs"));
 
 localStorage.getItem("childName");
 
@@ -229,8 +229,11 @@ function speak() {
 
 <!-- index4.html に埋め込む「履歴表示」コード（最小）-->
 <hr>  
+
+<!--
 <h3>学習履歴</h3>
 <button onclick="showLogs()">履歴を表示</button>
+-->
 
 <table id="logTable" style="display:none; border-collapse:collapse; width:100%;">
   <thead>
