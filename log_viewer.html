@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>学習ログ閲覧</title>
+<style>
+  body { font-family: sans-serif; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #999; padding: 4px; }
+  th { background: #eee; }
+</style>
+</head>
+<body>
+
+<h2>学習ログ</h2>
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>ページ</th>
+      <th>selectedV</th>
+      <th>開始時刻</th>
+      <th>終了時刻</th>
+      <th>視聴時間(分)</th>
+    </tr>
+  </thead>
+  <tbody id="logBody"></tbody>
+</table>
+
+<script>
+const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+const tbody = document.getElementById("logBody");
+
+logs.forEach(l => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+
+    <td>${l.child || "未選択"}</td>
+    <td>${l.page}</td>
+    <td>${l.video || "-"}</td>
+    <td>${new Date(l.start).toLocaleString()}</td>
+    <td>${new Date(l.end).toLocaleString()}</td>
+    <td>${Math.round(l.duration / 60000)}</td>
+  `;
+  tbody.appendChild(tr);
+});
+</script>
+
+<!--CSVを書き出すJavaScript-->
+<button onclick="exportCSV()">Excel用CSV出力</button>
+
+<script>
+function exportCSV() {
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  if (logs.length === 0) {
+    alert("ログがありません");
+    return;
+  }
+
+  // ★ 画面表示と完全一致のヘッダー
+  let csv = "名前,ページ,selectedV,開始時刻,終了時刻,視聴時間(分)\n";
+
+  logs.forEach(l => {
+    const row = [
+      l.child || "未選択",
+      l.page || "",
+      l.video || "",
+      new Date(l.start).toLocaleString(),
+      new Date(l.end).toLocaleString(),
+      Math.round(l.duration / 60000)
+    ];
+    csv += row.join(",") + "\n";
+  });
+
+  // BOM付き（Excel文字化け防止）
+  const blob = new Blob(
+    ["\uFEFF" + csv],
+    { type: "text/csv;charset=utf-8;" }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "study_log.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+
+
+
+</body>
+</html>
