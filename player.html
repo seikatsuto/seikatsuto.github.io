@@ -118,6 +118,28 @@ if ('getBattery' in navigator) {
 <!-- デバッグ表示（不要なら消してOK） -->
 <p id="video" style="display:none"></p>
 
+
+  
+<script>
+let startTime = Date.now();
+
+window.addEventListener("beforeunload", () => {
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  logs.push({
+    id: logId,
+    page: location.pathname,
+    video: selectedV,
+    child: child,
+    start: startTime,
+    end: Date.now(),
+    duration: Date.now() - startTime
+  });
+  localStorage.setItem("studyLogs", JSON.stringify(logs));
+});
+</script>
+
+
+  
 <script>
 // 動画ID配列
 const vArray = [
@@ -176,21 +198,82 @@ let selectedV;
 if (rand >= 0.67) {
   selectedV = vArray[Math.floor(Math.random() * vArray.length)];
   console.log("ランダム再生:", selectedV);
+  
+  console.log(selectedV, typeof selectedV);
+
+  
 } else {
   const params = new URLSearchParams(location.search);
   selectedV = params.get("v");
   console.log("指定動画:", selectedV);
+  
+  console.log(selectedV, typeof selectedV);
+
+  
+  
 }
 
 // iframe設定
 if (selectedV) {
-  document.getElementById("video").textContent = "v=" + selectedV;
+  document.getElementById("video").textContent = "v=" + selectedV;    /* 削除か　前に出すか　このままか */
   document.getElementById("yt").src =
     "https://www.youtube.com/embed/" + selectedV +
     "?rel=0&modestbranding=1&fs=0&iv_load_policy=3";
 } else {
   location.href = "index4.html";
 }
+
+
+  
+
+/* ★追加①：入室ログ */
+//const startTime = new Date().toISOString();   //削除した　　
+
+const child = localStorage.getItem("childName") || "未選択";
+
+
+
+const logId = Date.now();
+
+//const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
+const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+logs.push({
+  id: logId,
+  page: "player.html",
+  video: selectedV,
+  child: child,
+  
+  
+  start: startTime,
+
+
+  end: Date.now(),
+  duration: Date.now() - startTime
+  //end: null,
+  //duration: 0
+  
+  
+  //enter: startTime,
+  //leave: null
+  
+  
+});
+//localStorage.setItem("studyLog", JSON.stringify(logs));
+localStorage.setItem("studyLogs", JSON.stringify(logs));
+
+/* ★追加②：退出ログ */
+window.addEventListener("beforeunload", () => {
+  const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
+  const log = logs.find(l => l.id === logId);
+  if (log) {
+    log.leave = new Date().toISOString();
+    localStorage.setItem("studyLog", JSON.stringify(logs));
+  }
+});
+
+
+
+  
 
 // 広告注意は5秒で消す
 setTimeout(() => {
