@@ -272,14 +272,43 @@ window.addEventListener("beforeunload", () => {
 });
 
 
-
-  
-
 // 広告注意は5秒で消す
 setTimeout(() => {
   document.getElementById("notice").style.display = "none";
 }, 5000);
 </script>
 
+
+
+  
+<script>
+//player.html を閉じる瞬間に CSV 保存  
+window.addEventListener("beforeunload", () => {
+  const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
+  if (logs.length === 0) return;
+
+  const header = ["No","ページ","子供名","開始","終了","秒"];
+  const rows = logs.map((l,i)=>[
+    i+1, l.page, l.child,
+    new Date(l.start).toLocaleString(),
+    new Date(l.end).toLocaleString(),
+    l.duration
+  ]);
+
+  const csv = [header,...rows]
+    .map(r=>r.map(v=>`"${v}"`).join(","))
+    .join("\n");
+
+  const blob = new Blob([csv], {type:"text/csv"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "view_log.csv";
+  a.click();
+});
+</script>
+
+
+
+  
 </body>
 </html>
