@@ -195,7 +195,8 @@ const rand = Math.random();
 let selectedV;
 
 // 67%以上でランダム差し替え
-if (rand >= 0.67) {
+const dora = 0.67;   // dora～1  ではドラえもん
+if (rand >= dora) {
   selectedV = vArray[Math.floor(Math.random() * vArray.length)];
   console.log("ランダム再生:", selectedV);
   
@@ -242,21 +243,13 @@ logs.push({
   page: "player.html",
   video: selectedV,
   child: child,
-  
-  
   start: startTime,
-
-
   end: Date.now(),
   duration: Date.now() - startTime
   //end: null,
   //duration: 0
-  
-  
   //enter: startTime,
   //leave: null
-  
-  
 });
 //localStorage.setItem("studyLog", JSON.stringify(logs));
 localStorage.setItem("studyLogs", JSON.stringify(logs));
@@ -277,9 +270,6 @@ setTimeout(() => {
   document.getElementById("notice").style.display = "none";
 }, 5000);
 </script>
-
-
-
   
 <script>
 //player.html を閉じる瞬間に CSV 保存  
