@@ -258,11 +258,14 @@ localStorage.setItem("studyLogs", JSON.stringify(logs));
 
 /* ★追加②：退出ログ */
 window.addEventListener("beforeunload", () => {
-  const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
+  //const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+
   const log = logs.find(l => l.id === logId);
   if (log) {
     log.leave = new Date().toISOString();
-    localStorage.setItem("studyLog", JSON.stringify(logs));
+    //localStorage.setItem("studyLog", JSON.stringify(logs));
+    localStorage.setItem("studyLogs", JSON.stringify(logs));
   }
 });
 
