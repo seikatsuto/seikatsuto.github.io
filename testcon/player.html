@@ -124,7 +124,12 @@ if ('getBattery' in navigator) {
 const startTime = Date.now();
 /* ========= 子供名 ========= */
 const child = localStorage.getItem("childName") || "未選択";
-let logId= Date.now();
+
+//let logId= Date.now();
+const logId= Date.now();
+
+
+  
 /* ========= 動画ID決定 ========= */
 const params = new URLSearchParams(location.search);
 let selectedV = params.get("v");   //事後初期値
@@ -249,7 +254,7 @@ if (selectedV) {
 
 
 //const logId = Date.now();
-logId = Date.now();
+//logId = Date.now();
 
 //const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
 const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
