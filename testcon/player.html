@@ -124,7 +124,7 @@ if ('getBattery' in navigator) {
 const startTime = Date.now();
 /* ========= 子供名 ========= */
 const child = localStorage.getItem("childName") || "未選択";
-
+let logId= Date.now();
 /* ========= 動画ID決定 ========= */
 const params = new URLSearchParams(location.search);
 let selectedV = params.get("v");   //事後初期値
