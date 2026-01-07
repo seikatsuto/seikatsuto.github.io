@@ -279,7 +279,8 @@ setTimeout(() => {
 <script>
 //player.html を閉じる瞬間に CSV 保存  
 window.addEventListener("beforeunload", () => {
-  const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
+  //const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");   //■ 
   if (logs.length === 0) return;
 
   const header = ["No","ページ","子供名","開始","終了","秒"];
