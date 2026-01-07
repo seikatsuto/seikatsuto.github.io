@@ -51,7 +51,7 @@ logs.forEach(l => {
 });
 </script>
 
-<!-- Consoleの表示を消去 -->
+<!-- Consoleの表示を消去 
 <button onclick="clearcons()">Consoleを消去</button>
 <script>
 function clearcons() {
@@ -59,7 +59,17 @@ function clearcons() {
   logs.clear();
 }
 </script>
+-->
 
+<button onclick="clearLogs()">ログを完全消去</button>
+<script>
+function clearLogs() {
+  if (!confirm("学習ログをすべて削除します。よろしいですか？")) return;
+  localStorage.removeItem("studyLogs");
+  location.reload();
+}
+</script>
+  
   
 <!--CSVを書き出すJavaScript-->
 <button onclick="exportCSV()">Excel用CSV出力</button>
