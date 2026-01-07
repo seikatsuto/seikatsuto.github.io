@@ -12,6 +12,11 @@
 </head>
 <body>
 
+  <!-- 広告注意 -->
+<div id="notice">
+※ 修正は 20260107 1430。
+</div>
+
 <h2>学習ログ</h2>
 <table>
   <thead>
@@ -84,6 +89,16 @@ function exportCSV() {
   a.download = "study_log.csv";
   a.click();
   URL.revokeObjectURL(url);
+}
+</script>
+
+<!-- Consoleの表示を消去 -->
+<script>
+<!--CSVを書き出すJavaScript-->
+<button onclick="clearcons()">Consoleを消去</button>
+  
+function clearcons() {
+  console.clear();
 }
 </script>
 
