@@ -121,40 +121,22 @@ if ('getBattery' in navigator) {
 
   
 <script>
-const startTime = Date.now();
-/* ========= 子供名 ========= */
-const child = localStorage.getItem("childName") || "未選択";
-
-//let logId= Date.now();
-const logId= Date.now();
+let startTime = Date.now();
 
 
-  
-/* ========= 動画ID決定 ========= */
-const params = new URLSearchParams(location.search);
-let selectedV = params.get("v");   //事後初期値
-let selectedVb = params.get("v");  //事前
-
-if (!selectedV) {
-  location.href = "index4.html";
-}
-
-
-//window.addEventListener("beforeunload", () => {
-const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-logs.push({
+window.addEventListener("beforeunload", () => {
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  logs.push({
     id: logId,
-    //page: location.pathname,
-    page: selectedVb,
+    page: location.pathname,
     video: selectedV,
     child: child,
     start: startTime,
-    //end: Date.now(),
-    end: null,
-    duration: 0
+    end: Date.now(),
+    duration: Date.now() - startTime
+  });
+  localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
-localStorage.setItem("studyLogs", JSON.stringify(logs));
-//});
 
 </script>
 
@@ -212,7 +194,7 @@ const vArray = [
 
 // 乱数
 const rand = Math.random();
-//let selectedV;
+let selectedV;
 
 // 67%以上でランダム差し替え
 const dora = 0.67;   // dora～1  ではドラえもん
@@ -250,18 +232,17 @@ if (selectedV) {
 /* ★追加①：入室ログ */
 //const startTime = new Date().toISOString();   //削除した　　
 
-//const child = localStorage.getItem("childName") || "未選択";
+const child = localStorage.getItem("childName") || "未選択";
 
 
-//const logId = Date.now();
-//logId = Date.now();
+
+const logId = Date.now();
 
 //const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
 const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
 logs.push({
   id: logId,
-  //page: "player.html",
-  page: selectedVb,
+  page: "player.html",
   video: selectedV,
   child: child,
   start: startTime,
@@ -283,8 +264,6 @@ window.addEventListener("beforeunload", () => {
   const log = logs.find(l => l.id === logId);
   if (log) {
     log.leave = new Date().toISOString();
-    log.end = Date.now();
-    //log.duration = Math.round((log.end - log.start) / 1000);
     //localStorage.setItem("studyLog", JSON.stringify(logs));
     localStorage.setItem("studyLogs", JSON.stringify(logs));
   }
@@ -298,11 +277,9 @@ setTimeout(() => {
 </script>
   
 <script>
-/--
 //player.html を閉じる瞬間に CSV 保存  
 window.addEventListener("beforeunload", () => {
-  //const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
-  //const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
   if (logs.length === 0) return;
 
   const header = ["No","ページ","子供名","開始","終了","秒"];
@@ -323,7 +300,6 @@ window.addEventListener("beforeunload", () => {
   a.download = "view_log.csv";
   a.click();
 });
---/
 </script>
 
 <!--  log_viewer.html を「自動で一瞬だけ開く」  -->
