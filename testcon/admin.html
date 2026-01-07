@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>管理画面（ログ管理）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: sans-serif;
+  padding: 10px;
+}
+h1 {
+  font-size: 1.2em;
+}
+button {
+  margin: 5px 0;
+  padding: 8px 12px;
+  font-size: 1em;
+}
+textarea {
+  width: 100%;
+  height: 260px;
+  font-size: 12px;
+  margin-top: 10px;
+  white-space: pre;
+}
+.warn {
+  color: red;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>📋 視聴ログ 管理画面（admin.html）</h1>
+
+<p class="warn">
+※ このページは <b>kiosk外の Chrome</b> でのみ使用してください
+</p>
+
+<button onclick="loadLog()">① ログ表示</button>
+<button onclick="exportCSV()">② CSV 出力</button>
+<button onclick="clearLog()">③ ログ完全消去</button>
+
+<textarea id="output" placeholder="ここにログ内容が表示されます"></textarea>
+
+<script>
+const LOG_KEY = "viewLog";   // ★ kiosk側と同じキー名
+
+function loadLog() {
+  const logs = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
+  if (logs.length === 0) {
+    output.value = "ログはありません";
+    return;
+  }
+  output.value = JSON.stringify(logs, null, 2);
+}
+
+function exportCSV() {
+  const logs = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
+  if (logs.length === 0) {
+    alert("ログがありません");
+    return;
+  }
+
+  const header = Object.keys(logs[0]).join(",");
+  const rows = logs.map(l =>
+    Object.values(l).map(v =>
+      `"${String(v).replace(/"/g,'""')}"`
+    ).join(",")
+  );
+
+  const csv = [header, ...rows].join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "view_log.csv";
+  a.click();
+}
+
+function clearLog() {
+  if (!confirm("ログを完全に削除します。よろしいですか？")) return;
+
+  localStorage.removeItem(LOG_KEY);
+
+  // 念押し（kiosk外Chromeでは確実）
+  localStorage.clear();
+
+  output.value = "ログを完全消去しました";
+}
+</script>
+
+</body>
+</html>
