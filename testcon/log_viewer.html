@@ -14,7 +14,7 @@
 
   <!-- 広告注意 -->
 <div id="notice">
-※ 修正は 20260107 1430。
+※ 修正は 20260107 1450。
 </div>
 
 <h2>学習ログ</h2>
@@ -51,6 +51,15 @@ logs.forEach(l => {
 });
 </script>
 
+<!-- Consoleの表示を消去 -->
+<button onclick="clearcons()">Consoleを消去</button>
+<script>
+function clearcons() {
+  console.clear();
+}
+</script>
+
+  
 <!--CSVを書き出すJavaScript-->
 <button onclick="exportCSV()">Excel用CSV出力</button>
 
@@ -92,15 +101,6 @@ function exportCSV() {
 }
 </script>
 
-<!-- Consoleの表示を消去 -->
-<script>
-<!--CSVを書き出すJavaScript-->
-<button onclick="clearcons()">Consoleを消去</button>
-  
-function clearcons() {
-  console.clear();
-}
-</script>
 
 
 
