@@ -34,7 +34,7 @@ textarea {
 
 <body>
 
-<h1>📋 視聴ログ 管理画面（admin.html）20260108 0937</h1>
+<h1>📋 視聴ログ 管理画面（admin.html）20260108 1050</h1>
 
 <p class="warn">
 ※ このページは <b>kiosk外の Chrome</b> でのみ使用してください
@@ -48,8 +48,9 @@ textarea {
 
 <script>
 //const LOG_KEY = "viewLog";   // ★ kiosk側と同じキー名
-const LOG_KEY = "studyLogs";   // ★ kiosk側と同じキー名
-
+//const LOG_KEY = "studyLogs";   // ★ kiosk側と同じキー名
+const LOG_KEY = "childName";   // ★ kiosk側と同じキー名
+  
 function loadLog() {
   const logs = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
   if (logs.length === 0) {
