@@ -138,6 +138,8 @@ window.addEventListener("beforeunload", () => {
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
 
+
+alert(Object.keys(localStorage).join("\n"));       //■■
 </script>
 
 
@@ -192,7 +194,7 @@ const vArray = [
   // …（長いので省略：元の配列そのまま使ってOK）
 
   
-console.clear();   //■■
+//console.clear();   //■■
 
   
 // 乱数
@@ -277,6 +279,10 @@ window.addEventListener("beforeunload", () => {
 setTimeout(() => {
   document.getElementById("notice").style.display = "none";
 }, 5000);
+
+alert(Object.keys(localStorage).join("\n"));       //■■
+
+
 </script>
 
 
