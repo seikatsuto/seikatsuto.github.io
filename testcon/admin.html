@@ -47,7 +47,8 @@ textarea {
 <textarea id="output" placeholder="ここにログ内容が表示されます"></textarea>
 
 <script>
-const LOG_KEY = "viewLog";   // ★ kiosk側と同じキー名
+//const LOG_KEY = "viewLog";   // ★ kiosk側と同じキー名
+const LOG_KEY = "studyLogs";   // ★ kiosk側と同じキー名
 
 function loadLog() {
   const logs = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
