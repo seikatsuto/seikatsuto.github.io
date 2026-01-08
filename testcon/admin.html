@@ -34,7 +34,7 @@ textarea {
 
 <body>
 
-<h1>📋 視聴ログ 管理画面（admin.html）20260108 1050</h1>
+<h1>📋 視聴ログ 管理画面（admin.html）20260108 1630</h1>
 
 <p class="warn">
 ※ このページは <b>kiosk外の Chrome</b> でのみ使用してください
@@ -48,8 +48,8 @@ textarea {
 
 <script>
 //const LOG_KEY = "viewLog";   // ★ kiosk側と同じキー名
-//const LOG_KEY = "studyLogs";   // ★ kiosk側と同じキー名
-const LOG_KEY = "childName";   // ★ kiosk側と同じキー名
+const LOG_KEY = "studyLogs";   // ★ kiosk側と同じキー名
+//const LOG_KEY = "childName";   // ★ kiosk側と同じキー名
   
 function loadLog() {
   const logs = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
@@ -86,10 +86,11 @@ function exportCSV() {
 function clearLog() {
   if (!confirm("ログを完全に削除します。よろしいですか？")) return;
 
-  localStorage.removeItem(LOG_KEY);
+  //localStorage.removeItem(LOG_KEY);
+  localStorage.removeItem("studyLogs");
 
   // 念押し（kiosk外Chromeでは確実）
-  localStorage.clear();
+  //localStorage.clear();   //★★
 
   output.value = "ログを完全消去しました";
 }
