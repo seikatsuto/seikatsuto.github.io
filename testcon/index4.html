@@ -83,7 +83,7 @@
 <h1>📘 ドラちゃんのお話 20260110 2255</h1>
 
 <!--  <textarea id="text" rows="3" cols="60">  -->
-<textarea id="text" rows="3" cols="60" style="font-size:22px; line-height: 1.6;">
+<textarea id="introText" rows="3" cols="60" style="font-size:22px; line-height: 1.6;">
 こんにちは、ぼくドラちゃんです。
 君は惟人君？惺太郎君？日花里君？啓人君？
 名前を選んでください。
@@ -111,7 +111,7 @@
 /* ===== 表示制御（先に定義） ===== */
 function updateListDisplay() {
   const items = document.querySelectorAll("#videoList li");
-
+  if (!items.length) return;
   items.forEach((li, index) => {
     const no = index + 1;
     if (no >= gbegin && no <= gend) {
@@ -243,7 +243,7 @@ function setSubje(btn, name) {
 
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<textarea id="text" rows="3" cols="60" style="font-size:22px; line-height: 1.6;">
+<textarea id="guideText" rows="3" cols="60" style="font-size:22px; line-height: 1.6;">
 どれでも好きな動画を見て。
 難しくても辛抱して何回も見ていればわかるようになるからね。
 ３回に1回の割合で「ドラえもん」の漫画が見られるよ。
