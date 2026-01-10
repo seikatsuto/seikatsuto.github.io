@@ -108,7 +108,6 @@
 <button class="child-btn" onclick="setChild(this, '啓人君')">啓人君</button>
 
 <script>
-<script>
 /* ===== 表示制御（先に定義） ===== */
 function updateListDisplay() {
   const items = document.querySelectorAll("#videoList li");
@@ -194,35 +193,21 @@ function saveChild() {
 <button class="subje-btn" onclick="setSubje(this, '国語5年')">国語5年</button>
 <button class="subje-btn" onclick="setSubje(this, '国語6年')">国語6年</button>
 
-
 <script>
-function setSubje(btn, name) {
-  // 全ボタンの色をリセット
-  document.querySelectorAll('.subje-btn').forEach(b => {
-    b.classList.remove('active');
-  });
-
-  // 押したボタンだけ色変更
-  btn.classList.add('active');
-
-  // 名前を保存
-  localStorage.setItem("subjeName", name);
-}
-
-/* ページ再読み込み時に前回選択を復元 */
 window.addEventListener("load", () => {
   const saved = localStorage.getItem("subjeName");
   if (!saved) return;
 
   document.querySelectorAll('.subje-btn').forEach(btn => {
     if (btn.textContent === saved) {
-      btn.classList.add('active');
+      btn.click(); // ← 範囲＋表示も復元
     }
   });
 });
 </script>
-
-<script>
+  
+  
+  <script>
 let gbegin = 1;
 let gend   = 600;
 
@@ -250,7 +235,7 @@ function setSubje(btn, name) {
   else if (name === '国語5年') { gbegin = 501; gend = 550; }
   else if (name === '国語6年') { gbegin = 551; gend = 600; }
 
-  console.log("表示範囲:", gbegin, "〜", gend);
+  //console.log("表示範囲:", gbegin, "〜", gend);
   updateListDisplay();   // ← ★これを追加するだけ
 }
 </script>
@@ -300,7 +285,7 @@ function speak() {
 <div class="section">
   <h2>📖 小学生　算数</h2>
 
-<ul>
+<ul id="videoList">
 
 <!-- 小学1年生 -->
   <li><a href="player.html?v=LbYijVgaqhs">小1算数「時計のよみかた」</a></li>
