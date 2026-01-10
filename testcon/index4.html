@@ -206,33 +206,38 @@ window.addEventListener("load", () => {
 </script>
 
 <script>
-let gbegin=1;
-let gend=600;
-function saveSubje() {
-  const selected = document.querySelector('input[name="subje"]:checked');
-  if (!selected) {
-    alert("科目と学年を選んでください");
-    return;
-  }
-  localStorage.setItem("subjeName", selected.value);
-  alert("選択中：" + selected.value);
-}
-if(selected.value==='算数1年'){gbegin=1; gend=50;}
-if(selected.value==='算数2年'){gbegin=51; gend=100;}
-if(selected.value==='算数3年'){gbegin=101; gend=150;}
-if(selected.value==='算数4年'){gbegin=151; gend=200;}
-if(selected.value==='算数5年'){gbegin=201; gend=250;}
-if(selected.value==='算数6年'){gbegin=251; gend=300;}
-if(selected.value==='国語1年'){gbegin=301; gend=350;}
-if(selected.value==='国語2年'){gbegin=351; gend=400;}
-if(selected.value==='国語3年'){gbegin=401; gend=450;}
-if(selected.value==='国語4年'){gbegin=451; gend=500;}
-if(selected.value==='国語5年'){gbegin=501; gend=550;}
-if(selected.value==='国語6年'){gbegin=551; gend=600;}
+let gbegin = 1;
+let gend   = 600;
 
+function setSubje(btn, name) {
+  // ボタンの色リセット
+  document.querySelectorAll('.subje-btn').forEach(b => {
+    b.classList.remove('active');
+  });
+  btn.classList.add('active');
+
+  // 選択内容を保存
+  localStorage.setItem("subjeName", name);
+
+  // ===== 学年ごとの範囲指定 =====
+  if (name === '算数1年') { gbegin = 1;   gend = 50;  }
+  else if (name === '算数2年') { gbegin = 51;  gend = 100; }
+  else if (name === '算数3年') { gbegin = 101; gend = 150; }
+  else if (name === '算数4年') { gbegin = 151; gend = 200; }
+  else if (name === '算数5年') { gbegin = 201; gend = 250; }
+  else if (name === '算数6年') { gbegin = 251; gend = 300; }
+  else if (name === '国語1年') { gbegin = 301; gend = 350; }
+  else if (name === '国語2年') { gbegin = 351; gend = 400; }
+  else if (name === '国語3年') { gbegin = 401; gend = 450; }
+  else if (name === '国語4年') { gbegin = 451; gend = 500; }
+  else if (name === '国語5年') { gbegin = 501; gend = 550; }
+  else if (name === '国語6年') { gbegin = 551; gend = 600; }
+
+  console.log("表示範囲:", gbegin, "〜", gend);
+}
 </script>
 
-<br>
+
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <textarea id="text" rows="3" cols="60" style="font-size:22px; line-height: 1.6;">
