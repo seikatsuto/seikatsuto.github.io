@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>視聴時間 集計表</title>
+<style>
+  body { font-family: sans-serif; }
+  table { border-collapse: collapse; margin-top: 20px; }
+  th, td { border: 1px solid #999; padding: 4px 8px; }
+  th { background: #eee; }
+  th:first-child, td:first-child { text-align: center; }
+</style>
+</head>
+<body>
+
+<h2>視聴時間 集計表</h2>
+
+<button onclick="makeSummary()">集計して表示</button>
+<button onclick="exportSummary()">summary.csv 出力</button>
+
+<div id="result"></div>
+
+<script>
+/* ==============================
+   1. 人定義（Python互換）
+   ============================== */
+const persons = [
+  ["P1", "惟人君"],
+  ["P2", "惺太郎君"],
+  ["P3", "日花里君"],
+  ["P4", "啓人君"]
+];
+
+const nameToIndex = {};
+persons.forEach((p, i) => nameToIndex[p[1]] = i);
+
+/* ==============================
+   2. 動画順リスト（HTMLで直接定義）
+   ※ Pythonの txt 内容をここに転記
+   ============================== */
+const videoOrder = [
+  "m5zWD0b6Qtk",
+  "EeMsKOu7gSM",
+  "xxxxxxxxxxx"
+  // ← 必要なだけ追加
+];
+
+const videoIndex = {};
+videoOrder.forEach((v, i) => videoIndex[v] = i);
+
+/* 集計結果保存用 */
+let watch = [];
+
+/* ==============================
+   3. 集計処理（localStorage）
+   ============================== */
+function makeSummary() {
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+
+  watch = Array.from(
+    { length: videoOrder.length },
+    () => Array(persons.length).fill(0)
+  );
+
+  logs.forEach(l => {
+    const name = l.child;
+    const vid  = l.video;
+    if (!(name in nameToIndex)) return;
+    if (!(vid in videoIndex)) return;
+
+    const min = Math.round(l.duration / 60000);
+    watch[videoIndex[vid]][nameToIndex[name]] += min;
+  });
+
+  renderTable();
+}
+
+/* ==============================
+   4. 表表示（全ゼロ行は省略）
+   ============================== */
+function renderTable() {
+  const div = document.getElementById("result");
+  div.innerHTML = "";
+
+  const table = document.createElement("table");
+
+  /* ヘッダ */
+  const trh = document.createElement("tr");
+  trh.innerHTML =
+    "<th>No</th><th>VideoID</th>" +
+    persons.map(p => `<th>${p[1]}</th>`).join("");
+  table.appendChild(trh);
+
+  /* データ行 */
+  watch.forEach((row, i) => {
+    if (row.every(v => v === 0)) return; // ★ 全ゼロ行を除外
+
+    const tr = document.createElement("tr");
+    tr.innerHTML =
+      `<td>${i + 1}</td>` +
+      `<td>${videoOrder[i]}</td>` +
+      row.map(v => `<td>${v}</td>`).join("");
+    table.appendChild(tr);
+  });
+
+  div.appendChild(table);
+}
+
+/* ==============================
+   5. CSV 出力（Excel安全）
+   ============================== */
+function exportSummary() {
+  if (watch.length === 0) {
+    alert("先に集計してください");
+    return;
+  }
+
+  let csv = "\uFEFF";
+  csv += ["No", "VideoID", ...persons.map(p => p[1])].join(",") + "\n";
+
+  watch.forEach((row, i) => {
+    csv += [i + 1, videoOrder[i], ...row].join(",") + "\n";
+  });
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "summary.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
