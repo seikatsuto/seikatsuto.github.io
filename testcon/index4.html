@@ -66,7 +66,7 @@
 </head>
 <body>
 
-<h1>📘 ドラちゃんのお話 </h1>
+<h1>📘 ドラちゃんのお話 ２０２６０１１０　２００５</h1>
 
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="text" rows="3" cols="60" style="font-size:22px; line-height: 1.6;">
@@ -829,6 +829,34 @@ function speak() {
 
 
 </div>
+
+
+
+<!-- ★ ここに入れる -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".section ul li");
+
+  items.forEach((li, index) => {
+    // 3行飛ばす（非表示）
+    if (index < 3) {
+      li.style.display = "none";
+    }
+    // 次の2行だけ表示
+    else if (index < 5) {
+      li.style.display = "";
+    }
+    // 残りは非表示
+    else {
+      li.style.display = "none";
+    }
+  });
+});
+</script>
+
+
+
+
 
 <div class="note">
   見られる教材はここにあるものだけです
