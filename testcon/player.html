@@ -82,7 +82,7 @@ iframe {
 <!-- ■■  広告注意 -->
 <div id="notice">
 ※ はじめや終わりに広告が出ることがあります。<br>
-広告が終わるまで待ってください。0108 1045
+広告が終わるまで待ってください。0110 1430
 </div>
 
 <div id="battery"
@@ -123,7 +123,7 @@ if ('getBattery' in navigator) {
 <script>
 let startTime = Date.now();
 
-
+/*
 window.addEventListener("beforeunload", () => {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   logs.push({
@@ -140,6 +140,7 @@ window.addEventListener("beforeunload", () => {
 
 
 alert(Object.keys(localStorage).join("\n"));       //■■
+*/
 </script>
 
 
@@ -243,25 +244,27 @@ const child = localStorage.getItem("childName") || "未選択";
 
 const logId = Date.now();
 
-//const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
-const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-logs.push({
-  id: logId,
-  page: "player.html",
-  video: selectedV,
-  child: child,
-  start: startTime,
-  end: Date.now(),
-  duration: Date.now() - startTime
-  //end: null,
-  //duration: 0
-  //enter: startTime,
-  //leave: null
+window.addEventListener("beforeunload", () => {//■■
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  logs.push({
+    id: logId,
+    page: "player.html",
+    video: selectedV,
+    child: child,
+    start: startTime,
+    end: Date.now(),
+    duration: Date.now() - startTime
+    //end: null,
+    //duration: 0
+    //enter: startTime,
+    //leave: null
+  });
+  localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
-//localStorage.setItem("studyLog", JSON.stringify(logs));
-localStorage.setItem("studyLogs", JSON.stringify(logs));
+
 
 /* ★追加②：退出ログ */
+/*
 window.addEventListener("beforeunload", () => {
   //const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
@@ -273,7 +276,7 @@ window.addEventListener("beforeunload", () => {
     localStorage.setItem("studyLogs", JSON.stringify(logs));
   }
 });
-
+*/
 
 // 広告注意は5秒で消す
 setTimeout(() => {
