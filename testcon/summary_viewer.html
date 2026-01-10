@@ -21,6 +21,9 @@
 <div id="result"></div>
 
 <script>
+alert("version ２０２６０１１０　１６００");  //★★
+
+  
 /* ==============================
    1. 人定義（Python互換）
    ============================== */
@@ -68,7 +71,8 @@ function makeSummary() {
     if (!(name in nameToIndex)) return;
     if (!(vid in videoIndex)) return;
 
-    const min = Math.round(l.duration / 60000);
+    //const min = Math.round(l.duration / 60000);  //★★
+    const min = Math.round(l.duration);  //★★
     watch[videoIndex[vid]][nameToIndex[name]] += min;
   });
 
