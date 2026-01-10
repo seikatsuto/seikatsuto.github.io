@@ -108,6 +108,23 @@
 <button class="child-btn" onclick="setChild(this, '啓人君')">啓人君</button>
 
 <script>
+<script>
+/* ===== 表示制御（先に定義） ===== */
+function updateListDisplay() {
+  const items = document.querySelectorAll("#videoList li");
+
+  items.forEach((li, index) => {
+    const no = index + 1;
+    if (no >= gbegin && no <= gend) {
+      li.style.display = "";
+    } else {
+      li.style.display = "none";
+    }
+  });
+}
+</script>
+
+  
 function setChild(btn, name) {
   // 全ボタンの色をリセット
   document.querySelectorAll('.child-btn').forEach(b => {
