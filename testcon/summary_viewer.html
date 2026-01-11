@@ -13,32 +13,30 @@
   td:nth-child(2), td:nth-child(3) { text-align: left; }
 </style>
 </head>
+
+<!--  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-
-<h2>視聴時間 集計表  ２０２６０１１０　１６５５</h2>  <!--★★-->
-
+<h2>視聴時間 集計表  20260111 1110</h2>  <!--★★-->
 <button onclick="makeSummary()">集計して表示</button>
 <button onclick="exportSummary()">summary.csv 出力</button>
-
 <div id="result"></div>
 
 <script>
-/* ==============================
-   人定義（Python互換）
-   ============================== */
-const persons = [
+// zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+//  人定義（Python互換）
+
+  const persons = [
   ["P1", "惟人君"],
   ["P2", "惺太郎君"],
   ["P3", "日花里君"],
   ["P4", "啓人君"]
 ];
-
 const nameToIndex = {};
 persons.forEach((p, i) => nameToIndex[p[1]] = i);
 
-/* ==============================
-   動画リスト（そのままコピペ）
-   ============================== */
+// zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz 
+// 動画リスト（そのままコピペ）
+
 const VIDEO_LIST_HTML = `
   <li><a href="player.html?v=LbYijVgaqhs">小1算数「時計のよみかた」</a></li>
   <li><a href="player.html?v=m5zWD0b6Qtk">小1算数「くり上がりのたしざん」</a></li>
@@ -346,7 +344,6 @@ const VIDEO_LIST_HTML = `
   <li><a href="player.html?v=gS62F7sYxPM">算数　比　まとめ　これでバッチリ！！　６年生</a></li>
   <li><a href="player.html?v=31fFOCpR6Ok">99の段の計算マジック　#数学 #算数 #タカタ先生 #計算 #calculation #shorts</a></li>
 
-
  <li><a href="player.html?v=EufZ_T6fSpI">小学一年生漢字 読み方クイズ全80字[All Kanji 1st Grade]</a></li>
   <li><a href="player.html?v=KQX-Rf5Jwbg">ふみこ先生の国語教室６　くっつきの「は」「へ」「を」①</a></li>
   <li><a href="player.html?v=LbYijVgaqhs">小1算数「時計のよみかた」</a></li>
@@ -653,7 +650,6 @@ const VIDEO_LIST_HTML = `
   <li><a href="player.html?v=qHdST4GFNxY">小学6年生国語教材「カレーライス重松清」を60秒で　#国語 #物語 #重松清</a></li>
   <li><a href="player.html?v=RFBVkc_2UQE">「森へ」　小６国語７月第１週 - 海外に暮らす子どもたちへ by JPN Class</a></li>
 
-
   <li><a href="player.html?v=-_xIanPXx9Q">【ドラえもん】ドラえもんもお風呂に!?　温泉旅行《公式》</a></li>
   <li><a href="player.html?v=hsf2-xxoKKo">【期間限定】年末年始もドラえもん！午年スペシャル《ドラえもん公式》</a></li>
   <li><a href="player.html?v=ZhBjsiYGigQ">ドラえもん | ジャイアンの歌がやめられない</a></li>
@@ -956,9 +952,9 @@ const VIDEO_LIST_HTML = `
   <li><a href="player.html?v=ctlhbFAjj4M">【うごメモ】翼をくださいの替え歌が面白すぎたｗｗｗｗｗ【ドラえもん＆のび太】#shorts</a></li>
 `;
 
-/* ==============================
-   動画リスト解析
-   ============================== */
+// zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+//  動画リスト解析
+
 const parser = new DOMParser();
 const doc = parser.parseFromString(`<ul>${VIDEO_LIST_HTML}</ul>`, "text/html");
 
@@ -979,9 +975,9 @@ videoList.forEach((v, i) => videoIndex[v.videoId] = i);
 /* 集計結果 */
 let watch = [];
 
-/* ==============================
-   集計処理
-   ============================== */
+// zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+//   集計処理
+
 function makeSummary() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
 
@@ -1000,13 +996,12 @@ function makeSummary() {
     const min = Math.round(l.duration);  //★★  
     watch[videoIndex[vid]][nameToIndex[name]] += min;
   });
-
   renderTable();
 }
 
-/* ==============================
-   表表示（全ゼロ行除外）
-   ============================== */
+// zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+//   表表示（全ゼロ行除外）
+
 function renderTable() {
   const div = document.getElementById("result");
   div.innerHTML = "";
@@ -1021,7 +1016,6 @@ function renderTable() {
 
   watch.forEach((row, i) => {
     if (row.every(v => v === 0)) return;// ★ 全ゼロ行を除外
-
     const v = videoList[i];
     const tr = document.createElement("tr");
     tr.innerHTML =
@@ -1029,33 +1023,27 @@ function renderTable() {
       `<td>${v.videoId}</td>` +
       `<td title="${v.title}">${v.shortTitle}</td>` +
       row.map(v => `<td>${v}</td>`).join("");
-
     table.appendChild(tr);
   });
-
   div.appendChild(table);
 }
 
-/* ==============================
-   CSV 出力
-   ============================== */
+// zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+//   CSV 出力
+
 function exportSummary() {
   if (watch.length === 0) {
     alert("先に集計してください");
     return;
   }
-
   let csv = "\uFEFF";
   csv += ["No", "VideoID", "Title", ...persons.map(p => p[1])].join(",") + "\n";
-
   watch.forEach((row, i) => {
     const v = videoList[i];
     csv += [v.no, v.videoId, v.title, ...row].join(",") + "\n";
   });
-
   const blob = new Blob([csv], { type: "text/csv" });
   const url = URL.createObjectURL(blob);
-
   const a = document.createElement("a");
   a.href = url;
   a.download = "summary.csv";
