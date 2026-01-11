@@ -5,6 +5,7 @@
   <title>学習スタート</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+     /* 名前のボタン */
     .child-btn {
        padding: 10px 16px;
        margin: 6px;
@@ -14,12 +15,14 @@
        background: #f0f0f0;
        cursor: pointer;
     }
-    /* 選択中のボタン */
+    /* 名前選択中のボタン */
     .child-btn.active {
       background: #4CAF50;
       color: white;
       border-color: #2e7d32;
     }
+    
+     /* 科目学年のボタン */
     .subje-btn {
        padding: 10px 16px;
        margin: 6px;
@@ -29,12 +32,13 @@
        background: #f0f0f0;
        cursor: pointer;
     }
-    /* 選択中のボタン */
+    /* 科目学年選択中のボタン */
     .subje-btn.active {
       background: #4CAF50;
       color: white;
       border-color: #2e7d32;
     }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       margin: 0;
@@ -78,8 +82,9 @@
     }
   </style>
 </head>
-<body>
+
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<body>
 <h1>📘 ドラちゃんのお話 20260110 2310</h1>
 
 <!--  <textarea id="text" rows="3" cols="60">  -->
@@ -281,9 +286,10 @@ function speak() {
 }
 </script>
 -->
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 
 <div class="section">
-  <h2>📖 小学生　算数</h2>
+<!--   <h2>📖 小学生　算数</h2>-->
 
 <ul id="videoList">
 
@@ -594,13 +600,13 @@ function speak() {
   <li><a href="player.html?v=gS62F7sYxPM">算数　比　まとめ　これでバッチリ！！　６年生</a></li>
   <li><a href="player.html?v=31fFOCpR6Ok">99の段の計算マジック　#数学 #算数 #タカタ先生 #計算 #calculation #shorts</a></li>
 
+<!-- 
 </ul>
-
 </div>
-
 <div class="section">
-  <h2>📖 小学生　国語</h2>
- <ul>
+ <h2>📖 小学生　国語</h2>
+ <ul>-->
+ 
  <li><a href="player.html?v=EufZ_T6fSpI">小学一年生漢字 読み方クイズ全80字[All Kanji 1st Grade]</a></li>
   <li><a href="player.html?v=KQX-Rf5Jwbg">ふみこ先生の国語教室６　くっつきの「は」「へ」「を」①</a></li>
   <li><a href="player.html?v=LbYijVgaqhs">小1算数「時計のよみかた」</a></li>
@@ -908,11 +914,9 @@ function speak() {
   <li><a href="player.html?v=RFBVkc_2UQE">「森へ」　小６国語７月第１週 - 海外に暮らす子どもたちへ by JPN Class</a></li>
    
 </ul>
-
-
 </div>
 
-
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 
 <!-- ★ 希望科目　学年のみ表示  -->
 <script>
@@ -936,24 +940,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-
-
-
-
 <div class="note">
   見られる教材はここにあるものだけです
 </div>
 <hr>
 
 
-
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <!-- index4.html に埋め込む「履歴表示」コード（最小）-->
 <hr>  
 
 <!--
 <h3>学習履歴</h3>
 <button onclick="showLogs()">履歴を表示</button>
--->
+
 
 <table id="logTable" style="display:none; border-collapse:collapse; width:100%;">
   <thead>
@@ -988,6 +988,6 @@ function showLogs() {
   table.style.display = "table";
 }
 </script>
-
+-->
 </body>
 </html>
