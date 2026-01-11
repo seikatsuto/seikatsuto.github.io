@@ -24,7 +24,7 @@
       <th>selectedV</th>
       <th>開始時刻</th>
       <th>終了時刻</th>
-      <th>視聴時間(分)</th>
+      <th>視聴時間(秒)</th>
     </tr>
   </thead>
   <tbody id="logBody"></tbody>
@@ -71,7 +71,7 @@ function exportCSV() {
   }
   //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
   // ★ 画面表示と完全一致のヘッダー
-  let csv = "名前,ページ,selectedV,開始時刻,終了時刻,視聴時間(分)\n";
+  let csv = "名前,ページ,selectedV,開始時刻,終了時刻,視聴時間(秒)\n";
   logs.forEach(l => {
     const row = [
       l.child || "未選択",
