@@ -54,7 +54,7 @@ logs.forEach(l => {
 <button onclick="clearLogs()">ログを完全消去</button>
 <script>
 function clearLogs() {
-  if (!confirm("学習ログをすべて削除します。よろしいですか？")) return;
+  //if (!confirm("学習ログをすべて削除します。よろしいですか？")) return;   //★★Kioskでは confirm() や alert() が無効・抑制される
   localStorage.removeItem("studyLogs");
   location.reload();
 }
