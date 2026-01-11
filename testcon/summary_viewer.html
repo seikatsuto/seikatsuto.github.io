@@ -992,8 +992,8 @@ function makeSummary() {
     if (!(name in nameToIndex)) return;
     if (!(vid in videoIndex)) return;
 
-    //const min = Math.round(l.duration / 60000);  //★★
-    const min = Math.round(l.duration);  //★★  
+    const min = Math.round(l.duration / 60000);  //★★
+    //const min = Math.round(l.duration);  //★★  
     watch[videoIndex[vid]][nameToIndex[name]] += min;
   });
   renderTable();
