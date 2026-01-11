@@ -14,6 +14,8 @@
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->  
 <body>
 <h2>学習ログ  20260111 1225</h2>
+<button onclick="clearLogs()">ログを完全消去</button>   <!-- ★★ -->
+<button onclick="exportCSV()">Excel用CSV出力</button>  <!-- ★★ -->
 <table>
   <thead>
     <tr>
@@ -27,9 +29,6 @@
   </thead>
   <tbody id="logBody"></tbody>
 </table>
-  
-<button onclick="clearLogs()">ログを完全消去</button>   <!-- ★★ -->
-<button onclick="exportCSV()">Excel用CSV出力</button>  <!-- ★★ -->
 
 <script>
 const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
