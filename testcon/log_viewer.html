@@ -10,14 +10,10 @@
   th { background: #eee; }
 </style>
 </head>
+
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->  
 <body>
-
-  <!-- ■ 修正日時 -->
-<div id="notice">
-※ 修正は 20260107 1520。
-</div>
-
-<h2>学習ログ</h2>
+<h2>学習ログ  20260111 1225</h2>
 <table>
   <thead>
     <tr>
@@ -31,6 +27,9 @@
   </thead>
   <tbody id="logBody"></tbody>
 </table>
+  
+<button onclick="clearLogs()">ログを完全消去</button>   <!-- ★★ -->
+<button onclick="exportCSV()">Excel用CSV出力</button>  <!-- ★★ -->
 
 <script>
 const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
@@ -45,22 +44,14 @@ logs.forEach(l => {
     <td>${l.video || "-"}</td>
     <td>${new Date(l.start).toLocaleString()}</td>
     <td>${new Date(l.end).toLocaleString()}</td>
-    <td>${Math.round(l.duration / 60000)}</td>
+    <!-- <td>${Math.round(l.duration / 60000)}</td>  ★★-->
+    <td>${Math.round(l.duration / 1000)}</td>
   `;
   tbody.appendChild(tr);
 });
 </script>
 
-<!-- Consoleの表示を消去 
-<button onclick="clearcons()">Consoleを消去</button>
-<script>
-function clearcons() {
-  //console.clear();
-  logs.clear();
-}
-</script>
--->
-
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->  
 <button onclick="clearLogs()">ログを完全消去</button>
 <script>
 function clearLogs() {
@@ -70,10 +61,8 @@ function clearLogs() {
 }
 </script>
   
-  
 <!--CSVを書き出すJavaScript-->
 <button onclick="exportCSV()">Excel用CSV出力</button>
-
 <script>
 function exportCSV() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
@@ -81,10 +70,9 @@ function exportCSV() {
     alert("ログがありません");
     return;
   }
-
+  //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
   // ★ 画面表示と完全一致のヘッダー
   let csv = "名前,ページ,selectedV,開始時刻,終了時刻,視聴時間(分)\n";
-
   logs.forEach(l => {
     const row = [
       l.child || "未選択",
@@ -92,7 +80,8 @@ function exportCSV() {
       l.video || "",
       new Date(l.start).toLocaleString(),
       new Date(l.end).toLocaleString(),
-      Math.round(l.duration / 60000)
+      //Math.round(l.duration / 60000)
+      Math.round(l.duration / 1000)
     ];
     csv += row.join(",") + "\n";
   });
@@ -111,9 +100,6 @@ function exportCSV() {
   URL.revokeObjectURL(url);
 }
 </script>
-
-
-
 
 </body>
 </html>
