@@ -18,7 +18,7 @@ html, body {
 /* 戻るボタン */
 #back {
   position: fixed;
-  top: 8px;
+  top: 50px;
   left: 8px;
   z-index: 10000;
   background: rgba(0,0,0,0.7);
@@ -41,7 +41,6 @@ html, body {
   background: rgba(0,0,0,0.6);
   padding: 8px 14px;
   border-radius: 50%;
- 
 }
 
 /* 広告注意表示 */
@@ -71,8 +70,8 @@ iframe {
 </style>
 </head>
 
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-
 <!-- 戻る -->
 <a id="back" href="index4.html">← 一覧に戻る</a>
 
@@ -107,7 +106,6 @@ if ('getBattery' in navigator) {
   });
 }
 </script>
-
  
 <!-- YouTube -->
 <iframe id="yt"
@@ -117,36 +115,13 @@ if ('getBattery' in navigator) {
 
 <!-- デバッグ表示（不要なら消してOK） -->
 <p id="video" style="display:none"></p>
-
-
   
 <script>
 let startTime = Date.now();
-
-/*
-window.addEventListener("beforeunload", () => {
-  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-  logs.push({
-    id: logId,
-    page: location.pathname,
-    video: selectedV,
-    child: child,
-    start: startTime,
-    end: Date.now(),
-    duration: Date.now() - startTime
-  });
-  localStorage.setItem("studyLogs", JSON.stringify(logs));
-});
-
-
-alert(Object.keys(localStorage).join("\n"));       //■■
-*/
 </script>
-
-
   
 <script>
-// 動画ID配列
+// 動画ID配列  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 const vArray = [
   '-_xIanPXx9Q', 'hsf2-xxoKKo', 'ZhBjsiYGigQ', 'EkJgegIjN3A', 'b_hcupZparA', 'h8eKG4MoRW8', 'jIPnVuhk0h0', 
   '-7l3FHdmCbA', 'N41h91SWmNk', 'NzvNek370yg', 'KVIzK_46BOI', 'YjVHzK-wuZM', '6oqDpcLVg28', 'SQfEVHCvljc', 
@@ -193,35 +168,25 @@ const vArray = [
   '-dbSBGBf7iA', 'f7NjLCL-3sI', 'DYCvUgIv6Ec', 'wKZjStJ5RaE', 'HCFm1utJAhs', 'ctlhbFAjj4M'
 ];
   // …（長いので省略：元の配列そのまま使ってOK）
-
-  
 //console.clear();   //■■
-
-  
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 // 乱数
 const rand = Math.random();
 let selectedV;
-
 // 67%以上でランダム差し替え
 const dora = 0.67;   // dora～1  ではドラえもん
 if (rand >= dora) {
   selectedV = vArray[Math.floor(Math.random() * vArray.length)];
   console.log("ランダム再生:", selectedV);
-  
   console.log(selectedV, typeof selectedV);
-
-  
 } else {
   const params = new URLSearchParams(location.search);
   selectedV = params.get("v");
   console.log("指定動画:", selectedV);
   
   console.log(selectedV, typeof selectedV);
-
-  
-  
 }
-
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 // iframe設定
 if (selectedV) {
   document.getElementById("video").textContent = "v=" + selectedV;    /* 削除か　前に出すか　このままか */
@@ -231,19 +196,11 @@ if (selectedV) {
 } else {
   location.href = "index4.html";
 }
-
-
-  
-
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 /* ★追加①：入室ログ */
 //const startTime = new Date().toISOString();   //削除した　　
-
 const child = localStorage.getItem("childName") || "未選択";
-
-
-
 const logId = Date.now();
-
 window.addEventListener("beforeunload", () => {//■■
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   logs.push({
@@ -261,61 +218,12 @@ window.addEventListener("beforeunload", () => {//■■
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
-
-
-/* ★追加②：退出ログ */
-/*
-window.addEventListener("beforeunload", () => {
-  //const logs = JSON.parse(localStorage.getItem("studyLog") || "[]");
-  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-
-  const log = logs.find(l => l.id === logId);
-  if (log) {
-    log.leave = new Date().toISOString();
-    //localStorage.setItem("studyLog", JSON.stringify(logs));
-    localStorage.setItem("studyLogs", JSON.stringify(logs));
-  }
-});
-*/
-
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 // 広告注意は5秒で消す
 setTimeout(() => {
   document.getElementById("notice").style.display = "none";
 }, 5000);
-
-alert(Object.keys(localStorage).join("\n"));       //■■
-
-
-</script>
-
-
-<script>
-/*
-//player.html を閉じる瞬間に CSV 保存  
-window.addEventListener("beforeunload", () => {
-  //const logs = JSON.parse(localStorage.getItem("viewLog") || "[]");
-  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");   //■ 
-  if (logs.length === 0) return;
-
-  const header = ["No","ページ","子供名","開始","終了","秒"];
-  const rows = logs.map((l,i)=>[
-    i+1, l.page, l.child,
-    new Date(l.start).toLocaleString(),
-    new Date(l.end).toLocaleString(),
-    l.duration
-  ]);
-
-  const csv = [header,...rows]
-    .map(r=>r.map(v=>`"${v}"`).join(","))
-    .join("\n");
-
-  const blob = new Blob([csv], {type:"text/csv"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "view_log.csv";
-  a.click();
-});
-*/
+//alert(Object.keys(localStorage).join("\n"));       //■■
 </script>
 
 <!-- Consoleの表示を消去 -->
@@ -326,10 +234,8 @@ function clearcons() {
   logs.clear();
 }
 </script>
-
   
 <!--  log_viewer.html を「自動で一瞬だけ開く」  -->
-
-  
+ 
 </body>
 </html>
