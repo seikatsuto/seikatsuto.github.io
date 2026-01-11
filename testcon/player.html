@@ -81,7 +81,7 @@ iframe {
 <!-- ■■  広告注意 -->
 <div id="notice">
 ※ はじめや終わりに広告が出ることがあります。<br>
-広告が終わるまで待ってください。0111 1110
+広告が終わるまで待ってください。0111 1500
 </div>
 
 <div id="battery"
@@ -201,7 +201,10 @@ if (selectedV) {
 //const startTime = new Date().toISOString();   //削除した　　
 const child = localStorage.getItem("childName") || "未選択";
 const logId = Date.now();
+let logged = false; 
 window.addEventListener("beforeunload", () => {//■■
+  if (logged) return;
+  logged = true;
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   logs.push({
     id: logId,
