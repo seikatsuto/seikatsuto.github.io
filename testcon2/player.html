@@ -87,15 +87,15 @@ iframe {
 <!-- 閉じる
 <a class="close" href="index4.html">×</a>
 -->
-<button class="close lv1" onclick="closeWithReason(1)">×</button>
-<button class="close lv2" onclick="closeWithReason(2)">×</button>
-<button class="close lv3" onclick="closeWithReason(3)">×</button>
-<button class="close lv4" onclick="closeWithReason(4)">×</button>
-<button class="close lv5" onclick="closeWithReason(5)">×</button>
+<button class="close lv1" onclick="closeWithReason(1)">×簡単すぎ</button>
+<button class="close lv2" onclick="closeWithReason(2)">×かんたん</button>
+<button class="close lv3" onclick="closeWithReason(3)">×ちょうど</button>
+<button class="close lv4" onclick="closeWithReason(4)">×むずかしい</button>
+<button class="close lv5" onclick="closeWithReason(5)">×難しすぎ</button>
 
 <script>
 let closeLevel = null;   // 1〜5（×が押されなかった場合は null）
-
+let level = 0;
 function closeWithReason(level) {
   closeLevel = level;    // ← ここが重要
   location.href = "index4.html";
@@ -106,7 +106,7 @@ function closeWithReason(level) {
 <!-- ■■  広告注意 -->
 <div id="notice">
 ※ はじめや終わりに広告が出ることがあります。<br>
-広告が終わるまで待ってください。0112 1530
+広告が終わるまで待ってください。0111 1500
 </div>
 
 <div id="battery"
