@@ -223,6 +223,7 @@ const child = localStorage.getItem("childName") || "未選択";
 const logId = Date.now();
 let logged = false; 
 let level = 0;//■■
+let perc = 0;//■■ パーセント
 window.addEventListener("beforeunload", () => {//■■
   if (logged) return;
   logged = true;
@@ -236,6 +237,7 @@ window.addEventListener("beforeunload", () => {//■■
     end: Date.now(),
     duration: Date.now() - startTime,
     level: closeLevel   // ← ★追加（1〜5 or null）
+    perc:  closeLevel    // ← ★追加（1〜5 or null）
     //enter: startTime,
     //leave: null
   });
