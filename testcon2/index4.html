@@ -26,7 +26,7 @@
     .subje-btn {
        padding: 10px 16px;
        margin: 6px;
-       font-size: 18px;
+       font-size: 13px;
        border-radius: 8px;
        border: 2px solid #888;
        background: #f0f0f0;
@@ -85,7 +85,7 @@
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ドラちゃんのお話 20260112 1740</h1>
+<h1>📘 ドラちゃんのお話 20260112 1800</h1>
 
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:22px; line-height: 1.6;">
@@ -155,6 +155,7 @@ function saveChild() {
 <button class="subje-btn" onclick="setSubje(this, '算数4年')">算数4年</button>
 <button class="subje-btn" onclick="setSubje(this, '算数5年')">算数5年</button>
 <button class="subje-btn" onclick="setSubje(this, '算数6年')">算数6年</button>
+<br>  
 <button class="subje-btn" onclick="setSubje(this, '国語1年')">国語1年</button>
 <button class="subje-btn" onclick="setSubje(this, '国語2年')">国語2年</button>
 <button class="subje-btn" onclick="setSubje(this, '国語3年')">国語3年</button>
@@ -203,54 +204,39 @@ function setSubje(btn, name) {
 }
 </script>
 
-
-
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <textarea id="guideText" rows="3" cols="60" style="font-size:22px; line-height: 1.6;">
 どれでも好きな動画を見て。
 難しくても辛抱して何回も見ていればわかるようになるからね。
 ３回に1回の割合で「ドラえもん」の漫画が見られるよ。
-</textarea><br><br>
-
+</textarea><br>
 <!--  <button onclick="speak()">読み上げ</button>   -->
 
 <script>
 //alert(localStorage.getItem("studyLogs"));
-</script>
-
-<script>
 console.log("logs =", localStorage.getItem("studyLogs"));
 //alert("logs = " + localStorage.getItem("studyLogs"));
-
 localStorage.getItem("childName");
-
-
 </script>
 
 <!-- 
 <script>
 function speak() {
   const text = document.getElementById("text").value;
-
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "ja-JP";
-
   // 声の調整（ドラえもん“風”を狙うなら）
   utterance.pitch = 1.5;   // 高さ（1が標準）
   utterance.rate  = 0.9;   // 速度（1が標準）
   utterance.volume = 1.0;  // 音量
-
   speechSynthesis.speak(utterance);
 }
 </script>
 -->
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-
 <div class="section">
 <!--   <h2>📖 小学生　算数</h2>-->
-
 <ul id="videoList">
-
 <!-- 小学1年生 -->
   <li><a href="player.html?v=LbYijVgaqhs">小1算数「時計のよみかた」</a></li>
   <li><a href="player.html?v=m5zWD0b6Qtk">小1算数「くり上がりのたしざん」</a></li>
