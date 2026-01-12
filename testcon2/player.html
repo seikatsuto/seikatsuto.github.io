@@ -42,6 +42,15 @@ html, body {
   padding: 8px 14px;
   border-radius: 50%;
 }
+.lv1 { top: 50px; }
+.lv2 { top: 100px; }
+.lv3 { top: 150px; }
+.lv4 { top: 200px; }
+.lv5 { top: 250px; }
+
+
+
+
 
 /* 広告注意表示 */
 #notice {
@@ -75,8 +84,24 @@ iframe {
 <!-- 戻る -->
 <a id="back" href="index4.html">← 一覧に戻る</a>
 
-<!-- 閉じる -->
+<!-- 閉じる
 <a class="close" href="index4.html">×</a>
+-->
+<button class="close lv1" onclick="closeWithReason(1)">×</button>
+<button class="close lv2" onclick="closeWithReason(2)">×</button>
+<button class="close lv3" onclick="closeWithReason(3)">×</button>
+<button class="close lv4" onclick="closeWithReason(4)">×</button>
+<button class="close lv5" onclick="closeWithReason(5)">×</button>
+
+<script>
+let closeLevel = null;   // 1〜5（×が押されなかった場合は null）
+
+function closeWithReason(level) {
+  closeLevel = level;    // ← ここが重要
+  location.href = "index4.html";
+}
+</script>
+
 
 <!-- ■■  広告注意 -->
 <div id="notice">
@@ -214,6 +239,7 @@ window.addEventListener("beforeunload", () => {//■■
     start: startTime,
     end: Date.now(),
     duration: Date.now() - startTime
+    level: closeLevel   // ← ★追加（1〜5 or null）
     //end: null,
     //duration: 0
     //enter: startTime,
