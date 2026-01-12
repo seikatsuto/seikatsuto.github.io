@@ -1,3 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>動画をみる</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  height: 100%;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+/* 戻るボタン */
+#back {
+  position: fixed;
+  top: 50px;
+  left: 8px;
+  z-index: 10000;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+/* 閉じるボタン */
+.close {
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  z-index: 10001;
+  font-size: 14px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.lv1 { right: 10px; }
+.lv2 { right: 90px; }
+.lv3 { right: 170px; }
+.lv4 { right: 250px; }
+.lv5 { right: 330px; }
+
+
+/* 広告注意表示 */
+#notice {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: rgba(255,255,255,0.9);
+  color: #000;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* iframe */
+iframe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+}
 </style>
 </head>
 
@@ -28,7 +101,7 @@ function closeWithReason(level) {
 <!-- ■■  広告注意 -->
 <div id="notice">
 ※ はじめや終わりに広告が出ることがあります。<br>
-広告が終わるまで待ってください。0111 1610
+広告が終わるまで待ってください。0112 1740
 </div>
 
 <div id="battery"
@@ -161,7 +234,7 @@ window.addEventListener("beforeunload", () => {//■■
     child: child,
     start: startTime,
     end: Date.now(),
-    duration: Date.now() - startTime,
+    duration: Date.now() - startTime
     level: closeLevel   // ← ★追加（1〜5 or null）
     //end: null,
     //duration: 0
@@ -183,7 +256,8 @@ setTimeout(() => {
 <script>
 function clearcons() {
   //console.clear();
-  logs.clear();
+  //logs.clear();
+  localStorage.removeItem("studyLogs");   //■■
 }
 </script>
   
