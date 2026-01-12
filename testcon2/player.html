@@ -95,7 +95,7 @@ iframe {
 
 <script>
 let closeLevel = null;   // 1〜5（×が押されなかった場合は null）
-let level = 0;
+
 function closeWithReason(level) {
   closeLevel = level;    // ← ここが重要
   location.href = "index4.html";
@@ -231,6 +231,7 @@ window.addEventListener("beforeunload", () => {//■■
   if (logged) return;
   logged = true;
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  let level = 0;
   logs.push({
     id: logId,
     page: "player.html",
