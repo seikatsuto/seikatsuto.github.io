@@ -139,9 +139,33 @@ if ('getBattery' in navigator) {
 <script>
 let startTime = Date.now();
 </script>
-  
+
+<!-- 何割（％）まで見たか  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<script src="https://www.youtube.com/iframe_api"></script>
+<div id="player"></div>
+
 <script>
-// 動画ID配列  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+let player;
+let videoDuration = 0;
+let maxWatched = 0;   // 最大到達秒（重要）
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    videoId: selectedV,
+    events: {
+      onReady: onPlayerReady,
+      onStateChange: onPlayerStateChange
+    }
+  });
+}
+
+function onPlayerReady(e) {
+  videoDuration = player.getDuration();
+}
+</script>
+
+<!-- 動画ID配列         zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<script>
 const vArray = [
   '-_xIanPXx9Q', 'hsf2-xxoKKo', 'ZhBjsiYGigQ', 'EkJgegIjN3A', 'b_hcupZparA', 'h8eKG4MoRW8', 'jIPnVuhk0h0', 
   '-7l3FHdmCbA', 'N41h91SWmNk', 'NzvNek370yg', 'KVIzK_46BOI', 'YjVHzK-wuZM', '6oqDpcLVg28', 'SQfEVHCvljc', 
@@ -216,6 +240,21 @@ if (selectedV) {
 } else {
   location.href = "index4.html";
 }
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+let watchTimer = null;
+
+function onPlayerStateChange(e) {
+  if (e.data === YT.PlayerState.PLAYING) {
+    watchTimer = setInterval(() => {
+      const t = player.getCurrentTime();
+      if (t > maxWatched) maxWatched = t;
+    }, 1000);
+  } else {
+    clearInterval(watchTimer);
+  }
+}
+  
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 /* ★追加①：入室ログ */
 //const startTime = new Date().toISOString();   //削除した　　
@@ -228,6 +267,11 @@ window.addEventListener("beforeunload", () => {//■■
   if (logged) return;
   logged = true;
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  
+  const watchedRatio = videoDuration
+    ? Math.round((maxWatched / videoDuration) * 100)
+    : null;
+  
   logs.push({
     id: logId,
     page: "player.html",
@@ -235,11 +279,9 @@ window.addEventListener("beforeunload", () => {//■■
     child: child,
     start: startTime,
     end: Date.now(),
-    duration: Date.now() - startTime,
     level: closeLevel,   // ← ★追加（1〜5 or null）
-    perc:  closeLevel    // ← ★追加（1〜5 or null）
-    //enter: startTime,
-    //leave: null
+    watchedRatio: watchedRatio,      // ← ★ 何割見たか（％）
+    duration: Date.now() - startTime
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
