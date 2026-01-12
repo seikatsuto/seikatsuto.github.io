@@ -45,7 +45,7 @@ logs.forEach(l => {
     <td>${new Date(l.start).toLocaleString()}</td>
     <td>${new Date(l.end).toLocaleString()}</td>
     <td>${l.level}</td>
-    <td>${l.page}</td>
+    <td>${Math.round(l.watchedRatio )}</td>    <!-- "watchedRatio" ★★-->
     <!-- <td>${Math.round(l.duration / 60000)}</td>  ★★-->
     <td>${Math.round(l.duration / 1000)}</td>
   `;
@@ -83,8 +83,7 @@ function exportCSV() {
       new Date(l.start).toLocaleString(),
       new Date(l.end).toLocaleString(),
       l.level || "",     //★★
-      l.page || "" ,     //★★
-      //Math.round(l.duration / 60000)
+      Math.round(l.watchedRatio),     //★★
       Math.round(l.duration / 1000)
     ];
     csv += row.join(",") + "\n";
