@@ -85,7 +85,7 @@
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ドラちゃんのお話 20260111 1030</h1>
+<h1>📘 ドラちゃんのお話 20260112 1740</h1>
 
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:22px; line-height: 1.6;">
@@ -93,20 +93,7 @@
 君は惟人君？惺太郎君？日花里君？啓人君？
 名前を選んでください。
 </textarea>
-
-<!--
-<form id="childForm">
-  <label><input type="radio" name="child" value="惟人君"> 惟人君</label><br>
-  <label><input type="radio" name="child" value="惺太郎君"> 惺太郎君</label><br>
-  <label><input type="radio" name="child" value="日花里君"> 日花里君</label><br>
-  <label><input type="radio" name="child" value="啓人君"> 啓人君</label><br>
-
-  <button type="button" onclick="saveChild()">決定</button>
-</form>
--->
-
-<!--<h2>名前を選んでください</h2>-->
-
+<br>
 <button class="child-btn" onclick="setChild(this, '惟人君')">惟人君</button>
 <button class="child-btn" onclick="setChild(this, '惺太郎君')">惺太郎君</button>
 <button class="child-btn" onclick="setChild(this, '日花里君')">日花里君</button>
@@ -126,27 +113,20 @@ function updateListDisplay() {
     }
   });
 }
-
-
-  
 function setChild(btn, name) {
   // 全ボタンの色をリセット
   document.querySelectorAll('.child-btn').forEach(b => {
     b.classList.remove('active');
   });
-
   // 押したボタンだけ色変更
   btn.classList.add('active');
-
   // 名前を保存
   localStorage.setItem("childName", name);
 }
-
 /* ページ再読み込み時に前回選択を復元 */
 window.addEventListener("load", () => {
   const saved = localStorage.getItem("childName");
   if (!saved) return;
-
   document.querySelectorAll('.child-btn').forEach(btn => {
     if (btn.textContent === saved) {
       btn.classList.add('active');
@@ -154,20 +134,6 @@ window.addEventListener("load", () => {
   });
 });
 </script>
-
-<!--
-<button onclick="setChild('惟人君')">惟人君</button>
-<button onclick="setChild('惺太郎君')">惺太郎君</button>
-<button onclick="setChild('日花里君')">日花里君</button>
-<button onclick="setChild('啓人君')">啓人君</button>
-
-<script>
-function setChild(name) {
-  localStorage.setItem("childName", name);
-  alert("選択中：" + name);
-}
-</script>
--->
 
 <script>
 function saveChild() {
@@ -180,11 +146,9 @@ function saveChild() {
   alert("選択中：" + selected.value);
 }
 </script>
-
 <br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<h2>見たい動画の科目と学年を選んで</h2>
-
+<h2>見たい動画の科目と学年を選んで</h2><br>
 <button class="subje-btn" onclick="setSubje(this, '算数1年')">算数1年</button>
 <button class="subje-btn" onclick="setSubje(this, '算数2年')">算数2年</button>
 <button class="subje-btn" onclick="setSubje(this, '算数3年')">算数3年</button>
@@ -202,7 +166,6 @@ function saveChild() {
 window.addEventListener("load", () => {
   const saved = localStorage.getItem("subjeName");
   if (!saved) return;
-
   document.querySelectorAll('.subje-btn').forEach(btn => {
     if (btn.textContent === saved) {
       btn.click(); // ← 範囲＋表示も復元
@@ -210,22 +173,18 @@ window.addEventListener("load", () => {
   });
 });
 </script>
-  
-  
-  <script>
+   
+<script>
 let gbegin = 1;
 let gend   = 600;
-
 function setSubje(btn, name) {
   // ボタンの色リセット
   document.querySelectorAll('.subje-btn').forEach(b => {
     b.classList.remove('active');
   });
   btn.classList.add('active');
-
   // 選択内容を保存
   localStorage.setItem("subjeName", name);
-
   // ===== 学年ごとの範囲指定 =====
   if (name === '算数1年') { gbegin = 1;   gend = 50;  }
   else if (name === '算数2年') { gbegin = 51;  gend = 100; }
@@ -239,7 +198,6 @@ function setSubje(btn, name) {
   else if (name === '国語4年') { gbegin = 451; gend = 500; }
   else if (name === '国語5年') { gbegin = 501; gend = 550; }
   else if (name === '国語6年') { gbegin = 551; gend = 600; }
-
   //console.log("表示範囲:", gbegin, "〜", gend);
   updateListDisplay();   // ← ★これを追加するだけ
 }
