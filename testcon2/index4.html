@@ -278,19 +278,20 @@ logs.forEach(l => {
 </script>
 <!-- DOM を見て class を付けるzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <script>
-document.querySelectorAll("#videoList li").forEach(li => {
-  const a = li.querySelector("a");
-  if (!a) return;
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("#videoList li").forEach(li => {
+    const a = li.querySelector("a");
+    if (!a) return;
 
-  const url = new URL(a.href, location.href);
-  const vid = url.searchParams.get("v");
-  if (!vid) return;
+    const url = new URL(a.href, location.href);
+    const vid = url.searchParams.get("v");
+    if (!vid) return;
 
-  const status = videoStatus[vid];
-
-  if (status) {
-    li.classList.add(status);
-  }
+    const status = videoStatus[vid];
+    if (status) {
+      li.classList.add(status);
+    }
+  });
 });
 </script>
 
