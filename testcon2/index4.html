@@ -80,12 +80,24 @@
       color: #666;
       margin-top: 30px;
     }
+    
+    .watched a {
+       color: #999;
+       opacity: 0.5;
+    }
+    .partial a {
+       color: #666;
+    }
+    .unwatched a {
+       color: #000;
+    }
+    
   </style>
 </head>
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ドラちゃんのお話 20260112 1900</h1>
+<h1>📘 ドラちゃんのお話 20260113 0900</h1>
 
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:18px; line-height: 1.6;">
@@ -233,6 +245,52 @@ function speak() {
 }
 </script>
 -->
+<!-- studyLogs を集計するzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<script>
+const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+
+/* videoID → 状態 */
+const videoStatus = {}; // watched / partial
+
+logs.forEach(l => {
+  const vid = l.video;
+  if (!vid) return;
+
+  // すでに watched なら上書きしない
+  if (videoStatus[vid] === "watched") return;
+
+  // watched 判定
+  const watched =
+    l.level === 1 ||                 // 簡単すぎ
+    l.duration >= 5 * 60 * 1000 ||   // 5分以上
+    (l.level >= 4 && l.duration >= 3 * 60 * 1000);
+
+  if (watched) {
+    videoStatus[vid] = "watched";
+  } else {
+    videoStatus[vid] = "partial";
+  }
+});
+</script>
+<!-- DOM を見て class を付けるzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<script>
+document.querySelectorAll("#videoList li").forEach(li => {
+  const a = li.querySelector("a");
+  if (!a) return;
+
+  const url = new URL(a.href, location.href);
+  const vid = url.searchParams.get("v");
+  if (!vid) return;
+
+  const status = videoStatus[vid];
+
+  if (status) {
+    li.classList.add(status);
+  }
+});
+</script>
+
+
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div class="section">
 <!--   <h2>📖 小学生　算数</h2>-->
