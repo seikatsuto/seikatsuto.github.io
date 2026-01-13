@@ -97,7 +97,7 @@
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ドラちゃんのお話 20260113 1605</h1>
+<h1>📘 ドラちゃんのお話 20260113 1705</h1>
 
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:18px; line-height: 1.6;">
@@ -142,6 +142,8 @@ function setChild(btn, name) {
 window.addEventListener("load", () => {
   const saved = localStorage.getItem("childName");
   if (!saved) return;
+  alert("childName: " + childName);// ■■ 
+  dare = childName;  //★★誰
   document.querySelectorAll('.child-btn').forEach(btn => {
     if (btn.textContent === saved) {
       btn.classList.add('active');
