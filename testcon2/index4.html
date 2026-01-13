@@ -97,7 +97,7 @@
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ドラちゃんのお話 20260113 1705</h1>
+<h1>📘 ドラちゃんのお話 20260113 1800</h1>
 
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:18px; line-height: 1.6;">
@@ -113,7 +113,7 @@
 
 <script>
 /* ===== 表示制御（先に定義） ===== */
-let dare = '誰';   //★★誰
+let dare = null;   //★★誰
 function updateListDisplay() {
   const items = document.querySelectorAll("#videoList li");
   if (!items.length) return;
@@ -131,27 +131,31 @@ function setChild(btn, name) {
   document.querySelectorAll('.child-btn').forEach(b => {
     b.classList.remove('active');
   });
-  // 押したボタンだけ色変更
-  btn.classList.add('active');
-  // 名前を保存
-  localStorage.setItem("childName", name);
-  alert("dare = name: " + dare +'  '+ name);// ■■ 
-  dare = name;  //★★誰
+  
+ // 押したボタンだけ色変更
+ btn.classList.add('active');
+ alert("dare = name: " + dare +'  '+ name);// ■■ 
+ dare = name;  //★★誰
+// 名前を保存
+localStorage.setItem("childName", name);
+console.log("選択中 dare =", dare);  // ■■ 
 }
 /* ページ再読み込み時に前回選択を復元 */
 window.addEventListener("load", () => {
   const saved = localStorage.getItem("childName");
   if (!saved) return;
-  alert("childName: " + childName);// ■■ 
-  dare = childName;  //★★誰
+  //alert("childName: " + childName);// ■■ 
+  dare = saved;  //★★誰
   document.querySelectorAll('.child-btn').forEach(btn => {
-    if (btn.textContent === saved) {
+    if (btn.textContent.trim() === saved) {
       btn.classList.add('active');
     }
   });
+  console.log("復元 dare =", dare);// ■■ 
 });
 </script>
 
+<!--
 <script>
 function saveChild() {
   const selected = document.querySelector('input[name="child"]:checked');
@@ -164,6 +168,8 @@ function saveChild() {
   dare = selected.value;  //★★誰
 }
 </script>
+-->
+  
 <br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <h2>見たい動画の科目と学年を選んで</h2>
