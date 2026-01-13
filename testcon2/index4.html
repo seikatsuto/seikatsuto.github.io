@@ -260,11 +260,15 @@ logs.forEach(l => {
   if (videoStatus[vid] === "watched") return;
 
   // watched 判定
+  const watched = true; //■■
+  /*
   const watched =
     l.level === 1 ||                 // 簡単すぎ
     l.duration >= 5 * 60 * 1000 ||   // 5分以上
     (l.level >= 4 && l.duration >= 3 * 60 * 1000);
+  */
 
+  
   if (watched) {
     videoStatus[vid] = "watched";
   } else {
