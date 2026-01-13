@@ -261,6 +261,7 @@ logs.forEach(l => {
 
   // すでに watched なら上書きしない
   if (videoStatus[vid] === "watched") return;
+  alert("l.child != dare：" + l.child +'  '+ dare);// ■■ 
   if (l.child != dare)  return; // ■■ 
 
   // watched 判定
