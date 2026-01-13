@@ -126,7 +126,20 @@ function updateListDisplay() {
     }
   });
 }
-function setChild(btn, name) {
+
+ function setChild(btn, name) {
+  document.querySelectorAll('.child-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  dare = name;
+  localStorage.setItem("childName", name);
+
+  applyStatus();
+}
+ 
+  
+  
+  function setChild(btn, name) {
   // 全ボタンの色をリセット
   document.querySelectorAll('.child-btn').forEach(b => {
     b.classList.remove('active');
@@ -141,18 +154,22 @@ localStorage.setItem("childName", name);
 console.log("選択中 dare =", dare);  // ■■ 
 }
 /* ページ再読み込み時に前回選択を復元 */
-window.addEventListener("load", () => {
+
+ window.addEventListener("load", () => {
   const saved = localStorage.getItem("childName");
   if (!saved) return;
-  //alert("childName: " + childName);// ■■ 
-  dare = saved;  //★★誰
+
+  dare = saved;
+
   document.querySelectorAll('.child-btn').forEach(btn => {
     if (btn.textContent.trim() === saved) {
       btn.classList.add('active');
     }
   });
-  console.log("復元 dare =", dare);// ■■ 
+
+  applyStatus();
 });
+ 
 </script>
 
 <!--
@@ -259,58 +276,53 @@ function speak() {
 -->
 <!-- studyLogs を集計するzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <script>
-const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+function buildVideoStatus() {
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  const videoStatus = {};
 
-/* videoID → 状態 */
-const videoStatus = {}; // watched / partial
+  logs.forEach(l => {
+    if (!l.video) return;
+    if (l.child !== dare) return;
 
-logs.forEach(l => {
-  const vid = l.video;
-  if (!vid) return;
+    const watched =
+      l.level <= 2 ||
+      (l.level === 3 && l.duration >= 2 * 60 * 1000) ||
+      (l.level === 4 && l.duration >= 2 * 60 * 1000 && l.watchedRatio >= 70);
 
-  // すでに watched なら上書きしない
-  if (videoStatus[vid] === "watched") return;
-  alert("l.child ---dare：" + l.child +'  '+ dare);// ■■ 
-  if (l.child != dare)  return; // ■■ 
+    const watchednan =
+      (l.level === 4 && l.watchedRatio >= 60) ||
+      (l.level === 5 && l.watchedRatio >= 70);
 
-  // watched 判定
-  const watched =
-    l.level <= 2 ||                                                            // 簡単
-    (l.level === 3 && l.duration >= 2 * 60 * 1000) ||                          // ■■ 
-    (l.level === 4 && l.duration >= 2 * 60 * 1000  && l.watchedRatio>=70);     // ■■ 
-  const watchednan =
-    (l.level === 4 && l.watchedRatio>=60) ||   // ■■ 見たけど難
-    (l.level === 5 && l.watchedRatio>=70);     // ■■ 
-  const nan =
-    (l.level === 4 && l.watchedRatio < 60)||   // ■■ 見ずに難
-    (l.level === 5 && l.watchedRatio < 70);     // ■■ 
+    const nan =
+      (l.level === 4 && l.watchedRatio < 60) ||
+      (l.level === 5 && l.watchedRatio < 70);
 
-  if (watched) {
-    videoStatus[vid] = "watched";
-  } else if(watchednan){
-    videoStatus[vid] = "watchednan";
-  } else {
-    videoStatus[vid] = "nan";
-  }
-});
+    if (watched) videoStatus[l.video] = "watched";
+    else if (watchednan) videoStatus[l.video] = "watchednan";
+    else videoStatus[l.video] = "nan";
+  });
+
+  return videoStatus;
+}
+
 </script>
 <!-- DOM を見て class を付けるzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+function applyStatus() {
+  const videoStatus = buildVideoStatus();
+
   document.querySelectorAll("#videoList li").forEach(li => {
+    li.classList.remove("watched", "watchednan", "nan");
+
     const a = li.querySelector("a");
     if (!a) return;
 
-    const url = new URL(a.href, location.href);
-    const vid = url.searchParams.get("v");
-    if (!vid) return;
-
-    const status = videoStatus[vid];
-    if (status) {
-      li.classList.add(status);
+    const vid = new URL(a.href, location.href).searchParams.get("v");
+    if (videoStatus[vid]) {
+      li.classList.add(videoStatus[vid]);
     }
   });
-});
+}
 </script>
 
 
