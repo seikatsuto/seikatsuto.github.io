@@ -127,8 +127,10 @@ function updateListDisplay() {
   });
 }
 
- function setChild(btn, name) {
-  document.querySelectorAll('.child-btn').forEach(b => b.classList.remove('active'));
+function setChild(btn, name) {
+  document.querySelectorAll('.child-btn').forEach(b =>
+    b.classList.remove('active')
+  );
   btn.classList.add('active');
 
   dare = name;
@@ -137,14 +139,6 @@ function updateListDisplay() {
   applyStatus();
 }
  
-  
-  
-  function setChild(btn, name) {
-  // 全ボタンの色をリセット
-  document.querySelectorAll('.child-btn').forEach(b => {
-    b.classList.remove('active');
-  });
-  
  // 押したボタンだけ色変更
  btn.classList.add('active');
  alert("dare = name: " + dare +'  '+ name);// ■■ 
