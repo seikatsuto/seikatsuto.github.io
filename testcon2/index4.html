@@ -80,7 +80,6 @@
       color: #666;
       margin-top: 30px;
     }
-    
     .watched a {
        color: #999;
        opacity: 0.5;
@@ -91,14 +90,12 @@
     .nan a {
        color: #dc3545;    /*濃い赤   #000  */
     }
-    
-  </style>
+</style>
 </head>
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
 <h1>📘 ドラちゃんのお話 20260113 2155</h1>
-
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:18px; line-height: 1.6;">
 こんにちは、ぼくドラちゃんです。
@@ -113,7 +110,6 @@
 
 <script>
 /* ===== 表示制御（先に定義） ===== */
-let dare = null;   //★★誰
 function updateListDisplay() {
   const items = document.querySelectorAll("#videoList li");
   if (!items.length) return;
@@ -126,61 +122,48 @@ function updateListDisplay() {
     }
   });
 }
-
+let dare = null;   //★★誰
 function setChild(btn, name) {
+  // 全ボタンの active を外す
   document.querySelectorAll('.child-btn').forEach(b =>
     b.classList.remove('active')
   );
-  btn.classList.add('active');
 
+  // 押したボタンだけ active
+  btn.classList.add('active');
+  // 状態保存
   dare = name;
   localStorage.setItem("childName", name);
-
+  // 視聴状況反映
   applyStatus();
 }
- 
- // 押したボタンだけ色変更
- btn.classList.add('active');
- alert("dare = name: " + dare +'  '+ name);// ■■ 
- dare = name;  //★★誰
-// 名前を保存
-localStorage.setItem("childName", name);
-console.log("選択中 dare =", dare);  // ■■ 
-}
-/* ページ再読み込み時に前回選択を復元 */
 
- window.addEventListener("load", () => {
+/* ページ再読み込み時に前回選択を復元 */
+window.addEventListener("load", () => {
   const saved = localStorage.getItem("childName");
   if (!saved) return;
-
   dare = saved;
-
   document.querySelectorAll('.child-btn').forEach(btn => {
     if (btn.textContent.trim() === saved) {
       btn.classList.add('active');
     }
   });
-
   applyStatus();
 });
- 
-</script>
-
-<!--
-<script>
-function saveChild() {
-  const selected = document.querySelector('input[name="child"]:checked');
-  if (!selected) {
-    alert("名前を選んでください");
-    return;
-  }
-  localStorage.setItem("childName", selected.value);
-  alert("dare = selected.value 選択中：" + dare +'   '+ selected.value);//★★誰
-  dare = selected.value;  //★★誰
-}
-</script>
--->
   
+/* ページ再読み込み時に前回選択を復元 */
+ window.addEventListener("load", () => {
+  const saved = localStorage.getItem("childName");
+  if (!saved) return;
+  dare = saved;
+  document.querySelectorAll('.child-btn').forEach(btn => {
+    if (btn.textContent.trim() === saved) {
+      btn.classList.add('active');
+    }
+  });
+  applyStatus();
+});
+</script>
 <br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <h2>見たい動画の科目と学年を選んで</h2>
@@ -277,25 +260,20 @@ function buildVideoStatus() {
   logs.forEach(l => {
     if (!l.video) return;
     if (l.child !== dare) return;
-
     const watched =
       l.level <= 2 ||
       (l.level === 3 && l.duration >= 2 * 60 * 1000) ||
       (l.level === 4 && l.duration >= 2 * 60 * 1000 && l.watchedRatio >= 70);
-
     const watchednan =
       (l.level === 4 && l.watchedRatio >= 60) ||
       (l.level === 5 && l.watchedRatio >= 70);
-
     const nan =
       (l.level === 4 && l.watchedRatio < 60) ||
       (l.level === 5 && l.watchedRatio < 70);
-
     if (watched) videoStatus[l.video] = "watched";
     else if (watchednan) videoStatus[l.video] = "watchednan";
     else videoStatus[l.video] = "nan";
   });
-
   return videoStatus;
 }
 
