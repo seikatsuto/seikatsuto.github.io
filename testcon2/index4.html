@@ -97,7 +97,7 @@
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ドラちゃんのお話 20260113 1400</h1>
+<h1>📘 ドラちゃんのお話 20260113 1525</h1>
 
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:18px; line-height: 1.6;">
@@ -113,6 +113,7 @@
 
 <script>
 /* ===== 表示制御（先に定義） ===== */
+let dare ==="";   //★★誰
 function updateListDisplay() {
   const items = document.querySelectorAll("#videoList li");
   if (!items.length) return;
@@ -134,6 +135,7 @@ function setChild(btn, name) {
   btn.classList.add('active');
   // 名前を保存
   localStorage.setItem("childName", name);
+  dare === name;  //★★誰
 }
 /* ページ再読み込み時に前回選択を復元 */
 window.addEventListener("load", () => {
@@ -156,6 +158,7 @@ function saveChild() {
   }
   localStorage.setItem("childName", selected.value);
   alert("選択中：" + selected.value);
+  dare === selected.value;  //★★誰
 }
 </script>
 <br>
@@ -258,6 +261,7 @@ logs.forEach(l => {
 
   // すでに watched なら上書きしない
   if (videoStatus[vid] === "watched") return;
+  if (l.child != dare)  return; // ■■ 
 
   // watched 判定
   const watched =
