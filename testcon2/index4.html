@@ -113,7 +113,7 @@
 
 <script>
 /* ===== 表示制御（先に定義） ===== */
-let dare ==="";   //★★誰
+let dare = '誰';   //★★誰
 function updateListDisplay() {
   const items = document.querySelectorAll("#videoList li");
   if (!items.length) return;
@@ -135,7 +135,7 @@ function setChild(btn, name) {
   btn.classList.add('active');
   // 名前を保存
   localStorage.setItem("childName", name);
-  dare === name;  //★★誰
+  dare = name;  //★★誰
 }
 /* ページ再読み込み時に前回選択を復元 */
 window.addEventListener("load", () => {
@@ -158,7 +158,7 @@ function saveChild() {
   }
   localStorage.setItem("childName", selected.value);
   alert("選択中：" + selected.value);
-  dare === selected.value;  //★★誰
+  dare = selected.value;  //★★誰
 }
 </script>
 <br>
