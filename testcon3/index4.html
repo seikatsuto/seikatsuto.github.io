@@ -95,7 +95,7 @@
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ドラちゃんのお話 20260113 2156</h1>
+<h1>📘 ドラちゃんの小学生塾 20260114 1640</h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:18px; line-height: 1.6;">
 こんにちは、ぼくドラちゃんです。
@@ -137,20 +137,7 @@ function setChild(btn, name) {
   // 視聴状況反映
   applyStatus();
 }
-
-/* ページ再読み込み時に前回選択を復元 */
-window.addEventListener("load", () => {
-  const saved = localStorage.getItem("childName");
-  if (!saved) return;
-  dare = saved;
-  document.querySelectorAll('.child-btn').forEach(btn => {
-    if (btn.textContent.trim() === saved) {
-      btn.classList.add('active');
-    }
-  });
-  applyStatus();
-});
-  
+ 
 /* ページ再読み込み時に前回選択を復元 */
  window.addEventListener("load", () => {
   const saved = localStorage.getItem("childName");
@@ -237,20 +224,6 @@ console.log("logs =", localStorage.getItem("studyLogs"));
 localStorage.getItem("childName");
 </script>
 
-<!-- 
-<script>
-function speak() {
-  const text = document.getElementById("text").value;
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "ja-JP";
-  // 声の調整（ドラえもん“風”を狙うなら）
-  utterance.pitch = 1.5;   // 高さ（1が標準）
-  utterance.rate  = 0.9;   // 速度（1が標準）
-  utterance.volume = 1.0;  // 音量
-  speechSynthesis.speak(utterance);
-}
-</script>
--->
 <!-- studyLogs を集計するzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <script>
 function buildVideoStatus() {
