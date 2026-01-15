@@ -6,6 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <style>
+button {
+  font-size: 22px;
+  padding: 12px 20px;
+  margin: 8px;
+}
+  
 html, body {
   margin: 0;
   padding: 0;
@@ -76,6 +82,23 @@ iframe {
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
+
+<button onclick="setVol(-5)">−</button>
+<button onclick="setVol(+5)">＋</button>
+<!--
+<button onclick="fully.setVolume(30)">ちいさい</button>
+<button onclick="fully.setVolume(45)">ふつう</button>
+<button onclick="fully.setVolume(60)">おおきい</button>
+-->
+<script>
+let volume = 50; // 初期音量（安全域）
+function setVol(delta) {
+  volume = Math.min(60, Math.max(30, volume + delta));
+  if (window.fully) {
+    fully.setVolume(volume);
+  }
+}
+</script>
 <!-- 戻る 
 <a id="back" href="index4.html">← 一覧に戻る</a>
 -->
