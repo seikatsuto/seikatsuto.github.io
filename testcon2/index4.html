@@ -95,7 +95,7 @@
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ドラちゃんのお話 20260113 2156</h1>
+<h1>📘 ドラちゃんの小学生塾 20260115 1400</h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:18px; line-height: 1.6;">
 こんにちは、ぼくドラちゃんです。
@@ -140,19 +140,6 @@ function setChild(btn, name) {
 
 /* ページ再読み込み時に前回選択を復元 */
 window.addEventListener("load", () => {
-  const saved = localStorage.getItem("childName");
-  if (!saved) return;
-  dare = saved;
-  document.querySelectorAll('.child-btn').forEach(btn => {
-    if (btn.textContent.trim() === saved) {
-      btn.classList.add('active');
-    }
-  });
-  applyStatus();
-});
-  
-/* ページ再読み込み時に前回選択を復元 */
- window.addEventListener("load", () => {
   const saved = localStorage.getItem("childName");
   if (!saved) return;
   dare = saved;
