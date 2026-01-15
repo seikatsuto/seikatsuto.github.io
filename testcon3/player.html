@@ -101,7 +101,8 @@ iframe {
 <script>
 let volume = 50; // 初期音量（安全域）
 function setVol(delta) {
-  volume = Math.min(60, Math.max(30, volume + delta));
+  //volume = Math.min(60, Math.max(30, volume + delta));
+  volume = Math.min(90, Math.max(30, volume + delta));
   if (window.fully) {
     fully.setVolume(volume);
   }
@@ -133,7 +134,7 @@ function closeWithReason(level) {
 <!-- ■■  広告注意 -->
 <div id="notice">
 ※ はじめや終わりに広告が出ることがあります。<br>
-広告が終わるまで待ってください。0115 2205
+広告が終わるまで待ってください。0116 0750
 </div>
 
 <div id="battery"
