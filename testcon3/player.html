@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <style>
-button {
+vol {
   position: fixed;
   top: 50px;
   left: 18px;
@@ -14,6 +14,8 @@ button {
   padding: 6px 8px;
   margin: 8px;
 }
+.v1 { left: 10px; }
+.v2 { left: 90px; }
   
 html, body {
   margin: 0;
@@ -86,9 +88,11 @@ iframe {
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
 
+<button class="vol v1" onclick="setVol(-5)">−</button>
+<button class="vol v2" onclick="setVol(-5)">−</button>
+<!--
 <button onclick="setVol(-5)">−</button>
 <button onclick="setVol(+5)">＋</button>
-<!--
 <button onclick="fully.setVolume(30)">ちいさい</button>
 <button onclick="fully.setVolume(45)">ふつう</button>
 <button onclick="fully.setVolume(60)">おおきい</button>
@@ -127,7 +131,7 @@ function closeWithReason(level) {
 <!-- ■■  広告注意 -->
 <div id="notice">
 ※ はじめや終わりに広告が出ることがあります。<br>
-広告が終わるまで待ってください。0115 2120
+広告が終わるまで待ってください。0115 2140
 </div>
 
 <div id="battery"
