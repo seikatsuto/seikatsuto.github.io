@@ -174,7 +174,8 @@ window.addEventListener("load", () => {
   if (!saved) return;
   document.querySelectorAll('.subje-btn').forEach(btn => {
     if (btn.textContent === saved) {
-      btn.click(); // ← 範囲＋表示も復元
+        setSubje(btn, saved);   // ★ click() を使わない
+        //btn.click(); // ← 範囲＋表示も復元
     }
   });
 });
@@ -900,7 +901,7 @@ function applyStatus() {
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 
-<!-- ★ 希望科目　学年のみ表示  -->
+<!-- ★ 希望科目　学年のみ表示 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const items = document.querySelectorAll(".section ul li");
@@ -921,7 +922,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-
+ -->
+  
 <div class="note">
   見られる教材はここにあるものだけです
 </div>
