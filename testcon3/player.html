@@ -9,14 +9,16 @@
 .vol {
   position: fixed;
   top: 50px;
-  left: 18px;
   z-index: 10002;   /* ★これが必須 */
   font-size: 14px;
   padding: 6px 8px;
   margin: 8px;
+  background: #fff;
+  border-radius: 6px;
 }
 .v1 { left: 10px; }
-.v2 { left: 90px; }
+.v2 { left: 50px; }
+.v3 { left: 100px; }  /* ← 数値表示 */
   
 html, body {
   margin: 0;
@@ -91,6 +93,7 @@ iframe {
 
 <button class="vol v1" onclick="setVol(-5)">−</button>
 <button class="vol v2" onclick="setVol(+5)">+</button>
+<div id="volValue" class="vol v3">50</div>
 <!--
 <button onclick="setVol(-5)">−</button>
 <button onclick="setVol(+5)">＋</button>
@@ -134,7 +137,7 @@ function closeWithReason(level) {
 <!-- ■■  広告注意 -->
 <div id="notice">
 ※ はじめや終わりに広告が出ることがあります。<br>
-広告が終わるまで待ってください。0116 0750
+広告が終わるまで待ってください。0116 1220
 </div>
 
 <div id="battery"
