@@ -106,10 +106,12 @@ let volume = 50; // 初期音量（安全域）
 function setVol(delta) {
   //volume = Math.min(60, Math.max(30, volume + delta));
   volume = Math.min(90, Math.max(30, volume + delta));
-  if (window.fully) {
+  document.getElementById("volValue").textContent = volume;
+  if (window.fully && fully.setVolume) {
     fully.setVolume(volume);
+  } else {
+    alert("fully.setVolume が使えません");
   }
-  //location.href = "index4.html";
 }
 </script>
 <!-- 戻る 
