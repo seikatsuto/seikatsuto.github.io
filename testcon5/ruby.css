@@ -1,9 +1,9 @@
 ruby rt {
-  visibility: hidden;
+  display: none;
   font-size: 0.6em;
   color: #555;
 }
 
 ruby.show rt {
-  visibility: visible;
+  display: ruby-text;
 }
