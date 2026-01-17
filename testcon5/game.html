@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>がくしゅうトップ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: sans-serif;
+  background: #f0f4ff;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.app-btn {
+  width: 90%;
+  max-width: 400px;
+  font-size: 24px;
+  padding: 24px;
+  margin: 20px auto;
+  border: none;
+  border-radius: 16px;
+  color: #fff;
+}
+
+.roblox {
+  background: #e53935;
+}
+
+.ytkids {
+  background: #43a047;
+}
+
+.app-btn:active {
+  opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<h1>選（えら）んでね</h1>
+<!--
+<button class="app-btn ytkids" onclick="location.href='index4.html'">
+▶ ドラちゃんの小学生塾
+</button>
+-->
+<button class="app-btn ytkids" onclick="location.href='index4.html'">
+▶ ひみつどうぐ研究所
+</button>
+<!--
+<button onclick="location.href='index4.html'">
+📘 がくしゅう
+</button>
+-->
+<button class="app-btn roblox" onclick="startRoblox()">
+▶ Roblox
+</button>
+
+<button class="app-btn ytkids" onclick="startYouTubeKids()">
+▶ YouTube Kids
+</button>
+
+<script>
+function startRoblox() {
+  if (typeof fully !== "undefined") {
+    fully.startApplication("com.roblox.client");
+  }
+}
+
+function startYouTubeKids() {
+  if (typeof fully !== "undefined") {
+    fully.startApplication("com.google.android.apps.youtube.kids");
+  }
+}
+</script>
+
+</body>
+</html>
