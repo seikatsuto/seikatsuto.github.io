@@ -112,6 +112,11 @@ function setVol(delta) {
   } else {
     alert("fully.setVolume が使えません");
   }
+  alert(
+    "fully = " + typeof window.fully + "\n" +
+    "setVolume = " + (window.fully && typeof fully.setVolume)
+  );
+
 }
 </script>
 <!-- 戻る 
