@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>クリックでふりがな</title>
+
+<style>
+ruby rt {
+  visibility: hidden;
+  font-size: 0.6em;
+}
+ruby.show rt {
+  visibility: visible;
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="resetRuby()">ぜんぶ もどす</button>
+
+<div id="content">
+  難しくても辛抱して何回も見ていれば分かるようになる。
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
+
+<script>
+/* JS 本体（自動ルビ＋クリック） */
+</script>
+
+</body>
+</html>
