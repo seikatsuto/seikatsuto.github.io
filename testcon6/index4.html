@@ -10,11 +10,6 @@
   line-height: 1.4;
   overflow: visible;
 }
-button ruby {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-}
     button ruby {
       ruby-position: over;   /* 上に表示（日本語向け） */
     }
@@ -214,7 +209,8 @@ function setChild(btn, name) {
   if (!saved) return;
   dare = saved;
   document.querySelectorAll('.child-btn').forEach(btn => {
-    if (btn.textContent.trim() === saved) {
+    //if (btn.textContent.trim() === saved) {
+    if (btn.dataset.name === saved) {
       btn.classList.add('active');
     }
   });
@@ -239,12 +235,12 @@ function setChild(btn, name) {
 <button class="subje-btn" data-subje="国語6年"  onclick="setSubje(this, '国語6年')">国6</button>
 <br>  
 <button class="subje-btn" data-subje="英語"  onclick="setSubje(this, '英語')"><ruby>英語<rt>えいご</rt></ruby></button>
-<button class="subje-btn" data-subje="生物"  onclick="setSubje(this, '生物')"><ruby>生物<rt><せいぶつ</rt></ruby></button>
+<button class="subje-btn" data-subje="生物"  onclick="setSubje(this, '生物')"><ruby>生物<rt>せいぶつ</rt></ruby></button>
 <button class="subje-btn" data-subje="地学"  onclick="setSubje(this, '地学')"><ruby>地学<rt>ちがく</rt></ruby></button>
 <button class="subje-btn" data-subje="物理"  onclick="setSubje(this, '物理')"><ruby>物理<rt>ぶつり</rt></ruby></button>
 <button class="subje-btn" data-subje="化学"  onclick="setSubje(this, '化学')"><ruby>化学<rt>かがく</rt></ruby></button>
 <button class="subje-btn" data-subje="地理"  onclick="setSubje(this, '地理')"><ruby>地理<rt>ちり</rt></ruby></button>
-<button class="subje-btn" data-subje="歴史"  onclick="setSubje(this, '歴史')"><ruby>歴史<rt><れきし</rt></ruby></button>
+<button class="subje-btn" data-subje="歴史"  onclick="setSubje(this, '歴史')"><ruby>歴史<rt>れきし</rt></ruby></button>
 <button class="subje-btn" data-subje="公民"  onclick="setSubje(this, '公民')"><ruby>公民<rt>こうみん</rt></ruby></button>
 
 <script>
