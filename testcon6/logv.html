@@ -20,6 +20,7 @@
   <thead>
     <tr>
       <th>名前</th>
+      <th>科目学年</th>
       <th>ページ</th>
       <th>selectedV</th>
       <th>開始時刻</th>
@@ -27,6 +28,7 @@
       <th>難度1-5</th>
       <th>視聴％</th>  
       <th>視聴時間(秒)</th>
+      <th>ポイント</th>
     </tr>
   </thead>
   <tbody id="logBody"></tbody>
@@ -40,6 +42,7 @@ logs.forEach(l => {
   const tr = document.createElement("tr");
   tr.innerHTML = `
     <td>${l.child || "未選択"}</td>
+    <td>${l.subje || "未選択"}</td>
     <td>${l.page}</td>
     <td>${l.video || "-"}</td>
     <td>${new Date(l.start).toLocaleString()}</td>
@@ -48,6 +51,7 @@ logs.forEach(l => {
     <td>${Math.round(l.watchedRatio )}</td>    <!-- "watchedRatio" ★★-->
     <!-- <td>${Math.round(l.duration / 60000)}</td>  ★★-->
     <td>${Math.round(l.duration / 1000)}</td>
+    <td>${l.pointnow}</td>             <!-- "pointnow" ★★-->
   `;
   tbody.appendChild(tr);
 });
@@ -74,17 +78,19 @@ function exportCSV() {
   }
   //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
   // ★ 画面表示と完全一致のヘッダー
-  let csv = "名前,ページ,selectedV,開始時刻,終了時刻,視聴時間(秒)\n";
+  let csv = "名前,科目学年,ページ,selectedV,開始時刻,終了時刻,難度,視聴率,視聴時間(秒),ポイント\n";
   logs.forEach(l => {
     const row = [
       l.child || "未選択",
+      l.subje || "未選択",
       l.page || "",
       l.video || "",
       new Date(l.start).toLocaleString(),
       new Date(l.end).toLocaleString(),
       l.level || "",     //★★
       Math.round(l.watchedRatio),     //★★
-      Math.round(l.duration / 1000)
+      Math.round(l.duration / 1000),
+     l.pointnow || ""     //★★
     ];
     csv += row.join(",") + "\n";
   });
