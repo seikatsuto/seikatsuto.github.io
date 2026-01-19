@@ -301,7 +301,7 @@ const logId = Date.now();
 let logged = false; 
 let level = 0;//■■
 let perc = 0;//■■ パーセント
-let pointnow = 0;//■■ ポイント
+let pointima = 0;//■■ ポイント
 window.addEventListener("beforeunload", () => {//■■
   if (logged) return;
   logged = true;
@@ -322,7 +322,7 @@ window.addEventListener("beforeunload", () => {//■■
     level: closeLevel,   // ← ★追加（1〜5 or null）
     watchedRatio: watchedRatio,      // ← ★ 何割見たか（％）
     duration: Date.now() - startTime,
-    pointnow: Date.now() - startTime    // ← ★ 何割見たか（％）
+    pointima: Math.round((Date.now() - startTime)/1000)    // ← ★ ポイント　秒
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
