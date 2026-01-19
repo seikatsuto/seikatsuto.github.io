@@ -5,24 +5,7 @@
   <title>学習スタート</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /*   ルビ  */
- button {
-  line-height: 1.4;
-  overflow: visible;
-}
-    button ruby {
-      ruby-position: over;   /* 上に表示（日本語向け） */
-    }
-    button rt {
-      font-size: 0.5em;      /* ルビを小さく */
-      line-height: 1;
-    }
-   .btn-label {
-      display: inline-block;
-      line-height: 1.8;
-   }
-    
-    /* 名前のボタン */
+     /* 名前のボタン */
     .child-btn {
        padding: 10px 16px;
        margin: 6px;
@@ -49,10 +32,6 @@
        background: #f0f0f0;
        cursor: pointer;
     }
-    .subje-btn .btn-label {
-       display: inline-block;
-       line-height: 1.8;   /* ★ここが超重要 */
-    }
     /* 科目学年選択中のボタン */
     .subje-btn.active {
       background: #4CAF50;
@@ -76,7 +55,7 @@
       margin-bottom: 20px;
     }
     .section h2 {
-      font-size: 1em;
+      font-size: 0.5em;
       margin-bottom: 12px;
     }
     .card {
@@ -85,9 +64,6 @@
       padding: 16px;
       margin-bottom: 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
-    h1, h2 {
-       line-height: 1.8;
     }
     a {
       display: block;
@@ -172,12 +148,12 @@ a {
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ひみつの<span class="btn-label"><ruby>五次元<rt>ごじげん</rt></ruby></span>ポケット<span class="btn-label"><ruby>塾<rt>じゅく</rt></ruby></span></h1>
+<h1>📘 ひみつの五次元ポケット塾 </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0119 1030 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0119 1100 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
-名前(なまえ)を選(えら)んでください。
+名前を選んでください。
 </textarea>
 <br>
 <button class="child-btn" onclick="setChild(this, '惟人君')">惟人君</button>
@@ -221,8 +197,7 @@ function setChild(btn, name) {
   if (!saved) return;
   dare = saved;
   document.querySelectorAll('.child-btn').forEach(btn => {
-    //if (btn.textContent.trim() === saved) {
-    if (btn.dataset.name === saved) {
+    if (btn.textContent.trim() === saved) {
       btn.classList.add('active');
     }
   });
@@ -231,29 +206,29 @@ function setChild(btn, name) {
 </script>
 <br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<h2><span class="btn-label"><ruby>見たい動画を選んで<rt>みたいどうがをえらんで</rt></ruby></span></h2>
-<button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')"><span class="btn-label"><ruby>算1<rt>さんすう</rt></ruby></span></button>
+<h2>見たい動画を選んで</h2>
+<button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')">算1</button>
 <button class="subje-btn" data-subje="算数2年"  onclick="setSubje(this, '算数2年')">算2</button>
 <button class="subje-btn" data-subje="算数3年"  onclick="setSubje(this, '算数3年')">算3</button>
 <button class="subje-btn" data-subje="算数4年"  onclick="setSubje(this, '算数4年')">算4</button>
 <button class="subje-btn" data-subje="算数5年"  onclick="setSubje(this, '算数5年')">算5</button>
 <button class="subje-btn" data-subje="算数6年"  onclick="setSubje(this, '算数6年')">算6</button>
 <br>  
-<button class="subje-btn" data-subje="国語1年"  onclick="setSubje(this, '国語1年')"><span class="btn-label"><ruby>国1<rt>こくご</rt></ruby></span></button>
+<button class="subje-btn" data-subje="国語1年"  onclick="setSubje(this, '国語1年')">国1</button>
 <button class="subje-btn" data-subje="国語2年"  onclick="setSubje(this, '国語2年')">国2</button>
 <button class="subje-btn" data-subje="国語3年"  onclick="setSubje(this, '国語3年')">国3</button>
 <button class="subje-btn" data-subje="国語4年"  onclick="setSubje(this, '国語4年')">国4</button>
 <button class="subje-btn" data-subje="国語5年"  onclick="setSubje(this, '国語5年')">国5</button>
 <button class="subje-btn" data-subje="国語6年"  onclick="setSubje(this, '国語6年')">国6</button>
 <br>  
-<button class="subje-btn" data-subje="英語"  onclick="setSubje(this, '英語')"><span class="btn-label"><ruby>英語<rt>えいご</rt></ruby></span></button>
-<button class="subje-btn" data-subje="生物"  onclick="setSubje(this, '生物')"><span class="btn-label"><ruby>生物<rt>せいぶつ</rt></ruby></span></button>
-<button class="subje-btn" data-subje="地学"  onclick="setSubje(this, '地学')"><span class="btn-label"><ruby>地学<rt>ちがく</rt></ruby></span></button>
-<button class="subje-btn" data-subje="物理"  onclick="setSubje(this, '物理')"><span class="btn-label"><ruby>物理<rt>ぶつり</rt></ruby></span></button>
-<button class="subje-btn" data-subje="化学"  onclick="setSubje(this, '化学')"><span class="btn-label"><ruby>化学<rt>かがく</rt></ruby></span></button>
-<button class="subje-btn" data-subje="地理"  onclick="setSubje(this, '地理')"><span class="btn-label"><ruby>地理<rt>ちり</rt></ruby></span></button>
-<button class="subje-btn" data-subje="歴史"  onclick="setSubje(this, '歴史')"><span class="btn-label"><ruby>歴史<rt>れきし</rt></ruby></span></button>
-<button class="subje-btn" data-subje="公民"  onclick="setSubje(this, '公民')"><span class="btn-label"><ruby>公民<rt>こうみん</rt></ruby></span></button>
+<button class="subje-btn" data-subje="英語"  onclick="setSubje(this, '英語')">英語</button>
+<button class="subje-btn" data-subje="生物"  onclick="setSubje(this, '生物')">生物</button>
+<button class="subje-btn" data-subje="地学"  onclick="setSubje(this, '地学')">地学</button>
+<button class="subje-btn" data-subje="物理"  onclick="setSubje(this, '物理')">物理</button>
+<button class="subje-btn" data-subje="化学"  onclick="setSubje(this, '化学')">化学</button>
+<button class="subje-btn" data-subje="地理"  onclick="setSubje(this, '地理')">地理</button>
+<button class="subje-btn" data-subje="歴史"  onclick="setSubje(this, '歴史')">歴史</button>
+<button class="subje-btn" data-subje="公民"  onclick="setSubje(this, '公民')">公民</button>
 
 <script>
 window.addEventListener("load", () => {
@@ -262,9 +237,8 @@ window.addEventListener("load", () => {
   document.querySelectorAll('.subje-btn').forEach(btn => {
     //if (btn.textContent === saved) {
     if (btn.dataset.subje === saved) {
-        //setSubje(btn, saved);   // ★ click() を使わない
-        btn.classList.add('active');
-    //btn.click(); // ← 範囲＋表示も復元
+        setSubje(btn, saved);   // ★ click() を使わない
+        //btn.click(); // ← 範囲＋表示も復元
     }
   });
 });
