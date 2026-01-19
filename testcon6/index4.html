@@ -203,12 +203,15 @@ function setChild(btn, name) {
   });
   applyStatus();
 });
+
+document.getElementById("point").textContent = pointima;// ★ 
 </script>
 <br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <h2>見たい動画を選んで</h2>
 <div class="note">
-  現在のポイント＝　　漫画以外は1秒視聴でで１ポイントアップ　漫画は1秒視聴でで１ポイント使用　300ポイント以上で漫画視聴可能
+  現在のポイント＝<span id="point"></span>　　
+  漫画以外は1秒視聴でで１ポイントアップ　漫画は1秒視聴でで１ポイント使用　300ポイント以上で漫画視聴可能
 </div>
   
 <button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')">算1</button>
@@ -301,6 +304,8 @@ function setSubje(btn, name) {
 console.log("logs =", localStorage.getItem("studyLogs"));
 //alert("logs = " + localStorage.getItem("studyLogs"));
 localStorage.getItem("childName");
+let pointima =1000;   // ★ポイント　初期値
+
 </script>
 
 <!-- studyLogs を集計する  難度色とポイントzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
@@ -308,7 +313,7 @@ localStorage.getItem("childName");
 function buildVideoStatus() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   const videoStatus = {};
-  let pointnow =1000;   // ★ポイント　初期値
+  //let pointnow =1000;   // ★ポイント　初期値
   logs.forEach(l => {
     if (!l.video) return;
     if (l.child !== dare) return;
@@ -328,8 +333,10 @@ function buildVideoStatus() {
 
     
   // ポイント
-    if(l.subje ==='漫画') pointnow = pointnow - l.duration/1000 ; // ★★ ポイント　計算
-    else  pointnow = pointnow + l.duration/1000 ;
+    if(l.subje ==='漫画') pointima = pointima - l.duration/1000 ; // ★★ ポイント　計算
+    else  pointima = pointima + l.duration/1000 ;
+
+    alert (  l.subje +'   '+ pointima +'   '+ l.duration);   // ★★
   });
   return videoStatus;
 }
