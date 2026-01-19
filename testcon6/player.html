@@ -295,6 +295,7 @@ function onPlayerStateChange(e) {
 /* ★追加①：入室ログ */
 //const startTime = new Date().toISOString();   //削除した　　
 const child = localStorage.getItem("childName") || "未選択";
+const subje = localStorage.getItem("subjeName") || "未選択";
 const logId = Date.now();
 let logged = false; 
 let level = 0;//■■
@@ -313,11 +314,13 @@ window.addEventListener("beforeunload", () => {//■■
     page: "player.html",
     video: selectedV,
     child: child,
+    subje: subje, 
     start: startTime,
     end: Date.now(),
     level: closeLevel,   // ← ★追加（1〜5 or null）
     watchedRatio: watchedRatio,      // ← ★ 何割見たか（％）
-    duration: Date.now() - startTime
+    duration: Date.now() - startTime,
+    point: Date.now() - startTime    // ← ★ 何割見たか（％）
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
