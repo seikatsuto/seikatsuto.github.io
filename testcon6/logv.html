@@ -51,7 +51,7 @@ logs.forEach(l => {
     <td>${Math.round(l.watchedRatio )}</td>    <!-- "watchedRatio" ★★-->
     <!-- <td>${Math.round(l.duration / 60000)}</td>  ★★-->
     <td>${Math.round(l.duration / 1000)}</td>
-    <td>${l.pointnow}</td>             <!-- "pointnow" ★★-->
+    <td>${l.pointima}</td>             <!-- "pointnow" ★★-->
   `;
   tbody.appendChild(tr);
 });
@@ -90,7 +90,7 @@ function exportCSV() {
       l.level || "",     //★★
       Math.round(l.watchedRatio),     //★★
       Math.round(l.duration / 1000),
-     l.pointnow || ""     //★★
+     l.pointima || ""     //★★
     ];
     csv += row.join(",") + "\n";
   });
