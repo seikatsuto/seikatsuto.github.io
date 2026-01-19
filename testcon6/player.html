@@ -254,7 +254,8 @@ const vArray = [
 const rand = Math.random();
 let selectedV;
 // 67%以上でランダム差し替え
-const dora = 0.67;   // dora～1  ではドラえもん
+//const dora = 0.67;   //★ dora～1  ではドラえもん
+const dora = 0.99;   //★ dora～1  ではドラえもん
 if (rand >= dora) {
   selectedV = vArray[Math.floor(Math.random() * vArray.length)];
   console.log("ランダム再生:", selectedV);
