@@ -44,6 +44,10 @@
        background: #f0f0f0;
        cursor: pointer;
     }
+    .subje-btn .btn-label {
+       display: inline-block;
+       line-height: 1.8;   /* ★ここが超重要 */
+    }
     /* 科目学年選択中のボタン */
     .subje-btn.active {
       background: #4CAF50;
@@ -160,7 +164,7 @@ a {
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ひみつの<ruby>五次元<rt>ごじげん</rt></ruby>ポケット<ruby>塾<rt>じゅく</rt></ruby></h1>
+<h1>📘 ひみつの<span class="btn-label"><ruby>五次元<rt>ごじげん</rt></ruby></span>ポケット<span class="btn-label"><ruby>塾<rt>じゅく</rt></ruby></span></h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
 こんにちは、ぼくドラちゃんです。0119 0850 むにゃむにゃ...
@@ -219,29 +223,29 @@ function setChild(btn, name) {
 </script>
 <br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<h2><ruby>見たい動画を選んで<rt>みたいどうがをえらんで</rt></ruby></h2>
-<button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')"><ruby>算1<rt>さんすう</rt></ruby></button>
+<h2><span class="btn-label"><ruby>見たい動画を選んで<rt>みたいどうがをえらんで</rt></ruby></span></h2>
+<button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')"><span class="btn-label"><ruby>算1<rt>さんすう</rt></ruby></span></button>
 <button class="subje-btn" data-subje="算数2年"  onclick="setSubje(this, '算数2年')">算2</button>
 <button class="subje-btn" data-subje="算数3年"  onclick="setSubje(this, '算数3年')">算3</button>
 <button class="subje-btn" data-subje="算数4年"  onclick="setSubje(this, '算数4年')">算4</button>
 <button class="subje-btn" data-subje="算数5年"  onclick="setSubje(this, '算数5年')">算5</button>
 <button class="subje-btn" data-subje="算数6年"  onclick="setSubje(this, '算数6年')">算6</button>
 <br>  
-<button class="subje-btn" data-subje="国語1年"  onclick="setSubje(this, '国語1年')"><ruby>国1<rt>こくご</rt></ruby></button>
+<button class="subje-btn" data-subje="国語1年"  onclick="setSubje(this, '国語1年')"><span class="btn-label"><ruby>国1<rt>こくご</rt></ruby></span></button>
 <button class="subje-btn" data-subje="国語2年"  onclick="setSubje(this, '国語2年')">国2</button>
 <button class="subje-btn" data-subje="国語3年"  onclick="setSubje(this, '国語3年')">国3</button>
 <button class="subje-btn" data-subje="国語4年"  onclick="setSubje(this, '国語4年')">国4</button>
 <button class="subje-btn" data-subje="国語5年"  onclick="setSubje(this, '国語5年')">国5</button>
 <button class="subje-btn" data-subje="国語6年"  onclick="setSubje(this, '国語6年')">国6</button>
 <br>  
-<button class="subje-btn" data-subje="英語"  onclick="setSubje(this, '英語')"><ruby>英語<rt>えいご</rt></ruby></button>
-<button class="subje-btn" data-subje="生物"  onclick="setSubje(this, '生物')"><ruby>生物<rt>せいぶつ</rt></ruby></button>
-<button class="subje-btn" data-subje="地学"  onclick="setSubje(this, '地学')"><ruby>地学<rt>ちがく</rt></ruby></button>
-<button class="subje-btn" data-subje="物理"  onclick="setSubje(this, '物理')"><ruby>物理<rt>ぶつり</rt></ruby></button>
-<button class="subje-btn" data-subje="化学"  onclick="setSubje(this, '化学')"><ruby>化学<rt>かがく</rt></ruby></button>
-<button class="subje-btn" data-subje="地理"  onclick="setSubje(this, '地理')"><ruby>地理<rt>ちり</rt></ruby></button>
-<button class="subje-btn" data-subje="歴史"  onclick="setSubje(this, '歴史')"><ruby>歴史<rt>れきし</rt></ruby></button>
-<button class="subje-btn" data-subje="公民"  onclick="setSubje(this, '公民')"><ruby>公民<rt>こうみん</rt></ruby></button>
+<button class="subje-btn" data-subje="英語"  onclick="setSubje(this, '英語')"><span class="btn-label"><ruby>英語<rt>えいご</rt></ruby></span></button>
+<button class="subje-btn" data-subje="生物"  onclick="setSubje(this, '生物')"><span class="btn-label"><ruby>生物<rt>せいぶつ</rt></ruby></span></button>
+<button class="subje-btn" data-subje="地学"  onclick="setSubje(this, '地学')"><span class="btn-label"><ruby>地学<rt>ちがく</rt></ruby></span></button>
+<button class="subje-btn" data-subje="物理"  onclick="setSubje(this, '物理')"><span class="btn-label"><ruby>物理<rt>ぶつり</rt></ruby></span></button>
+<button class="subje-btn" data-subje="化学"  onclick="setSubje(this, '化学')"><span class="btn-label"><ruby>化学<rt>かがく</rt></ruby></span></button>
+<button class="subje-btn" data-subje="地理"  onclick="setSubje(this, '地理')"><span class="btn-label"><ruby>地理<rt>ちり</rt></ruby></span></button>
+<button class="subje-btn" data-subje="歴史"  onclick="setSubje(this, '歴史')"><span class="btn-label"><ruby>歴史<rt>れきし</rt></ruby></span></button>
+<button class="subje-btn" data-subje="公民"  onclick="setSubje(this, '公民')"><span class="btn-label"><ruby>公民<rt>こうみん</rt></ruby></span></button>
 
 <script>
 window.addEventListener("load", () => {
