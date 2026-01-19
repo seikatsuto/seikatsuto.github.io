@@ -299,12 +299,12 @@ console.log("logs =", localStorage.getItem("studyLogs"));
 localStorage.getItem("childName");
 </script>
 
-<!-- studyLogs を集計するzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<!-- studyLogs を集計する  難度色とポイントzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <script>
 function buildVideoStatus() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   const videoStatus = {};
-
+  let pointpre =1000;   // ポイント　初期値
   logs.forEach(l => {
     if (!l.video) return;
     if (l.child !== dare) return;
@@ -321,6 +321,12 @@ function buildVideoStatus() {
     if (watched) videoStatus[l.video] = "watched";
     else if (watchednan) videoStatus[l.video] = "watchednan";
     else videoStatus[l.video] = "nan";
+
+    
+  // ポイント
+    if(l.// ★★ ポイント　計算
+       const point = pointpre + l.duration/1000 ; // ★★ ポイント　計算
+  
   });
   return videoStatus;
 }
