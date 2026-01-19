@@ -207,6 +207,10 @@ function setChild(btn, name) {
 <br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <h2>見たい動画を選んで</h2>
+<div class="note">
+  現在のポイント＝　　漫画以外は1秒視聴でで１ポイントアップ　漫画は1秒視聴でで１ポイント使用　300ポイント以上で漫画視聴可能
+</div>
+  
 <button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')">算1</button>
 <button class="subje-btn" data-subje="算数2年"  onclick="setSubje(this, '算数2年')">算2</button>
 <button class="subje-btn" data-subje="算数3年"  onclick="setSubje(this, '算数3年')">算3</button>
@@ -304,7 +308,7 @@ localStorage.getItem("childName");
 function buildVideoStatus() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   const videoStatus = {};
-  let pointpre =1000;   // ポイント　初期値
+  let pointnow =1000;   // ★ポイント　初期値
   logs.forEach(l => {
     if (!l.video) return;
     if (l.child !== dare) return;
@@ -324,9 +328,8 @@ function buildVideoStatus() {
 
     
   // ポイント
-    if(l.// ★★ ポイント　計算
-       const point = pointpre + l.duration/1000 ; // ★★ ポイント　計算
-  
+    if(l.subje ==='漫画') pointnow = pointnow - l.duration/1000 ; // ★★ ポイント　計算
+    else  pointnow = pointnow + l.duration/1000 ;
   });
   return videoStatus;
 }
@@ -2091,79 +2094,15 @@ function applyStatus() {
 </div>
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-
-<!-- ★ 希望科目　学年のみ表示 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const items = document.querySelectorAll(".section ul li");
-
-  items.forEach((li, index) => {
-    // 3行飛ばす（非表示）
-    if (index < gbegin-1) {
-      li.style.display = "none";
-    }
-    // 次の2行だけ表示
-    else if (index < gend) {
-      li.style.display = "";
-    }
-    // 残りは非表示
-    else {
-      li.style.display = "none";
-    }
-  });
-});
-</script>
- -->
-  
 <div class="note">
   見られる教材はここにあるものだけです
 </div>
 <hr>
 
-
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <!-- index4.html に埋め込む「履歴表示」コード（最小）-->
 <hr>  
 
-<!--
-<h3>学習履歴</h3>
-<button onclick="showLogs()">履歴を表示</button>
-
-
-<table id="logTable" style="display:none; border-collapse:collapse; width:100%;">
-  <thead>
-    <tr>
-      <th>ページ</th>
-      <th>開始</th>
-      <th>終了</th>
-      <th>分</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-
-<script>
-function showLogs() {
-  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-  const table = document.getElementById("logTable");
-  const tbody = table.querySelector("tbody");
-  tbody.innerHTML = "";
-
-  logs.forEach(l => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${l.page}</td>
-      <td>${new Date(l.start).toLocaleString()}</td>
-      <td>${new Date(l.end).toLocaleString()}</td>
-      <td>${Math.round(l.duration / 60000)}</td>
-    `;
-    tbody.appendChild(tr);
-  });
-
-  table.style.display = "table";
-}
-</script>
--->
 <!-- ルビ  -->
 <link rel="stylesheet" href="ruby.css">
 <script src="kuromoji.js"></script>
