@@ -151,7 +151,7 @@ a {
 <h1>📘 ひみつの五次元ポケット塾 </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0119 1100 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0120 1200 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
 名前を選んでください。
 </textarea>
@@ -162,6 +162,8 @@ a {
 <button class="child-btn" onclick="setChild(this, '啓人君')">啓人君</button>
 
 <script>
+let pointima ;   // ★ポイント　初期値
+  
 /* ===== 表示制御（先に定義） ===== */
 function updateListDisplay() {
   const items = document.querySelectorAll("#videoList li");
@@ -174,6 +176,7 @@ function updateListDisplay() {
       li.style.display = "none";
     }
   });
+  document.getElementById("point").textContent = pointima;// ★ 
 }
 let dare = null;   //★★誰
 function setChild(btn, name) {
@@ -203,8 +206,6 @@ function setChild(btn, name) {
   });
   applyStatus();
 });
-let pointima ;   // ★ポイント　初期値
-
 document.getElementById("point").textContent = pointima;// ★ 
 </script>
 <br>
@@ -344,6 +345,7 @@ function buildVideoStatus() {
 
     alert ('ポイント＝'+' mm='+mm+' nn='+nn+'   '+  l.subje +'   '+ pointima +'   '+ l.duration);   // ★★
   });
+  document.getElementById("point").textContent = pointima;// ★ 
   return videoStatus;
 }
 
