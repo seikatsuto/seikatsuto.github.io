@@ -203,6 +203,7 @@ function setChild(btn, name) {
   });
   applyStatus();
 });
+let pointima ;   // ★ポイント　初期値
 
 document.getElementById("point").textContent = pointima;// ★ 
 </script>
@@ -304,7 +305,7 @@ function setSubje(btn, name) {
 console.log("logs =", localStorage.getItem("studyLogs"));
 //alert("logs = " + localStorage.getItem("studyLogs"));
 localStorage.getItem("childName");
-let pointima =1000;   // ★ポイント　初期値
+pointima =1000;   // ★ポイント　初期値
 
 </script>
 
@@ -313,7 +314,7 @@ let pointima =1000;   // ★ポイント　初期値
 function buildVideoStatus() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   const videoStatus = {};
-  //let pointnow =1000;   // ★ポイント　初期値
+  pointima =1000;   // ★ポイント　初期値
   logs.forEach(l => {
     if (!l.video) return;
     if (l.child !== dare) return;
@@ -336,7 +337,7 @@ function buildVideoStatus() {
     if(l.subje ==='漫画') pointima = pointima - l.duration/1000 ; // ★★ ポイント　計算
     else  pointima = pointima + l.duration/1000 ;
 
-    alert (  l.subje +'   '+ pointima +'   '+ l.duration);   // ★★
+    alert ('ポイント＝'+  l.subje +'   '+ pointima +'   '+ l.duration);   // ★★
   });
   return videoStatus;
 }
