@@ -315,9 +315,14 @@ function buildVideoStatus() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   const videoStatus = {};
   pointima =1000;   // ★ポイント　初期値
+  let mmm=1;  // ★
+  let nn=1;  // ★
   logs.forEach(l => {
+    mm=mm+1;  // ★
     if (!l.video) return;
     if (l.child !== dare) return;
+    nn=nn+1;  // ★
+
     const watched =
       l.level <= 2 ||
       (l.level === 3 && l.duration >= 2 * 60 * 1000) ||
@@ -337,7 +342,7 @@ function buildVideoStatus() {
     if(l.subje ==='漫画') pointima = pointima - l.duration/1000 ; // ★★ ポイント　計算
     else  pointima = pointima + l.duration/1000 ;
 
-    alert ('ポイント＝'+  l.subje +'   '+ pointima +'   '+ l.duration);   // ★★
+    alert ('ポイント＝'+' mm='+mm+' nn='+nn+'   '+  l.subje +'   '+ pointima +'   '+ l.duration);   // ★★
   });
   return videoStatus;
 }
