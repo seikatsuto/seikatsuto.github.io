@@ -166,9 +166,9 @@ const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");// ★ポイ�
 
 //let pointima ;   // ★ポイント　初期値
 document.getElementById("point").textContent = pointima;// ★ 
+let pointima = Number(logs.at(-1)?.pointima ?? 0); //■■ 
 
-
-  
+ 
   
 /* ===== 表示制御（先に定義） ===== */
 function updateListDisplay() {
