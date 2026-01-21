@@ -137,7 +137,7 @@ function closeWithReason(level) {
 
 <!-- ■■  広告注意 -->
 <div id="notice">
-※ こうこくがでたらおわるまでまって。0117 1220
+※ こうこくがでたらおわるまでまって。0121 2150
 </div>
 
 <div id="battery"
@@ -310,7 +310,8 @@ window.addEventListener("beforeunload", () => {//■■
   const watchedRatio = videoDuration
     ? Math.round((maxWatched / videoDuration) * 100)
     : null;
-  
+  let mang=1; //■■
+  if(subje==='漫画') mang=-1; //■■
   logs.push({
     id: logId,
     page: "player.html",
@@ -322,7 +323,7 @@ window.addEventListener("beforeunload", () => {//■■
     level: closeLevel,   // ← ★追加（1〜5 or null）
     watchedRatio: watchedRatio,      // ← ★ 何割見たか（％）
     duration: Date.now() - startTime,
-    pointima: Math.round((Date.now() - startTime)/1000)+ pointpre  // ← ★ ポイント　秒
+    pointima: Math.round((Date.now() - startTime)/1000)*mang+ pointpre  // ← ★ ポイント　秒
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
