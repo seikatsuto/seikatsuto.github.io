@@ -171,6 +171,9 @@ window.addEventListener("load", () => {
   let pointima = Number(logs.at(-1)?.pointima ?? 0);
   const pointEl = document.getElementById("point");
   if (pointEl) pointEl.textContent = pointima;
+
+  if (name === '漫画' && pointima>=300) { gbegin = 1401; gend = 1700; }//★
+  if (name === '漫画' && pointima<=299) { gbegin = 1401; gend = 1401; }//★
 });
  
   
@@ -295,9 +298,9 @@ function setSubje(btn, name) {
   else if (name === '地理') { gbegin = 1101; gend = 1200; }
   else if (name === '歴史') { gbegin = 1201; gend = 1300; }
   else if (name === '公民') { gbegin = 1301; gend = 1400; }
-  //else if (name === '漫画') { gbegin = 1401; gend = 1700; }
-  else if (name === '漫画' && pointima>=300) { gbegin = 1401; gend = 1700; }//★
-  else if (name === '漫画' && pointima<=299) { gbegin = 1401; gend = 1401; }//★
+  else if (name === '漫画') { gbegin = 1401; gend = 1700; }
+  //else if (name === '漫画' && pointima>=300) { gbegin = 1401; gend = 1700; }//★
+  //else if (name === '漫画' && pointima<=299) { gbegin = 1401; gend = 1401; }//★
   
   //console.log("表示範囲:", gbegin, "〜", gend);
   updateListDisplay();   // ← ★これを追加するだけ
