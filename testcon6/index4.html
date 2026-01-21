@@ -162,7 +162,13 @@ a {
 <button class="child-btn" onclick="setChild(this, '啓人君')">啓人君</button>
 
 <script>
-let pointima ;   // ★ポイント　初期値
+const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");// ★ポイント
+
+//let pointima ;   // ★ポイント　初期値
+document.getElementById("point").textContent = pointima;// ★ 
+
+
+  
   
 /* ===== 表示制御（先に定義） ===== */
 function updateListDisplay() {
@@ -176,8 +182,7 @@ function updateListDisplay() {
       li.style.display = "none";
     }
   });
-  document.getElementById("point").textContent = pointima;// ★ 
-}
+ }
 let dare = null;   //★★誰
 function setChild(btn, name) {
   // 全ボタンの active を外す
@@ -206,7 +211,7 @@ function setChild(btn, name) {
   });
   applyStatus();
 });
-document.getElementById("point").textContent = pointima;// ★ 
+//document.getElementById("point").textContent = pointima;// ★ 
 </script>
 <br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
@@ -306,7 +311,7 @@ function setSubje(btn, name) {
 console.log("logs =", localStorage.getItem("studyLogs"));
 //alert("logs = " + localStorage.getItem("studyLogs"));
 localStorage.getItem("childName");
-pointima =1000;   // ★ポイント　初期値
+//pointima =1000;   // ★ポイント　初期値
 
 </script>
 
@@ -315,7 +320,7 @@ pointima =1000;   // ★ポイント　初期値
 function buildVideoStatus() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   const videoStatus = {};
-  pointima =1000;   // ★ポイント　初期値
+  //pointima =1000;   // ★ポイント　初期値
   let mmm=1;  // ★
   let nn=1;  // ★
   logs.forEach(l => {
@@ -339,13 +344,14 @@ function buildVideoStatus() {
     else videoStatus[l.video] = "nan";
 
     
-  // ポイント
+  /* ポイント
     if(l.subje ==='漫画') pointima = pointima - l.duration/1000 ; // ★★ ポイント　計算
     else  pointima = pointima + l.duration/1000 ;
 
     alert ('ポイント＝'+' mm='+mm+' nn='+nn+'   '+  l.subje +'   '+ pointima +'   '+ l.duration);   // ★★
   });
   document.getElementById("point").textContent = pointima;// ★ 
+  */
   return videoStatus;
 }
 
