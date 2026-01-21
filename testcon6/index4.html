@@ -151,7 +151,7 @@ a {
 <h1>📘 ひみつの五次元ポケット塾 </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0121 2100 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0121 2140 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
 名前を選んでください。
 </textarea>
@@ -295,7 +295,9 @@ function setSubje(btn, name) {
   else if (name === '地理') { gbegin = 1101; gend = 1200; }
   else if (name === '歴史') { gbegin = 1201; gend = 1300; }
   else if (name === '公民') { gbegin = 1301; gend = 1400; }
-  else if (name === '漫画') { gbegin = 1401; gend = 1700; }
+  //else if (name === '漫画') { gbegin = 1401; gend = 1700; }
+  else if (name === '漫画' && pointima>=300) { gbegin = 1401; gend = 1700; }//★
+  else if (name === '漫画' && pointima<=299) { gbegin = 1401; gend = 1401; }//★
   
   //console.log("表示範囲:", gbegin, "〜", gend);
   updateListDisplay();   // ← ★これを追加するだけ
