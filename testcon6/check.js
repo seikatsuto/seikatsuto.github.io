@@ -1,6 +1,7 @@
 let items = [];
 let index = 0;
 let player = null;
+let timer = null;
 
 function onYouTubeIframeAPIReady() {
   items = Array.from(document.querySelectorAll("#videoList li"));
@@ -16,27 +17,48 @@ function checkNext() {
 
   player = new YT.Player("checker", {
     videoId: v,
+    playerVars: {
+      autoplay: 1,
+      controls: 0
+    },
     events: {
-      onReady: () => {
-        // 再生できる → 次へ
-        cleanup();
-        index++;
-        checkNext();
+      onReady: e => {
+        e.target.playVideo();
+
+        // 3秒以内に再生できなければアウト
+        timer = setTimeout(() => {
+          removeItem(li);
+        }, 3000);
+      },
+      onStateChange: e => {
+        if (e.data === YT.PlayerState.PLAYING) {
+          // ✅ 本当に再生できた
+          clear();
+          index++;
+          checkNext();
+        }
       },
       onError: () => {
-        // ❌ 再生不可 → liを削除
-        li.remove();
-        cleanup();
-        index++;
-        checkNext();
+        // ❌ 非公開・削除・制限
+        removeItem(li);
       }
     }
   });
 }
 
-function cleanup() {
+function removeItem(li) {
+  clear();
+  li.remove();
+  index++;
+  checkNext();
+}
+
+function clear() {
+  clearTimeout(timer);
+  timer = null;
   if (player) {
     player.destroy();
     player = null;
   }
 }
+
