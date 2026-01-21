@@ -151,7 +151,7 @@ a {
 <h1>📘 ひみつの五次元ポケット塾 </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0121 1400 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0121 2020 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
 名前を選んでください。
 </textarea>
@@ -163,9 +163,7 @@ a {
 
 <script>
 const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");// ★ポイント
-
 //let pointima ;   // ★ポイント　初期値
-document.getElementById("point").textContent = pointima;// ★ 
 let pointima = Number(logs.at(-1)?.pointima ?? 0); //■■ 
 document.getElementById("point").textContent = pointima;// ★ 
  
@@ -321,7 +319,7 @@ function buildVideoStatus() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   const videoStatus = {};
   //pointima =1000;   // ★ポイント　初期値
-  let mmm=1;  // ★
+  let mm=1;  // ★
   let nn=1;  // ★
   logs.forEach(l => {
     mm=mm+1;  // ★
