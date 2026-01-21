@@ -151,7 +151,7 @@ a {
 <h1>📘 ひみつの五次元ポケット塾 </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0121 2020 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0121 2100 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
 名前を選んでください。
 </textarea>
@@ -162,10 +162,16 @@ a {
 <button class="child-btn" onclick="setChild(this, '啓人君')">啓人君</button>
 
 <script>
-const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");// ★ポイント
-//let pointima ;   // ★ポイント　初期値
-let pointima = Number(logs.at(-1)?.pointima ?? 0); //■■ 
-document.getElementById("point").textContent = pointima;// ★ 
+//const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");// ★ポイント
+//let pointima = Number(logs.at(-1)?.pointima ?? 0); //■■ 
+//document.getElementById("point").textContent = pointima;// ★ 
+
+window.addEventListener("load", () => {
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  let pointima = Number(logs.at(-1)?.pointima ?? 0);
+  const pointEl = document.getElementById("point");
+  if (pointEl) pointEl.textContent = pointima;
+});
  
   
 /* ===== 表示制御（先に定義） ===== */
@@ -316,6 +322,7 @@ localStorage.getItem("childName");
 <!-- studyLogs を集計する  難度色とポイントzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <script>
 function buildVideoStatus() {
+  if (!dare) return {}; // ★
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   const videoStatus = {};
   //pointima =1000;   // ★ポイント　初期値
