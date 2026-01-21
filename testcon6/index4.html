@@ -167,7 +167,7 @@ const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");// ★ポイ�
 //let pointima ;   // ★ポイント　初期値
 document.getElementById("point").textContent = pointima;// ★ 
 let pointima = Number(logs.at(-1)?.pointima ?? 0); //■■ 
-
+document.getElementById("point").textContent = pointima;// ★ 
  
   
 /* ===== 表示制御（先に定義） ===== */
@@ -211,7 +211,7 @@ function setChild(btn, name) {
   });
   applyStatus();
 });
-//document.getElementById("point").textContent = pointima;// ★ 
+
 </script>
 <br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
@@ -349,9 +349,10 @@ function buildVideoStatus() {
     else  pointima = pointima + l.duration/1000 ;
 
     alert ('ポイント＝'+' mm='+mm+' nn='+nn+'   '+  l.subje +'   '+ pointima +'   '+ l.duration);   // ★★
-  });
-  document.getElementById("point").textContent = pointima;// ★ 
   */
+  });
+  //document.getElementById("point").textContent = pointima;// ★ 
+
   return videoStatus;
 }
 
