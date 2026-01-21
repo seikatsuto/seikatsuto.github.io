@@ -301,12 +301,12 @@ const logId = Date.now();
 let logged = false; 
 let level = 0;//■■
 let perc = 0;//■■ パーセント
-let pointnow = 0;//■■ ポイント
+let pointima = 0;//■■ ポイント
 window.addEventListener("beforeunload", () => {//■■
   if (logged) return;
   logged = true;
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-  
+  let pointpre = Number(logs.at(-1)?.pointima ?? 0); //■■ 
   const watchedRatio = videoDuration
     ? Math.round((maxWatched / videoDuration) * 100)
     : null;
@@ -322,7 +322,7 @@ window.addEventListener("beforeunload", () => {//■■
     level: closeLevel,   // ← ★追加（1〜5 or null）
     watchedRatio: watchedRatio,      // ← ★ 何割見たか（％）
     duration: Date.now() - startTime,
-    pointnow: Math.round((Date.now() - startTime)/1000)    // ← ★ ポイント　秒
+    pointima: Math.round((Date.now() - startTime)/1000)+ pointpre  // ← ★ ポイント　秒
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
