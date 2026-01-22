@@ -297,10 +297,10 @@ function setSubje(btn, name) {
   else if (name === '地理') { gbegin = 1101; gend = 1200; }
   else if (name === '歴史') { gbegin = 1201; gend = 1300; }
   else if (name === '公民') { gbegin = 1301; gend = 1400; }
-  //else if (name === '漫画') { gbegin = 1401; gend = 1700; }
-  else if (name === '漫画') { gbegin = 1401; gend = 1402; }//★
-  //else if (name === '漫画' && pointima>=300) { gbegin = 1401; gend = 1700; }//★
-  //else if (name === '漫画' && pointima<=299) { gbegin = 1401; gend = 1401; }//★
+  else if (name === '漫画') { gbegin = 1401; gend = 1619; }
+  //else if (name === '漫画') { gbegin = 1401; gend = 1402; }//★
+  //else if (name === '漫画' && pointima>=300) { gbegin = 1401; gend = 1619; }//★
+  else if (name === '漫画' && pointima<=299) { gbegin = 1401; gend = 1402; }//★
   
   //console.log("表示範囲:", gbegin, "〜", gend);
   updateListDisplay();   // ← ★これを追加するだけ
@@ -1821,306 +1821,228 @@ function applyStatus() {
   <li class="item" ><a class="hit" href="player.html?v=4HU21B-5Fhg"></a><span class="lesson">公立と私立の違い！他にもある？#shorts #高校生 #受験 #塾 #公立高校 #私立高校</span></li>
   <li class="item" ><a class="hit" href="player.html?v=5ovbH9wCji0"></a><span class="lesson">【中学公民】#short（議員立法とは？）</span></li>
 
-  <li class="item" ><a class="hit" href="player.html?v=-_xIanPXx9Q"></a><span class="lesson">【ドラえもん】ドラえもんもお風呂に!?　温泉旅行《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=hsf2-xxoKKo"></a><span class="lesson">【期間限定】年末年始もドラえもん！午年スペシャル《ドラえもん公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ZhBjsiYGigQ"></a><span class="lesson">ドラえもん | ジャイアンの歌がやめられない</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=EkJgegIjN3A"></a><span class="lesson">ドラえもん 2025 Vol 1068 | Doraemon</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=b_hcupZparA"></a><span class="lesson">ドラえもん |  流行性ネコシャクシウイルス</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=h8eKG4MoRW8"></a><span class="lesson">【広告無し】【ドラえもん】2025 Vol# 1040 7</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=jIPnVuhk0h0"></a><span class="lesson">【ドラえもん】雪だるまは忘れない《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=-7l3FHdmCbA"></a><span class="lesson">【ドラえもん】ケガワリング《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=N41h91SWmNk"></a><span class="lesson">ドラえもん |  大人になりたい</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=NzvNek370yg"></a><span class="lesson">【ドラえもん】結成！のびーとるず《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=KVIzK_46BOI"></a><span class="lesson">【トラえもん】葉っは探偵のひ太《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=YjVHzK-wuZM"></a><span class="lesson">ドラえもん |  特撮ウラドラマン</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=6oqDpcLVg28"></a><span class="lesson">ドラえもん誕生日スペシャル2011 走れドラえもん！銀河グランプリ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=SQfEVHCvljc"></a><span class="lesson">【ドラえもん名作】ぼくミニドラえもん《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ypRTzt1KrF8"></a><span class="lesson">星野源  ドラえもん (Official Video)</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=yZXEUKmdacA"></a><span class="lesson">ドラえもん 2025 Vol 1408 | Doraemon</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=XEYwG5zKcUo"></a><span class="lesson">【トラえもん】ヘットとの再会！感動のラスト!!　かわいい石ころの話《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=bP6UDUnmCx0"></a><span class="lesson">ドラえもん | 戦国時代のドラ地蔵</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=I2orZvEEsbI"></a><span class="lesson">ドラえもん 2025  ドラえもん Vol 2869  </span></li>
-  <li class="item" ><a class="hit" href="player.html?v=EJorJjaEwz4"></a><span class="lesson">ドラえもん良い奴キャラランキングTOP16 #ドラえもん #ランキング #天気の子 #君の名は #新海誠 #のび太の絵世界物語 #のび太</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=aIbxEXl3DDk"></a><span class="lesson">ドラえもん 2025 Vol 1511 | Doraemon</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=dCC_vfi0-do"></a><span class="lesson">【ドラえもん】夜空に輝くピザ・ギョーザ《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=T9R-NPhRi1M"></a><span class="lesson">夢をかなえてドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=RC5XXutveno"></a><span class="lesson">ドラえもん | Doraemon 鏡の中の世界 </span></li>
-  <li class="item" ><a class="hit" href="player.html?v=PfnJTlxdPe4"></a><span class="lesson">さよなら栄一郎 #ドラえもん #創作 #アニメ #anime</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=kCZhBZ9B6LA"></a><span class="lesson">【ドラえもん】のび太空を自由に飛びたい #映画雑学 #アニメ #ドラえもん#ヤミえもん#のび太</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=2MrnafzXERI"></a><span class="lesson">ドラえもん | あの子を笑わせろ！</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=4jMcz9wkmEI"></a><span class="lesson">テレビアニメ【ドラえもん】ドラえもんのうた</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=yNCJCeZq85k"></a><span class="lesson">【トラえもん名作】未来の国からはるはると《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=8EhqqDxuzqo"></a><span class="lesson">ドラえもん のび太の部屋 リーメント 毎日が大冒険 / Doraemon Miniature Nobita&#x27;s Room! Re-ment</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=oX0_nZ7UAyQ"></a><span class="lesson">『ヤンキードラえもん』～出木杉の小遣い稼ぎ～　＃つっこみ君　＃ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=zo3zNNlNoNo"></a><span class="lesson">6万再生！ドラえもん――涙の最終回【都市伝説】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=rNc8d5o0xuk"></a><span class="lesson">【トラえもん名作】トラえもんたらけ《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=rvWbH_KOREY"></a><span class="lesson">個人的ドラえもん映画内かっこいいキャラTOP16 #ドラえもん #ランキング #shorts #short #君の名は #天気の子 #のび太 #のび太の絵世界物語</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=0_Br2ffrQZk"></a><span class="lesson">【ドラえもん名作】ジャイアンシチュー《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Ffy2zMZoWLI"></a><span class="lesson">ドラえもん | 鳥だ飛行機だドラミちゃんだ ミニ熱気球</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=uAKsw6GQvWw"></a><span class="lesson">青いどこでもドア【切なくて泣ける都市伝説】【感動する話】【泣ける話】【感動】【ドラえもん】【雑学】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=rjMxhFgtclo"></a><span class="lesson">【予告】『映画ドラえもん 新・のび太の海底鬼岩城』＜2026年2月27日(金)公開＞</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Bllo-aDFvv8"></a><span class="lesson">【のび太のママあるある①】なんでも窓から投げちゃう！？　＃ドラえもん #Doraemon #のび太のママ #豆知識 #ママ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=BgbQB8rki2w"></a><span class="lesson">【トラえもん名作】森は生きている《公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=MWwmuAqky5E"></a><span class="lesson">「赤い目のドラえもん」  #ホラー #ドラえもん #のび太 #日本ホラー #怖い話 #短編ホラー #怪談 #赤い目</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=hLPH2X0gTcA"></a><span class="lesson">「映画ドラえもん」45周年記念 予告総集編</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=gpOnNj314fU"></a><span class="lesson">レオくんがドラえもんたちの顔パーツをくみたてるよ！ レオスマイル</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=hj2O-_lT4SE"></a><span class="lesson">【カラオケ】夢をかなえてドラえもん / mao</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=AFZccMnGPy8"></a><span class="lesson">【ドラえもん×クレヨンしんちゃん】最終回に関する架空の雑学【のび太の担任と覚醒と白髪出木杉とセワシ編】【サザエさん最終回】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Zy_lfZ-wrs4"></a><span class="lesson">『映画ドラえもん のび太の地球交響楽』スペシャルPV ～Vaundy主題歌Ver.～</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=iBDDzaM5txM"></a><span class="lesson">【ドラえもんあるある②】ひげは取り外し可能！？ #ドラえもん #Doraemon #豆知識</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=XmvQwiYbRqs"></a><span class="lesson">ドラえもん好きは絶対行くべき藤子F不二雄ミュージアムカフェ巨大ドラえもんカレーや暗記パンが食べれる！ #神奈川グルメ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=1eaAYugv6Kk"></a><span class="lesson">ドラえもん タイムマシン タイムスリップ ダンボール工作 / Doraemon Time Machine Cardboard DIY</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=UXSSFRWSjbA"></a><span class="lesson">入れるの？　#びっくり　#ドラえもん　#のび太くん　#サプライズ　#不思議</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=1sDpNC4C_9s"></a><span class="lesson">【ひみつ道具図鑑】水加工用ふりかけ #ドラえもん #doraemon #ひみつ道具</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=6HSgfSTvZ_4"></a><span class="lesson">スネ夫の悪口 #映画雑学 #ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ho-3meHaJoo"></a><span class="lesson">流行りのナルトダンスを踊るのび太  #ドラえもん #ナルトダンス #anime #アニメ #shorts #ヒカキン #ヒカマニ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=prc7tnQrn8c"></a><span class="lesson">ドラミちゃんクイズ② #ドラえもん #Doraemon #ドラミ #クイズ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=INLxGFsWpaQ"></a><span class="lesson">ドラえもんの温かい目が怖すぎる件について #雑学チャンネル #アニメ #どらえもん #ドラえもん映画 #ドラえもんアニメ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Wt5AhyH6BRE"></a><span class="lesson">【ドラえもん】ノンクレジットオープニング映像／星野源『ドラえもん』</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=bvFBhGqt8YI"></a><span class="lesson">2025/12/27（土）放送　テレビアニメ『ドラえもん』予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=b8v7UaoZCHw"></a><span class="lesson">ドラえもん | Doraemon走れドラえもん!銀河グランプリ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=NT7S9cKupYM"></a><span class="lesson">『映画ドラえもん のび太の宇宙小戦争 2021』リトルスターニュース ひみつ道具篇【大ヒット上映中！】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=6ot3r31nU4s"></a><span class="lesson">『STAND BY ME ドラえもん 2』スペシャルPV ～菅田将暉「虹」ver.～</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=9ktD8bF3Hws"></a><span class="lesson">ドラえもんの体が青くなった理由[The reason why Doraemon turned blue]</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=KpstG9ipLRc"></a><span class="lesson">大山版ドラえもんと水田版ドラえもんの違い#shortsfeed</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ZXbtsBTNtpM"></a><span class="lesson">ドラえもんの悲劇的な最終回…#shorts #怖い話 #雑学 #ホラー #アニメ #ドラえもん #感動する話</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=vQToDOf0PtM"></a><span class="lesson">【先生あるある①】パジャマはひよこ柄！？　#ドラえもん #Doraemon #先生 #豆知識</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ALPTgAdkGoo"></a><span class="lesson">【スネ夫あるある③】髪には一段とこだわりが…？　 #ドラえもん #doraemon #スネ夫 #豆知識</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=YyaN5QAluiU"></a><span class="lesson">ドラえもん 2025  ドラえもん Vol 2869   真夜中の巨大ドラたぬき</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=tEyQFFKEmqU"></a><span class="lesson">ドラえもん | Doraemon 鏡の中の世界 </span></li>
-  <li class="item" ><a class="hit" href="player.html?v=dxFFQT93V7Y"></a><span class="lesson">【ドラえもん】ボケてのドラえもんネタに本気でアフレコしてツッコんでみたらヤバすぎたｗｗｗｗ【第10弾】#shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=pOi6i6566uQ"></a><span class="lesson">ドラえもん ぼくらの空き地 リーメント</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=SFOXhmXfoTY"></a><span class="lesson">【ドラえもんのねないこだれだ　その１】のび太、ジャイアン、しずかちゃん、スネ夫の総集編｜|寝かしつけ動画|おばけ|怖い|おもちゃ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=T2nH5RrcgrM"></a><span class="lesson">【MAD】ドラえもん × かくれんぼ (のび太を愛した美少女）【感動】その5</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=D3PBlHKAcp0"></a><span class="lesson">劇場版ドラえもんの衝撃的シーン3選#shortsfeed#トラウマ#怖い#ホラー#漫画#アニメ#映画ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=0S-j-Sowg1w"></a><span class="lesson">【ゴリ押しパロディ】ドラえもんえかきうた【マイクラ】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=pLmkwbGUUFA"></a><span class="lesson">のび太くん、ちゃんと たべてる？　おもちゃ アニメ【ドラえもん】【こども専用】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=NDAs_509lYU"></a><span class="lesson">「あのドラえもん」をクレヨンで描いてみた #ドラえもん #Doraemon #映画ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=uucE41eyyTs"></a><span class="lesson">ジャイアンのシチューが個性的すぎて誰も食べられない #映画雑学 #雑学 #ドラえもんアニメ #ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=hhlBChKBWx0"></a><span class="lesson">とうとう面倒くさくなっちゃったドラえもん #ドラえもん#イラスト#のび太#野比のび太#shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=MVJHsIxVY0Y"></a><span class="lesson">ドラえもんが青くなった理由に関する雑学# #映画雑学 #ドラえもん #ドラえもんアニメ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=rwej0UDh9og"></a><span class="lesson">carry游 客曾幻想的核薄本出了dl 8</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=uq8WJV4ei-s"></a><span class="lesson">何かがおかしいドラえもん#ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=TKRIrtqugOM"></a><span class="lesson">ドラえもんの声優に関する雑学 #ドラえもん #doremon #アニメ #雑学#shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ewhRE-BvJCg"></a><span class="lesson">タイムパラドックス (『映画ドラえもん のび太の地球交響楽』主題歌) / Vaundy：MUSIC VIDEO</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=MYtSL8OqYtU"></a><span class="lesson">ドラえもん誕生日スペシャル 2009 ドラえもんの長い一日</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=fufiOqfgwzk"></a><span class="lesson">【のび太あるある②】○○の天才？ #ドラえもん #Doraemon #のび太 #豆知識</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=tS-yvhTrCvw"></a><span class="lesson">【本編映像】『映画ドラえもん のび太の絵世界物語』本編映像一部公開！＜期間限定＞</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Mi1lQyXEyeA"></a><span class="lesson">あいみょんが絵描き歌に挑戦もまさかの大号泣！？ #ドラえもん #Doraemon #映画ドラえもん #のび太の絵世界物語 #あいみょん #スケッチ #えかきうた</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ZXOqEieczNQ"></a><span class="lesson">ドラえもんがヘビに噛まれる。トゥントゥンサフールとバレリーナカプチーナのイタズラ  #ドラえもん #面白い #ショート動画 #アニメ #笑える #日本 #バズーカ #秘密</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=HAP3068GwFM"></a><span class="lesson">みんなで ドライブにいこう　おもちゃ アニメ【ドラえもん】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=vKpNJUKUknU"></a><span class="lesson">闇のドラえもん(ニセモノ)　ひみつ道具の物理的な使い方</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=50msekFDTdA"></a><span class="lesson">未来から来たのに価値観が全然アップデートされてないドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=_aHrx99d5UA"></a><span class="lesson">ドラえもんの都市伝説『行かなきゃ』</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=8VSZGnWbeCM"></a><span class="lesson">ドラえもん今と昔の違い5選 #ドラえもん #今と昔</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Mw32EFM9v7I"></a><span class="lesson">【のび太クイズ】8月7日はのび太の誕生日！「のび太」の名前の由来とは…？#ドラえもん #Doraemon #のび太 #クイズ #誕生日</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=GXXIRXaSvao"></a><span class="lesson">【神回】ドラえもんお絵描き動画のパロディがツッコミどころ満載だったｗｗｗ　#アニメ  #ドラえもん  #漫画   #shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=tXNavHkkhxw"></a><span class="lesson">ドラえもんのコミックケーキを正直レビュー！てんコミ50周年限定</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=WCmzt5eso8k"></a><span class="lesson">『映画ドラえもん のび太の新恐竜』スペシャル映像 見どころ篇【2020年8月7日(金) 公開】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=p0JFc5giu9U"></a><span class="lesson">Yamano Satoko ドラえもんのうた Doraemon no uta Lyrics</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=0dlYQUzUdq4"></a><span class="lesson">「映画ドラえもん のび太の宝島」予告3（星野源 主題歌「ドラえもん」ver.）【2018年3月3日公開】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=4ywGjIu3Lis"></a><span class="lesson">なんか関係ない奴が死んだ#shorts #ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=FXLEBpj38u0"></a><span class="lesson">【ドラえもん】のび太が出来杉くんに唯一勝てることに関するうんちく</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=n0Wtq98GZvM"></a><span class="lesson">夢をかなえてドラえもん - キャラクター・ソングバージョン（アレンジ ) 高音質</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=tFz7vjn52gY"></a><span class="lesson">【ドラえもん】のび太よりダメなクラスメイト多目くんに関するうんちく #アニメ #漫画 #shortsfeed</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=OTb24cbzIhk"></a><span class="lesson">がっこう かくれんぼ　おもちゃ アニメ【ドラえもん】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Ub94TJ_SFfM"></a><span class="lesson">あきち で ゴーカート かつの は どっち？  おもちゃ アニメ【ドラえもん】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=154daImUY6c"></a><span class="lesson">ジャイアンの思いやりに関する雑学 #ドラえもん#アニメ #雑学#shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=jgsN-nG9aBI"></a><span class="lesson">母の愛情の深さ。#涙の瞬間 #ドラえもん#感動#アニメ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=rYvTCYy-Wek"></a><span class="lesson">夢をかなえてドラえもん【ドレミ楽譜歌詞付き】初心者向けゆっくり簡単ピアノ アニメ『ドラえもん』OP曲 弾いてみた Easy Piano Tutorial mao 初級</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=5vM_pC7QN4E"></a><span class="lesson">『ヤンキードラえもん』～ヤンキーのび太TV～　＃つっこみ君　＃ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=CUEEKjm0wnE"></a><span class="lesson">ジャイアンたち4人が十字路で別れるシーンに関するうんちく</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=wyn65r5N8IQ"></a><span class="lesson">何の違和感もない絵描き歌｜Drawing with drawing song...</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=GeQbQ9d7_PI"></a><span class="lesson">「映画ドラえもん のび太の絵世界物語 in 横浜・みなとみらい」開催中！#ドラえもん #Doraemon #映画ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=kGm5kJVbH6A"></a><span class="lesson">「ダンダダン」をドラえもんで描いてみた動画がツッコミどころ満載だったｗｗｗ 【オトノケ】 【Creepy Nuts】#アニメ  #ダンダダン　＃ドラえもん   #漫画   #shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=uq8WJV4ei-s"></a><span class="lesson">何かがおかしいドラえもん#ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=YB_hLuMGFqM"></a><span class="lesson">Nobita&#x27;s Grandma&#x27;s Wish | STAND BY ME Doraemon 2 | Netflix Anime</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=_kQErRVmCKM"></a><span class="lesson">みんなは異物を飲み込まないよう気をつけてね。#涙の瞬間 #ドラえもん #感動#アニメ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=hPJD9O3ZRbk"></a><span class="lesson">もしものがたり - Tani Yuuki【MV】（TVアニメ『ドラえもん』エンディング曲）</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=vvcsRM8qFcY"></a><span class="lesson">TVアニメ「ドラえもん」ノンクレジットエンディング映像｜Tani Yuuki『もしものがたり』</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Bobmfq6V4-I"></a><span class="lesson">【しずかあるある①】密かに○○を食べるのが大好き！？ #ドラえもん #Doraemon #しずか #豆知識</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=yG0QG_lhVok"></a><span class="lesson">あまり知られていない出木杉君の秘密3選#ドラえもん#漫画#アニメ#shortsfeed</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=NDAs_509lYU"></a><span class="lesson">「あのドラえもん」をクレヨンで描いてみた #ドラえもん #Doraemon #映画ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=9gGyDzgLsOA"></a><span class="lesson">大山版ドラえもん　ジャイアンのお仕置きシーン集　第1弾</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=dxFFQT93V7Y"></a><span class="lesson">【ドラえもん】ボケてのドラえもんネタに本気でアフレコしてツッコんでみたらヤバすぎたｗｗｗｗ【第10弾】#shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=bIAZYmhWLgk"></a><span class="lesson">【ドラえもん】殿堂入りボケてに廃人が全力でアフレコしてみたw【第125弾】 #ボケて #アフレコ  #ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=4K45DKoz5So"></a><span class="lesson">【バレンタインクイズ②】おモチはおモチでも…！？#ドラえもん #Doraemon #のび太 #クイズ #バレンタイン</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=LEUjzXHpIng"></a><span class="lesson">鏡餅の絵描き歌#ドラえもんおもしろい</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=6PZdtYD9hnM"></a><span class="lesson">【ドラえもんあるある③】ドラえもんの暗号日記、解読できる人はいるかな？#ドラえもん #Doraemon #豆知識</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=JdiRcj7I4ZM"></a><span class="lesson">のび太サイファー - ドラえもんの歌 / THE FIRST TAKE</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=_NZl0qp7Y2c"></a><span class="lesson">大事な事は何回も言いましょう #ドラえもん #創作 #アニメ #anime</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=9sUtxLsLn4U"></a><span class="lesson">野比家の不思議な間取り【ドラえもん雑学】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=m9iperdA28E"></a><span class="lesson">【最新作】『映画ドラえもん のび太の絵世界物語』予告【2025年3月7日(金)公開】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=yQVA-cbecI0"></a><span class="lesson">【MAD】走れドラえもん　銀河グランプリ　ドラえもん×かくれんぼ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=LS5PGgh0XGQ"></a><span class="lesson">ドラえもん迷言 #ドラえもん #イラスト#描いてみた#のび太#しずか#スネ夫#ジャイアン#shorts #いないならいないって返事しろ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=j02JOCxbRoU"></a><span class="lesson">『映画ドラえもん のび太の絵世界物語』スペシャルPV～あいみょん主題歌ver.～</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=rPv2O32Rl_E"></a><span class="lesson">クレヨンしんちゃんがドラえもんと共演NGな理由 #映画雑学 #ドラえもんアニメ #クレヨンしんちゃん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=5uJto_B-FNU"></a><span class="lesson">ドラえもんでも手が負えない #映画雑学 #ドラえもん #ドラえもんアニメ #ドラえもん映画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=IRI79bGM6LU"></a><span class="lesson">ドラえもんズ復活？突然消えてしまった理由#ドラえもん#漫画#アニメ#shortsfeed #うんちく</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=qmemwBDrUrs"></a><span class="lesson">『ヤンキードラえもん』～のび太転売ヤーになる～　＃つっこみ君　＃ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=nc45MGGFLpo"></a><span class="lesson">【ドラえもん】ころがスイッチで巨大コースの組み立て！ひみつ道具でピタゴラスイッチ♪どこでもドアやタケコプターも登場！子供向け知育教育★サンサンキッズTV★</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=sLf0aggA1VE"></a><span class="lesson">【MAD】ドラえもん × かくれんぼ (のび太を愛した美少女）【感動】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=yfP9qJPZu1E"></a><span class="lesson">ドッ…ドラえもんコーデ！？ #shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=sEJ6dEfb1i0"></a><span class="lesson">のび太の先生が主役の珍しいエピソード#ドラえもん#漫画#アニメ#shortsfeed</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=CIXP7YIsTc4"></a><span class="lesson">IQ30のドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=cjH4M7V6MbU"></a><span class="lesson">『ヤンキーアンパンマン VS ヤンキードラえもん』　＃つっこみ君　＃アンパンマン</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=YcWewZ38_F4"></a><span class="lesson">(AMV) 虹 - 菅田将暉/ Niji - Masaki Suda | OST Doraemon Stand by Me 2 (Kanji - Romaji - Terjemahan)</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=RP-KqRkDWS0"></a><span class="lesson">［STAND BY ME ドラえもん］予告篇３</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Htx3qfmZsts"></a><span class="lesson">森に消える不思議な扉｜しんちゃん×のび太×ドラえもんのホラー冒険 #しんちゃん#ドラえもん#のび太#ホラーアニメ#アドベンチャー#日本アニメ#不思議な扉</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=D0Y5YBHYouQ"></a><span class="lesson">イタリアンブレインロット製造機　『ヤンキードラえもん』　＃つっこみ君　＃ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=8f6p2gG2rvI"></a><span class="lesson">2025/12/20（土）放送　テレビアニメ『ドラえもん』予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=bcFlDb0hsHU"></a><span class="lesson">今日のお昼はドラえもんの特製弁当 ～ Homemade lunch of Doraemon.</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=4gC1drlVMq0"></a><span class="lesson">ドラえもんのモーニングルーティン【Doraemon&#x27;s Morning Routine】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=XPEw96BIMnM"></a><span class="lesson">トラえもんと孫悟空の喧嘩か面白すきたw #アニメ #漫画 #声優</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=o9s1ml3UVQw"></a><span class="lesson">「映画ドラえもん のび太の宝島」星野源挿入歌:ここにいないあなたへ 特別映像</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=k0B4Vn5wrWQ"></a><span class="lesson">ドラえもんを作れる世界でエンドラ討伐してみた結果!【マイクラ/まいくら】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=gwc1x7mRk3c"></a><span class="lesson">2倍速で草ww #切り抜き #面白シーン #クレヨンしんちゃん #ドラえもんシリーズ #アニメ #映画ドラえもん #どらえもん #2倍速 #2倍速がおススメ #おもしろ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=R3zCSLzSaq8"></a><span class="lesson">2025/12/31（水）放送　大みそかだよドラえもん１時間スペシャル ショート動画 #ドラえもん #Doraemon #予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=gOKzuKgzeA8"></a><span class="lesson">ジャイアンのパンチ力のヤバさをご存知だろうか#ドラえもん #雑学 #アニメ #都市伝説 #ホラー</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=tKfaeF8RINg"></a><span class="lesson">ハロウィンクイズ④ #ドラえもん #Doraemon #ハロウィン #クイズ  #ジャイアン</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Jr7hiZLiacM"></a><span class="lesson">【ドラえもん】ボケてのドラえもんネタに本気でアフレコしてツッコんでみたらヤバすぎたｗｗｗｗ【第386弾】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ATVeTR7nta8"></a><span class="lesson">【vietsub/lyrics/rom】夢をかなえてドラえもん (Yume wo Kanaete Doraemon) - mao</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=TvtsaUXUq1s"></a><span class="lesson">ドラがおジャンケンで4回連続で負けると…#shorts #ドラえもん #都市伝説 #アニメ #怖い話 #ホラー</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=8nzAs7deIDM"></a><span class="lesson">【映画ドラえもん】主題歌を歌うあいみょんの好きなTVアニメエピソードを大紹介！《ドラえもん公式》</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=MYXmPCsvANc"></a><span class="lesson">13万再生歳を重ねたのび太とドラえもん――最期の“ありがとう”【都市伝説】【感動する話】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=dHoQ2ivtfZs"></a><span class="lesson">『映画ドラえもん 新・のび太の海底鬼岩城』特報＜2026年公開＞</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=gypOlOhi-Nk"></a><span class="lesson">ドラえもんキャラに対するピストンの違い #ドラえもん #doraemon #アニメ #shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Gt-4poS33qk"></a><span class="lesson">【ドラえもん】ボケてのドラえもんネタに本気でアフレコしてツッコんでみたらヤバすぎたｗｗｗｗ【第429弾】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=uO6K6zfU0MU"></a><span class="lesson">国民的アニメのトラウマ回　アニメ、漫画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=tTH4K4hIC-E"></a><span class="lesson">復讐の変 #ドラえもん #創作 #アニメ #anime</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=3b60mvstoFs"></a><span class="lesson">ドラえもん本物と偽物！#どらえもん #ドラミちゃん#本物と偽物</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=dHnDJ49FQU4"></a><span class="lesson">2025/9/27（土）放送　テレビアニメ『ドラえもん』予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=95HRp5Lbv4o"></a><span class="lesson">ドラえもんが逃走中！？みのちゃんピンチ！たすけてドラえもん！</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=0oLPTdEqKA4"></a><span class="lesson">映画ドラえもん　新・のび太と鉄人兵団～はばたけ 天使たち～　予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=kuVw9HxJGPM"></a><span class="lesson">10 分遅刻する超能力 #ドラえもん #面白い #アニメ #のび太 #anime</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=WKucNZX6BDA"></a><span class="lesson">ドラえもん 2025 Vol 1510 | Doraemon</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=rg-yM8MuojA"></a><span class="lesson">流行りのナルトダンスを踊って歌うドラえもん氏 #どらマニ #ナルトダンス #ヒカマニ #ドラえもん #ネタ #shorts #short</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=YyaN5QAluiU"></a><span class="lesson">ドラえもん 2025  ドラえもん Vol 2869   真夜中の巨大ドラたぬき</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=EJxBu-ZTKfA"></a><span class="lesson">ドラえもん・クレヨンしんちゃんから学ぶ常識まとめ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=X2Ct1m5pM7M"></a><span class="lesson">鬼滅の刃 x ドラえもん シンクロさせてみた DemonSlayer x Doraemon</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=WqpJUTWj07Y"></a><span class="lesson">ドラえもんがスプランキーの世界で大喧嘩に...SPRUNKI</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=CWdMWK_sdXc"></a><span class="lesson">【ドラえもん】ジャイアンのパンチ力</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=AFzsX5TKlig"></a><span class="lesson">小学校でドッジボールやってた奴なら絶対に分かる「ドラえもん」星野源  　替え歌</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=D4nWbM64-Ms"></a><span class="lesson">心臓マッサージ世代の違い#ドラえもん#イラスト#のび太#出木杉くん#しずかちゃん#ネタ#shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=CGzbVcu6I50"></a><span class="lesson">壊れたネコ型ロボットを修理する。#shorts #paperdoll #ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=1ybcIbK0vLQ"></a><span class="lesson">ひみつ道具クイズ せいかいはどっち？　おもちゃ アニメ【ドラえもん】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=N6GLfCGJJTg"></a><span class="lesson">【400万再生】面白すぎるwwwww#ショート#ドラえもん#中国#memes#ツッコミ#shorts#面白い#バズれ#のびろ#バズりたい#ジャパン#すごい#のび太#ジャイアン#スネ夫#しずか</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=tohgVcGB6bE"></a><span class="lesson">バスで すごろくのたび　おもちゃ アニメ【ドラえもん】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=5z4d_dgov4A"></a><span class="lesson">最近放送されたアウトな回　アニメ、漫画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=f_PddM12vxI"></a><span class="lesson">【太鼓の達人 Wii U2】夢をかなえてドラえもん（むずかしい）【オート動画】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=KYMtvT5b8fM"></a><span class="lesson">のび太の裏垢 #ドラえもん #創作 #anime #石破総理 #食べ方</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=aH0O4ONcte8"></a><span class="lesson">ドラえもんの絵描き歌</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ityWTWCA56s"></a><span class="lesson">こんなドラえもんは嫌だ！コスプレ のび太 しずかちゃん  チャレンジ！Cosplay Doraemon コミック アニメ 映画   -Bonitos TV- </span></li>
-  <li class="item" ><a class="hit" href="player.html?v=d5xKasxtDUc"></a><span class="lesson">のび太再び #創作 #ドラえもん #anime #論破</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=1CVOpniIryQ"></a><span class="lesson">筋肉は裏切らない #ドラえもん #anime #胸キュン #恋愛</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=Ffy2zMZoWLI"></a><span class="lesson">ドラえもん | 鳥だ飛行機だドラミちゃんだ ミニ熱気球</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=TPloRDoG2QY"></a><span class="lesson">【ドラえもん】キレッキレな迷言【あにまん考察】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=lsepco7RBiA"></a><span class="lesson">【癒しASMR】ドラえもん  のステッカーを優しく剥がす音Realxing ASMR with Doraemon Sticker</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=6qkqqvZB5SM"></a><span class="lesson">いたわりロボットドラえもんテレ朝動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ZP-y-n2FqIs"></a><span class="lesson">アニメになってない幻の最終回【ドラえもんがマジで帰り戻らない話】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=OG2J8Jr6MPM"></a><span class="lesson">2025/11/29（土）放送　テレビアニメ『ドラえもん』予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=940SS_6oD6s"></a><span class="lesson">2024/6/22（土）放送　テレビアニメ『ドラえもん』予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=FdWt5o0WWOY"></a><span class="lesson">連載初期のドラえもんと今のドラえもんの違い#原作#shortsfeed #ガチャ子#日テレ版ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=EcH0wdJG6hg"></a><span class="lesson">先生を完璧論破 #ドラえもん #創作 #anime #アニメ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=YyaN5QAluiU"></a><span class="lesson">ドラえもん 2025  ドラえもん Vol 2869   真夜中の巨大ドラたぬき</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=vEyDyNiWg8Y"></a><span class="lesson">ドラアニから学ぶ常識#雑学チャンネル #ドラえもん #ドラえもんアニメ #ドラえもん映画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ZBb0UVzXVhw"></a><span class="lesson">2024/6/15（土）放送　テレビアニメ『ドラえもん』予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=9sUtxLsLn4U"></a><span class="lesson">野比家の不思議な間取り【ドラえもん雑学】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=SEwsQuJwdeI"></a><span class="lesson">バービーのオモチャで遊ぼう！アンパンマンたちとドラえもんのバスボムで遊ぶよ！ レオスマイル</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=gypOlOhi-Nk"></a><span class="lesson">ドラえもんキャラに対するピストンの違い #ドラえもん #doraemon #アニメ #shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=WGI0Ok4Cu78"></a><span class="lesson">ドラえもんのお皿にお菓子を盛り付けよう！</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=nwNvhChY7go"></a><span class="lesson">2025/8/30（土）放送　テレビアニメ『ドラえもん』予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=UY1dUqqXyes"></a><span class="lesson">戦争を題材したドラえもんの珍しい回について#のび助#国民的アニメ#漫画#shortsfeed</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=fYT4ZdLoUqo"></a><span class="lesson">割り算のあまり #ドラえもん #創作 #2ch #パパ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ZL2ICfpIKJU"></a><span class="lesson">【2分30秒ダイジェストPV】『映画ドラえもん のび太の絵世界物語』</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ZdI0xomuXFs"></a><span class="lesson">【ドラえもん】しずかちゃんはのび太の優しさと芯の強さに惚れて結婚した #アニメ #漫画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=cM5pzIonJuI"></a><span class="lesson">女の子はみんな可愛い #ドラえもん #anime #胸キュン #恋愛</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=XlcmiV4tTK0"></a><span class="lesson">ドラえもんのうた</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=s4pgnGqkNEU"></a><span class="lesson">大杉久美子 - ドラえもんのうた</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=y8s-a7YVtsE"></a><span class="lesson">ドラえもんアニメから学ぶ常識#雑学チャンネル #ドラえもん #ドラえもんアニメ #ドラえもん映画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=b8v7UaoZCHw"></a><span class="lesson">ドラえもん | Doraemon走れドラえもん!銀河グランプリ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=bSBkXX8K68Y"></a><span class="lesson">いじめようとした結果…＃バズれ＃ドラえもん＃ショート</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=IH2Eckiu_M8"></a><span class="lesson">【特報2】『映画ドラえもん 新・のび太の海底鬼岩城』＜2026年2月27日(金)公開＞</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=j_eHFKcYnXc"></a><span class="lesson">実った恋 #ドラえもん #創作 #anime #胸キュン #恋愛</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=50msekFDTdA"></a><span class="lesson">未来から来たのに価値観が全然アップデートされてないドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=5is9yxvyKbo"></a><span class="lesson">バス か でんしゃ で ゆうえんちへいこう　おもちゃ アニメ【ドラえもん】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=tAWhEe-dar0"></a><span class="lesson">【冬バージョン】TVアニメ「ドラえもん」ノンクレジットエンディング映像｜Tani Yuuki『もしものがたり』</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=3b60mvstoFs"></a><span class="lesson">ドラえもん本物と偽物！#どらえもん #ドラミちゃん#本物と偽物</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=gLV_CX9sHvI"></a><span class="lesson">ドラえもんとのび太君の家のおもちゃでタイムマシーンやどこでもドアで22世紀や恐竜の時代にあそびにいくよ♪</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ZslscAtvjtk"></a><span class="lesson">『映画ドラえもん のび太の宇宙小戦争 2021』リトルスターニュース 見どころ篇【大ヒット上映中！】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=pHfUL5Gbe4A"></a><span class="lesson">ドラえもん弁当とドラミちゃん弁当を、モリモリ食べる！　大好きなおかずがいっぱい入ってた　お子様ランチ　ほっともっと</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=kgmVQV0U0_0"></a><span class="lesson">この声が… #弾き語り #歌ってみた #cover #ドラえもん #創作 #胸キュン</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=BvhZSRmkX7A"></a><span class="lesson">青空でドラえもんを塗れ！#ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=bsQhy0jnNNY"></a><span class="lesson">中国版ドラえもんをツッコミまくる</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=me3Yzg1cvcU"></a><span class="lesson">旧ドラえもんOP</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=_auEjcWt2bE"></a><span class="lesson">癖が強いドラえもん/狩野英孝</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=UUtCLFtlytU"></a><span class="lesson">大山版ドラえもん　第1413話　持ち主を探せ!</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=KA0BKnZ5_-k"></a><span class="lesson">さようなら！ドラえもん #ドラえもん #doraemon #のび太 #anime #funny</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=8FUCTGZW_z8"></a><span class="lesson">【MAD】ドラえもん×虹</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=PgfpQoIS8s4"></a><span class="lesson">スネ夫は理想的なお兄ちゃんだ #ドラえもん #doremon #アニメ #のび太 #anime #funny</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=OuqGc-K6CXM"></a><span class="lesson">のび太、どうしてそんなことをしたの？#ドラえもん #のび太 #コスプレ #パロディー</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=TV7cqTDJDpg"></a><span class="lesson">貯金箱にお金を入れて遊ぼう！ドラえもん、ポケモン、ミニオンの貯金箱！ レオスマイル</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=AO_kE3HWpuM"></a><span class="lesson">野菜のなかでかくれんぼ 誰がでてくるかな？【 ドラえもんおもちゃアニメ 】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=k5jw6ziUBFE"></a><span class="lesson">【しずかあるある③】しずかが○○に変身！？ #ドラえもん #doraemon #しずか #豆知識</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=f0OmAYL4sTI"></a><span class="lesson">昔と今のしずかちゃんの違い4選#ドラえもん#漫画#アニメ#shortsfeed</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=NpSfVe602jk"></a><span class="lesson">声優を使って遊ぶアニメ4選part8#shorts #ドラえもん #ヤッターマン #おそ松さん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=CWdMWK_sdXc"></a><span class="lesson">【ドラえもん】ジャイアンのパンチ力</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=bSowX3IoWp8"></a><span class="lesson">14万再生！ドラえもん　涙の最終回【感動の都市伝説】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=4os4tK5vr34"></a><span class="lesson">「ドラえもん」を弾き続けたギタリスト　#創作　#漫画　#ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=e0z-d9QKliQ"></a><span class="lesson">【ドラえもん】みんな楽しみ♪おいしい給食の時間 / Delicious school lunch time</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=fzqFCJd8QdY"></a><span class="lesson">実は食べなくていい！？ほんやくコンニャク！【ドラえもん雑学】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=mOLc46LI47A"></a><span class="lesson">カウンターをくらい続ける人 #ドラえもん #創作 #anime #恋愛</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=EfSCwDNKIL4"></a><span class="lesson">しずかちゃんの声俺の声でも違和感ない説 #shorts #新人vtuber #しずかちゃん #ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=FQDidr7pyc8"></a><span class="lesson">ドラえもんに登場するのび太のママについての雑学#国民的アニメ#うんたく#アニメ#漫画#shortsfeed#大山のぶ代さんお疲れ様でした</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=cQogYn-9cRQ"></a><span class="lesson">映画『STAND BY ME ドラえもん』予告編</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=vySSB9BMPow"></a><span class="lesson">「ドラえもん」キャラクターと初代声優のお別れ#music #面白い #面白集 #funny #声優</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=PA9SORnyNDg"></a><span class="lesson">サイコドラえもん #イラスト#ドラえもん#イケメン#のび太#shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=CaiVBbpU4-8"></a><span class="lesson">【寸劇】ドラえもんのスモールライトでパパを小さくしちゃえ～～～</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=LpFMHKEpAkg"></a><span class="lesson">【ドラえもん】しずかちゃんが限界突破！全国ののび太が目覚める神回【ボケて】【ゆっくり解説】#ドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=b2CZYjdJfrA"></a><span class="lesson">ドラえもんは、のび太の夢かもしれない　#都市伝説 #ホラー #怖い話 #ドラえもん #アニメ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=_sYXeSAa-xY"></a><span class="lesson">ラジオ体操第1 (フルキャスト バージョン)</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=TX9wCsF15j8"></a><span class="lesson">【ドラえもん】ボケてのドラえもんネタに本気でアフレコしてツッコんでみたらヤバすぎたｗｗｗｗ【第210弾】#shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=4QfywZKmkhE"></a><span class="lesson">やばすぎるドラえもんトーク</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=n1zkvwE5QAc"></a><span class="lesson">おでかけ 北海道 新千歳空港 ドラえもんわくわくスカイパークでレオくんがあそぶよ！ トイキッズ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=9GSiCWJMTLs"></a><span class="lesson">【ボイストレーナーと生徒が歌う】夢をかなえてドラえもん / mao【歌い方解説付き by シアーミュージック】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=qeJ7DOb4ZgE"></a><span class="lesson">【劇場版ドラえもん】 のび太と壊れた人形  ～ code : DORAMI ～ ｜アメコミ風 AIアレンジMV</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=rSYvkVXI2yU"></a><span class="lesson">ジェラシーしずか #ドラえもん #創作 #アニメ #anime #恋愛 #嫉妬</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=8ZIC3-U2NU0"></a><span class="lesson">【セワシあるある①】未来の世界でのび太と共闘！？#ドラえもん #doraemon  #セワシ #豆知識</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=FLghh8ggBtg"></a><span class="lesson">ドラえもん感動シーン泣かない人いますか？ #ドラえもん #感動</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=SjMgovdpH34"></a><span class="lesson">ドラえもんの顔パーツと体パーツを組み立てて遊べるおもちゃで遊ぶよ♪</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=VefC7rLDdyQ"></a><span class="lesson">藤田和日郎「他の作者はどんな風にドラえもんを忍ばせたのかな………は？」に対する読者の反応集</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=degDoeK_hUg"></a><span class="lesson">のひ太のコスフレてトラえもんに会ってみた！</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=85teVZ-NPoE"></a><span class="lesson">2025/11/8（土）放送　テレビアニメ『ドラえもん』予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=hkLRciCHIbs"></a><span class="lesson">『映画ドラえもん のび太の地球交響楽』特報【2024年3月1日公開】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=_AoEA8xM94s"></a><span class="lesson">放送事故を起こしたキャラ5選#shorts #アニメ #ドラえもん #くまモン #わんわん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=6jS7sqOMxoc"></a><span class="lesson">中国版ドラえもんのツッコミ#つっこみ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=NFM0PEG56t8"></a><span class="lesson">『ドラえもん映画ガチ勢が好きな作品挙げてけ』に対するネットの反応集</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=NFuELCjGUOc"></a><span class="lesson">ドラえもんのおもちゃを組み立てて遊ぶよ♪のび太の部屋でドラえもんのパーツを探すよ！</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=v6Mim7Voxj4"></a><span class="lesson">しずかちゃんを助けるのは一体誰かな！？#ドラえもん #のび太 #コスプレ #パロディー</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=4TMTCDJAXN8"></a><span class="lesson">さよなら、しずかちゃん #創作 #ドラえもん #anime  #アニメ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=pe9JyXjhKjM"></a><span class="lesson">【巨大】ドラえもん ころがスイッチ全部つなげてみた！大量ひみつ道具のピタゴラスイッチ！ どこでもドアに空気砲、ガリバートンネル！ ★サンサンキッズTV★</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=-1EJ7XNcgwA"></a><span class="lesson">ドラえもんのひみつ道具だけで無人島100時間サバイバル！！</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=N4o9fZ47h-w"></a><span class="lesson">のび太達の学校ごっこ</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=G2PPc7zr-94"></a><span class="lesson">ドラえもん 「ハッピー★ラッキー・バースデー！」</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=s9X0TfNV9_8"></a><span class="lesson">70万回【ドラえもん】のび太がついに1人暮らし!?#shorts</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=eEulik74htw"></a><span class="lesson">【ひみつ道具図鑑】水ビル建築機 #ドラえもん #doraemon #ひみつ道具</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=etI_ey4af50"></a><span class="lesson">ドラえもん 2025 Vol 1508 | Doraemon</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=tEyQFFKEmqU"></a><span class="lesson">ドラえもん | Doraemon 鏡の中の世界 </span></li>
-  <li class="item" ><a class="hit" href="player.html?v=6sA801epM2E"></a><span class="lesson">ドラえもん|  聖夜ののび太クロース</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ityXbrdfCMI"></a><span class="lesson">『映画ドラえもん のび太と空の理想郷』3分ダイジェスト</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=AeMRXJtg500"></a><span class="lesson">スキマスイッチ - 「ボクノート」Music Video：SUKIMASWITCH - BOKU NOOTO Music Video</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=djoOc9HgvE0"></a><span class="lesson">大山版ドラえもん　第1412話　ウキウキプール</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=vwRFZ2R7lI8"></a><span class="lesson">2025/1/11（土）放送　テレビアニメ『ドラえもん』#ドラえもん #Doraemon #予告動画</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=r2dHXNMNxZk"></a><span class="lesson">夢をかなえてドラえもん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=1t7Uo6xlU8o"></a><span class="lesson">大山版ドラえもん　第1484話　特賞!のび太温泉</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=UfR4Oex6IQE"></a><span class="lesson">【総集編】【ドラえもん】【ボケて】爆笑ボケて＆ツッコミ特集！殿堂入り2chボケてスレ【四国めたん解説】 #0003</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=85eeAL2zUbQ"></a><span class="lesson">Part2 #恋愛 #創作 #胸キュン #ドラえもん #anime #失恋</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=-dbSBGBf7iA"></a><span class="lesson">【バレーボール】ドラえもんの殿堂入りボケてがマジでツッコミどころ満載だったwww【1237弾】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=f7NjLCL-3sI"></a><span class="lesson">有名キャラのヤバすぎる発言が面白いww  #アニメ #ドラえもん #クレヨンしんちゃん</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=DYCvUgIv6Ec"></a><span class="lesson">【MAD】ドラえもん×今はいいんだよ。【Covered by Kotoha】</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=wKZjStJ5RaE"></a><span class="lesson">ドラえもんのオリジナル漫画描いたw #2ちゃんまとめ  #2ch面白いスレ #5ch #2ch #大喜利</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=HCFm1utJAhs"></a><span class="lesson">最後までわからない告白 #創作 #ドラえもん #anime #胸キュン #恋愛</span></li>
-  <li class="item" ><a class="hit" href="player.html?v=ctlhbFAjj4M"></a><span class="lesson">【うごメモ】翼をくださいの替え歌が面白すぎたｗｗｗｗｗ【ドラえもん＆のび太】#shorts</span></li>
+
+<li class="item"><a class="hit" href="player.html?v=EkJgegIjN3A"></a><span class="lesson">ドラえもん 2025 Vol 1068 | Doraemon</span></li>
+<li class="item"><a class="hit" href="player.html?v=6oqDpcLVg28"></a><span class="lesson">ドラえもん誕生日スペシャル2011 走れドラえもん！銀河グランプリ</span></li>
+<li class="item"><a class="hit" href="player.html?v=ypRTzt1KrF8"></a><span class="lesson">星野源  ドラえもん (Official Video)</span></li>
+<li class="item"><a class="hit" href="player.html?v=I2orZvEEsbI"></a><span class="lesson">ドラえもん 2025  ドラえもん Vol 2869  </span></li>
+<li class="item"><a class="hit" href="player.html?v=EJorJjaEwz4"></a><span class="lesson">ドラえもん良い奴キャラランキングTOP16 #ドラえもん #ランキング #天気の子 #君の名は #新海誠 #のび太の絵世界物語 #のび太</span></li>
+<li class="item"><a class="hit" href="player.html?v=T9R-NPhRi1M"></a><span class="lesson">夢をかなえてドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=PfnJTlxdPe4"></a><span class="lesson">さよなら栄一郎 #ドラえもん #創作 #アニメ #anime</span></li>
+<li class="item"><a class="hit" href="player.html?v=kCZhBZ9B6LA"></a><span class="lesson">【ドラえもん】のび太空を自由に飛びたい #映画雑学 #アニメ #ドラえもん#ヤミえもん#のび太</span></li>
+<li class="item"><a class="hit" href="player.html?v=2MrnafzXERI"></a><span class="lesson">ドラえもん | あの子を笑わせろ！</span></li>
+<li class="item"><a class="hit" href="player.html?v=4jMcz9wkmEI"></a><span class="lesson">テレビアニメ【ドラえもん】ドラえもんのうた</span></li>
+<li class="item"><a class="hit" href="player.html?v=8EhqqDxuzqo"></a><span class="lesson">ドラえもん のび太の部屋 リーメント 毎日が大冒険 / Doraemon Miniature Nobita's Room! Re-ment</span></li>
+<li class="item"><a class="hit" href="player.html?v=oX0_nZ7UAyQ"></a><span class="lesson">『ヤンキードラえもん』～出木杉の小遣い稼ぎ～　＃つっこみ君　＃ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=zo3zNNlNoNo"></a><span class="lesson">6万再生！ドラえもん――涙の最終回【都市伝説】</span></li>
+<li class="item"><a class="hit" href="player.html?v=rvWbH_KOREY"></a><span class="lesson">個人的ドラえもん映画内かっこいいキャラTOP16 #ドラえもん #ランキング #shorts #short #君の名は #天気の子 #のび太 #のび太の絵世界物語</span></li>
+<li class="item"><a class="hit" href="player.html?v=rjMxhFgtclo"></a><span class="lesson">【予告】『映画ドラえもん 新・のび太の海底鬼岩城』＜2026年2月27日(金)公開＞</span></li>
+<li class="item"><a class="hit" href="player.html?v=MWwmuAqky5E"></a><span class="lesson">「赤い目のドラえもん」  #ホラー #ドラえもん #のび太 #日本ホラー #怖い話 #短編ホラー #怪談 #赤い目</span></li>
+<li class="item"><a class="hit" href="player.html?v=hLPH2X0gTcA"></a><span class="lesson">「映画ドラえもん」45周年記念 予告総集編</span></li>
+<li class="item"><a class="hit" href="player.html?v=gpOnNj314fU"></a><span class="lesson">レオくんがドラえもんたちの顔パーツをくみたてるよ！ レオスマイル</span></li>
+<li class="item"><a class="hit" href="player.html?v=hj2O-_lT4SE"></a><span class="lesson">【カラオケ】夢をかなえてドラえもん / mao</span></li>
+<li class="item"><a class="hit" href="player.html?v=AFZccMnGPy8"></a><span class="lesson">【ドラえもん×クレヨンしんちゃん】最終回に関する架空の雑学【のび太の担任と覚醒と白髪出木杉とセワシ編】【サザエさん最終回】</span></li>
+<li class="item"><a class="hit" href="player.html?v=XmvQwiYbRqs"></a><span class="lesson">ドラえもん好きは絶対行くべき藤子F不二雄ミュージアムカフェ巨大ドラえもんカレーや暗記パンが食べれる！ #神奈川グルメ</span></li>
+
+<li class="item"><a class="hit" href="player.html?v=1eaAYugv6Kk"></a><span class="lesson">ドラえもん タイムマシン タイムスリップ ダンボール工作 / Doraemon Time Machine Cardboard DIY</span></li>
+<li class="item"><a class="hit" href="player.html?v=UXSSFRWSjbA"></a><span class="lesson">入れるの？　#びっくり　#ドラえもん　#のび太くん　#サプライズ　#不思議</span></li>
+<li class="item"><a class="hit" href="player.html?v=6HSgfSTvZ_4"></a><span class="lesson">スネ夫の悪口 #映画雑学 #ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=ho-3meHaJoo"></a><span class="lesson">流行りのナルトダンスを踊るのび太  #ドラえもん #ナルトダンス #anime #アニメ #shorts #ヒカキン #ヒカマニ</span></li>
+<li class="item"><a class="hit" href="player.html?v=INLxGFsWpaQ"></a><span class="lesson">ドラえもんの温かい目が怖すぎる件について #雑学チャンネル #アニメ #どらえもん #ドラえもん映画 #ドラえもんアニメ</span></li>
+<li class="item"><a class="hit" href="player.html?v=b8v7UaoZCHw"></a><span class="lesson">ドラえもん | Doraemon走れドラえもん!銀河グランプリ</span></li>
+<li class="item"><a class="hit" href="player.html?v=9ktD8bF3Hws"></a><span class="lesson">ドラえもんの体が青くなった理由[The reason why Doraemon turned blue]</span></li>
+<li class="item"><a class="hit" href="player.html?v=KpstG9ipLRc"></a><span class="lesson">大山版ドラえもんと水田版ドラえもんの違い#shortsfeed</span></li>
+<li class="item"><a class="hit" href="player.html?v=ZXbtsBTNtpM"></a><span class="lesson">ドラえもんの悲劇的な最終回…#shorts #怖い話 #雑学 #ホラー #アニメ #ドラえもん #感動する話</span></li>
+<li class="item"><a class="hit" href="player.html?v=YyaN5QAluiU"></a><span class="lesson">ドラえもん 2025  ドラえもん Vol 2869   真夜中の巨大ドラたぬき</span></li>
+<li class="item"><a class="hit" href="player.html?v=tEyQFFKEmqU"></a><span class="lesson">ドラえもん | Doraemon 鏡の中の世界 </span></li>
+<li class="item"><a class="hit" href="player.html?v=dxFFQT93V7Y"></a><span class="lesson">【ドラえもん】ボケてのドラえもんネタに本気でアフレコしてツッコんでみたらヤバすぎたｗｗｗｗ【第10弾】#shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=pOi6i6566uQ"></a><span class="lesson">ドラえもん ぼくらの空き地 リーメント</span></li>
+<li class="item"><a class="hit" href="player.html?v=SFOXhmXfoTY"></a><span class="lesson">【ドラえもんのねないこだれだ　その１】のび太、ジャイアン、しずかちゃん、スネ夫の総集編｜|寝かしつけ動画|おばけ|怖い|おもちゃ</span></li>
+<li class="item"><a class="hit" href="player.html?v=T2nH5RrcgrM"></a><span class="lesson">【MAD】ドラえもん × かくれんぼ (のび太を愛した美少女）【感動】その5</span></li>
+<li class="item"><a class="hit" href="player.html?v=D3PBlHKAcp0"></a><span class="lesson">劇場版ドラえもんの衝撃的シーン3選#shortsfeed#トラウマ#怖い#ホラー#漫画#アニメ#映画ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=0S-j-Sowg1w"></a><span class="lesson">【ゴリ押しパロディ】ドラえもんえかきうた【マイクラ】</span></li>
+<li class="item"><a class="hit" href="player.html?v=pLmkwbGUUFA"></a><span class="lesson">のび太くん、ちゃんと たべてる？　おもちゃ アニメ【ドラえもん】【こども専用】</span></li>
+<li class="item"><a class="hit" href="player.html?v=uucE41eyyTs"></a><span class="lesson">ジャイアンのシチューが個性的すぎて誰も食べられない #映画雑学 #雑学 #ドラえもんアニメ #ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=hhlBChKBWx0"></a><span class="lesson">とうとう面倒くさくなっちゃったドラえもん #ドラえもん#イラスト#のび太#野比のび太#shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=MVJHsIxVY0Y"></a><span class="lesson">ドラえもんが青くなった理由に関する雑学# #映画雑学 #ドラえもん #ドラえもんアニメ</span></li>
+<li class="item"><a class="hit" href="player.html?v=TKRIrtqugOM"></a><span class="lesson">ドラえもんの声優に関する雑学 #ドラえもん #doremon #アニメ #雑学#shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=ewhRE-BvJCg"></a><span class="lesson">タイムパラドックス (『映画ドラえもん のび太の地球交響楽』主題歌) / Vaundy：MUSIC VIDEO</span></li>
+<li class="item"><a class="hit" href="player.html?v=MYtSL8OqYtU"></a><span class="lesson">ドラえもん誕生日スペシャル 2009 ドラえもんの長い一日</span></li>
+<li class="item"><a class="hit" href="player.html?v=tS-yvhTrCvw"></a><span class="lesson">【本編映像】『映画ドラえもん のび太の絵世界物語』本編映像一部公開！＜期間限定＞</span></li>
+<li class="item"><a class="hit" href="player.html?v=ZXOqEieczNQ"></a><span class="lesson">ドラえもんがヘビに噛まれる。トゥントゥンサフールとバレリーナカプチーナのイタズラ  #ドラえもん #面白い #ショート動画 #アニメ #笑える #日本 #バズーカ #秘密</span></li>
+<li class="item"><a class="hit" href="player.html?v=HAP3068GwFM"></a><span class="lesson">みんなで ドライブにいこう　おもちゃ アニメ【ドラえもん】</span></li>
+<li class="item"><a class="hit" href="player.html?v=vKpNJUKUknU"></a><span class="lesson">闇のドラえもん(ニセモノ)　ひみつ道具の物理的な使い方</span></li>
+<li class="item"><a class="hit" href="player.html?v=50msekFDTdA"></a><span class="lesson">未来から来たのに価値観が全然アップデートされてないドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=_aHrx99d5UA"></a><span class="lesson">ドラえもんの都市伝説『行かなきゃ』</span></li>
+<li class="item"><a class="hit" href="player.html?v=8VSZGnWbeCM"></a><span class="lesson">ドラえもん今と昔の違い5選 #ドラえもん #今と昔</span></li>
+<li class="item"><a class="hit" href="player.html?v=GXXIRXaSvao"></a><span class="lesson">【神回】ドラえもんお絵描き動画のパロディがツッコミどころ満載だったｗｗｗ　#アニメ  #ドラえもん  #漫画   #shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=tXNavHkkhxw"></a><span class="lesson">ドラえもんのコミックケーキを正直レビュー！てんコミ50周年限定</span></li>
+<li class="item"><a class="hit" href="player.html?v=p0JFc5giu9U"></a><span class="lesson">Yamano Satoko ドラえもんのうた Doraemon no uta Lyrics</span></li>
+<li class="item"><a class="hit" href="player.html?v=0dlYQUzUdq4"></a><span class="lesson">「映画ドラえもん のび太の宝島」予告3（星野源 主題歌「ドラえもん」ver.）【2018年3月3日公開】</span></li>
+<li class="item"><a class="hit" href="player.html?v=4ywGjIu3Lis"></a><span class="lesson">なんか関係ない奴が死んだ#shorts #ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=FXLEBpj38u0"></a><span class="lesson">【ドラえもん】のび太が出来杉くんに唯一勝てることに関するうんちく</span></li>
+<li class="item"><a class="hit" href="player.html?v=n0Wtq98GZvM"></a><span class="lesson">夢をかなえてドラえもん - キャラクター・ソングバージョン（アレンジ ) 高音質</span></li>
+<li class="item"><a class="hit" href="player.html?v=tFz7vjn52gY"></a><span class="lesson">【ドラえもん】のび太よりダメなクラスメイト多目くんに関するうんちく #アニメ #漫画 #shortsfeed</span></li>
+<li class="item"><a class="hit" href="player.html?v=OTb24cbzIhk"></a><span class="lesson">がっこう かくれんぼ　おもちゃ アニメ【ドラえもん】</span></li>
+<li class="item"><a class="hit" href="player.html?v=Ub94TJ_SFfM"></a><span class="lesson">あきち で ゴーカート かつの は どっち？  おもちゃ アニメ【ドラえもん】</span></li>
+<li class="item"><a class="hit" href="player.html?v=154daImUY6c"></a><span class="lesson">ジャイアンの思いやりに関する雑学 #ドラえもん#アニメ #雑学#shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=jgsN-nG9aBI"></a><span class="lesson">母の愛情の深さ。#涙の瞬間 #ドラえもん#感動#アニメ</span></li>
+<li class="item"><a class="hit" href="player.html?v=rYvTCYy-Wek"></a><span class="lesson">夢をかなえてドラえもん【ドレミ楽譜歌詞付き】初心者向けゆっくり簡単ピアノ アニメ『ドラえもん』OP曲 弾いてみた Easy Piano Tutorial mao 初級</span></li>
+<li class="item"><a class="hit" href="player.html?v=5vM_pC7QN4E"></a><span class="lesson">『ヤンキードラえもん』～ヤンキーのび太TV～　＃つっこみ君　＃ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=CUEEKjm0wnE"></a><span class="lesson">ジャイアンたち4人が十字路で別れるシーンに関するうんちく</span></li>
+<li class="item"><a class="hit" href="player.html?v=wyn65r5N8IQ"></a><span class="lesson">何の違和感もない絵描き歌｜Drawing with drawing song...</span></li>
+<li class="item"><a class="hit" href="player.html?v=kGm5kJVbH6A"></a><span class="lesson">「ダンダダン」をドラえもんで描いてみた動画がツッコミどころ満載だったｗｗｗ 【オトノケ】 【Creepy Nuts】#アニメ  #ダンダダン　＃ドラえもん   #漫画   #shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=YB_hLuMGFqM"></a><span class="lesson">Nobita's Grandma's Wish | STAND BY ME Doraemon 2 | Netflix Anime</span></li>
+<li class="item"><a class="hit" href="player.html?v=_kQErRVmCKM"></a><span class="lesson">みんなは異物を飲み込まないよう気をつけてね。#涙の瞬間 #ドラえもん #感動#アニメ</span></li>
+<li class="item"><a class="hit" href="player.html?v=hPJD9O3ZRbk"></a><span class="lesson">もしものがたり - Tani Yuuki【MV】（TVアニメ『ドラえもん』エンディング曲）</span></li>
+<li class="item"><a class="hit" href="player.html?v=vvcsRM8qFcY"></a><span class="lesson">TVアニメ「ドラえもん」ノンクレジットエンディング映像｜Tani Yuuki『もしものがたり』</span></li>
+<li class="item"><a class="hit" href="player.html?v=yG0QG_lhVok"></a><span class="lesson">あまり知られていない出木杉君の秘密3選#ドラえもん#漫画#アニメ#shortsfeed</span></li>
+<li class="item"><a class="hit" href="player.html?v=9gGyDzgLsOA"></a><span class="lesson">大山版ドラえもん　ジャイアンのお仕置きシーン集　第1弾</span></li>
+<li class="item"><a class="hit" href="player.html?v=dxFFQT93V7Y"></a><span class="lesson">【ドラえもん】ボケてのドラえもんネタに本気でアフレコしてツッコんでみたらヤバすぎたｗｗｗｗ【第10弾】#shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=bIAZYmhWLgk"></a><span class="lesson">【ドラえもん】殿堂入りボケてに廃人が全力でアフレコしてみたw【第125弾】 #ボケて #アフレコ  #ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=LEUjzXHpIng"></a><span class="lesson">鏡餅の絵描き歌#ドラえもんおもしろい</span></li>
+<li class="item"><a class="hit" href="player.html?v=JdiRcj7I4ZM"></a><span class="lesson">のび太サイファー - ドラえもんの歌 / THE FIRST TAKE</span></li>
+<li class="item"><a class="hit" href="player.html?v=_NZl0qp7Y2c"></a><span class="lesson">大事な事は何回も言いましょう #ドラえもん #創作 #アニメ #anime</span></li>
+<li class="item"><a class="hit" href="player.html?v=9sUtxLsLn4U"></a><span class="lesson">野比家の不思議な間取り【ドラえもん雑学】</span></li>
+<li class="item"><a class="hit" href="player.html?v=m9iperdA28E"></a><span class="lesson">【最新作】『映画ドラえもん のび太の絵世界物語』予告【2025年3月7日(金)公開】</span></li>
+<li class="item"><a class="hit" href="player.html?v=yQVA-cbecI0"></a><span class="lesson">【MAD】走れドラえもん　銀河グランプリ　ドラえもん×かくれんぼ</span></li>
+<li class="item"><a class="hit" href="player.html?v=LS5PGgh0XGQ"></a><span class="lesson">ドラえもん迷言 #ドラえもん #イラスト#描いてみた#のび太#しずか#スネ夫#ジャイアン#shorts #いないならいないって返事しろ</span></li>
+<li class="item"><a class="hit" href="player.html?v=rPv2O32Rl_E"></a><span class="lesson">クレヨンしんちゃんがドラえもんと共演NGな理由 #映画雑学 #ドラえもんアニメ #クレヨンしんちゃん</span></li>
+<li class="item"><a class="hit" href="player.html?v=5uJto_B-FNU"></a><span class="lesson">ドラえもんでも手が負えない #映画雑学 #ドラえもん #ドラえもんアニメ #ドラえもん映画</span></li>
+<li class="item"><a class="hit" href="player.html?v=IRI79bGM6LU"></a><span class="lesson">ドラえもんズ復活？突然消えてしまった理由#ドラえもん#漫画#アニメ#shortsfeed #うんちく</span></li>
+<li class="item"><a class="hit" href="player.html?v=qmemwBDrUrs"></a><span class="lesson">『ヤンキードラえもん』～のび太転売ヤーになる～　＃つっこみ君　＃ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=nc45MGGFLpo"></a><span class="lesson">【ドラえもん】ころがスイッチで巨大コースの組み立て！ひみつ道具でピタゴラスイッチ♪どこでもドアやタケコプターも登場！子供向け知育教育★サンサンキッズTV★</span></li>
+<li class="item"><a class="hit" href="player.html?v=sLf0aggA1VE"></a><span class="lesson">【MAD】ドラえもん × かくれんぼ (のび太を愛した美少女）【感動】</span></li>
+<li class="item"><a class="hit" href="player.html?v=yfP9qJPZu1E"></a><span class="lesson">ドッ…ドラえもんコーデ！？ #shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=sEJ6dEfb1i0"></a><span class="lesson">のび太の先生が主役の珍しいエピソード#ドラえもん#漫画#アニメ#shortsfeed</span></li>
+<li class="item"><a class="hit" href="player.html?v=CIXP7YIsTc4"></a><span class="lesson">IQ30のドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=cjH4M7V6MbU"></a><span class="lesson">『ヤンキーアンパンマン VS ヤンキードラえもん』　＃つっこみ君　＃アンパンマン</span></li>
+<li class="item"><a class="hit" href="player.html?v=YcWewZ38_F4"></a><span class="lesson">(AMV) 虹 - 菅田将暉/ Niji - Masaki Suda | OST Doraemon Stand by Me 2 (Kanji - Romaji - Terjemahan)</span></li>
+<li class="item"><a class="hit" href="player.html?v=Htx3qfmZsts"></a><span class="lesson">森に消える不思議な扉｜しんちゃん×のび太×ドラえもんのホラー冒険 #しんちゃん#ドラえもん#のび太#ホラーアニメ#アドベンチャー#日本アニメ#不思議な扉</span></li>
+<li class="item"><a class="hit" href="player.html?v=D0Y5YBHYouQ"></a><span class="lesson">イタリアンブレインロット製造機　『ヤンキードラえもん』　＃つっこみ君　＃ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=bcFlDb0hsHU"></a><span class="lesson">今日のお昼はドラえもんの特製弁当 ～ Homemade lunch of Doraemon.</span></li>
+<li class="item"><a class="hit" href="player.html?v=4gC1drlVMq0"></a><span class="lesson">ドラえもんのモーニングルーティン【Doraemon's Morning Routine】</span></li>
+<li class="item"><a class="hit" href="player.html?v=XPEw96BIMnM"></a><span class="lesson">トラえもんと孫悟空の喧嘩か面白すきたw #アニメ #漫画 #声優</span></li>
+<li class="item"><a class="hit" href="player.html?v=o9s1ml3UVQw"></a><span class="lesson">「映画ドラえもん のび太の宝島」星野源挿入歌:ここにいないあなたへ 特別映像</span></li>
+<li class="item"><a class="hit" href="player.html?v=k0B4Vn5wrWQ"></a><span class="lesson">ドラえもんを作れる世界でエンドラ討伐してみた結果!【マイクラ/まいくら】</span></li>
+<li class="item"><a class="hit" href="player.html?v=gwc1x7mRk3c"></a><span class="lesson">2倍速で草ww #切り抜き #面白シーン #クレヨンしんちゃん #ドラえもんシリーズ #アニメ #映画ドラえもん #どらえもん #2倍速 #2倍速がおススメ #おもしろ</span></li>
+<li class="item"><a class="hit" href="player.html?v=gOKzuKgzeA8"></a><span class="lesson">ジャイアンのパンチ力のヤバさをご存知だろうか#ドラえもん #雑学 #アニメ #都市伝説 #ホラー</span></li>
+<li class="item"><a class="hit" href="player.html?v=Jr7hiZLiacM"></a><span class="lesson">【ドラえもん】ボケてのドラえもんネタに本気でアフレコしてツッコんでみたらヤバすぎたｗｗｗｗ【第386弾】</span></li>
+<li class="item"><a class="hit" href="player.html?v=ATVeTR7nta8"></a><span class="lesson">【vietsub/lyrics/rom】夢をかなえてドラえもん (Yume wo Kanaete Doraemon) - mao</span></li>
+<li class="item"><a class="hit" href="player.html?v=TvtsaUXUq1s"></a><span class="lesson">ドラがおジャンケンで4回連続で負けると…#shorts #ドラえもん #都市伝説 #アニメ #怖い話 #ホラー</span></li>
+<li class="item"><a class="hit" href="player.html?v=MYXmPCsvANc"></a><span class="lesson">13万再生歳を重ねたのび太とドラえもん――最期の“ありがとう”【都市伝説】【感動する話】</span></li>
+<li class="item"><a class="hit" href="player.html?v=gypOlOhi-Nk"></a><span class="lesson">ドラえもんキャラに対するピストンの違い #ドラえもん #doraemon #アニメ #shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=Gt-4poS33qk"></a><span class="lesson">【ドラえもん】ボケてのドラえもんネタに本気でアフレコしてツッコんでみたらヤバすぎたｗｗｗｗ【第429弾】</span></li>
+<li class="item"><a class="hit" href="player.html?v=uO6K6zfU0MU"></a><span class="lesson">国民的アニメのトラウマ回　アニメ、漫画</span></li>
+<li class="item"><a class="hit" href="player.html?v=tTH4K4hIC-E"></a><span class="lesson">復讐の変 #ドラえもん #創作 #アニメ #anime</span></li>
+<li class="item"><a class="hit" href="player.html?v=3b60mvstoFs"></a><span class="lesson">ドラえもん本物と偽物！#どらえもん #ドラミちゃん#本物と偽物</span></li>
+<li class="item"><a class="hit" href="player.html?v=95HRp5Lbv4o"></a><span class="lesson">ドラえもんが逃走中！？みのちゃんピンチ！たすけてドラえもん！</span></li>
+<li class="item"><a class="hit" href="player.html?v=0oLPTdEqKA4"></a><span class="lesson">映画ドラえもん　新・のび太と鉄人兵団～はばたけ 天使たち～　予告動画</span></li>
+<li class="item"><a class="hit" href="player.html?v=rg-yM8MuojA"></a><span class="lesson">流行りのナルトダンスを踊って歌うドラえもん氏 #どらマニ #ナルトダンス #ヒカマニ #ドラえもん #ネタ #shorts #short</span></li>
+<li class="item"><a class="hit" href="player.html?v=YyaN5QAluiU"></a><span class="lesson">ドラえもん 2025  ドラえもん Vol 2869   真夜中の巨大ドラたぬき</span></li>
+<li class="item"><a class="hit" href="player.html?v=EJxBu-ZTKfA"></a><span class="lesson">ドラえもん・クレヨンしんちゃんから学ぶ常識まとめ</span></li>
+<li class="item"><a class="hit" href="player.html?v=X2Ct1m5pM7M"></a><span class="lesson">鬼滅の刃 x ドラえもん シンクロさせてみた DemonSlayer x Doraemon</span></li>
+<li class="item"><a class="hit" href="player.html?v=WqpJUTWj07Y"></a><span class="lesson">ドラえもんがスプランキーの世界で大喧嘩に...SPRUNKI</span></li>
+<li class="item"><a class="hit" href="player.html?v=CWdMWK_sdXc"></a><span class="lesson">【ドラえもん】ジャイアンのパンチ力</span></li>
+<li class="item"><a class="hit" href="player.html?v=AFzsX5TKlig"></a><span class="lesson">小学校でドッジボールやってた奴なら絶対に分かる「ドラえもん」星野源  　替え歌</span></li>
+<li class="item"><a class="hit" href="player.html?v=D4nWbM64-Ms"></a><span class="lesson">心臓マッサージ世代の違い#ドラえもん#イラスト#のび太#出木杉くん#しずかちゃん#ネタ#shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=CGzbVcu6I50"></a><span class="lesson">壊れたネコ型ロボットを修理する。#shorts #paperdoll #ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=1ybcIbK0vLQ"></a><span class="lesson">ひみつ道具クイズ せいかいはどっち？　おもちゃ アニメ【ドラえもん】</span></li>
+<li class="item"><a class="hit" href="player.html?v=N6GLfCGJJTg"></a><span class="lesson">【400万再生】面白すぎるwwwww#ショート#ドラえもん#中国#memes#ツッコミ#shorts#面白い#バズれ#のびろ#バズりたい#ジャパン#すごい#のび太#ジャイアン#スネ夫#しずか</span></li>
+<li class="item"><a class="hit" href="player.html?v=tohgVcGB6bE"></a><span class="lesson">バスで すごろくのたび　おもちゃ アニメ【ドラえもん】</span></li>
+<li class="item"><a class="hit" href="player.html?v=5z4d_dgov4A"></a><span class="lesson">最近放送されたアウトな回　アニメ、漫画</span></li>
+<li class="item"><a class="hit" href="player.html?v=f_PddM12vxI"></a><span class="lesson">【太鼓の達人 Wii U2】夢をかなえてドラえもん（むずかしい）【オート動画】</span></li>
+<li class="item"><a class="hit" href="player.html?v=KYMtvT5b8fM"></a><span class="lesson">のび太の裏垢 #ドラえもん #創作 #anime #石破総理 #食べ方</span></li>
+<li class="item"><a class="hit" href="player.html?v=aH0O4ONcte8"></a><span class="lesson">ドラえもんの絵描き歌</span></li>
+<li class="item"><a class="hit" href="player.html?v=ityWTWCA56s"></a><span class="lesson">こんなドラえもんは嫌だ！コスプレ のび太 しずかちゃん  チャレンジ！Cosplay Doraemon コミック アニメ 映画   -Bonitos TV- </span></li>
+<li class="item"><a class="hit" href="player.html?v=d5xKasxtDUc"></a><span class="lesson">のび太再び #創作 #ドラえもん #anime #論破</span></li>
+<li class="item"><a class="hit" href="player.html?v=1CVOpniIryQ"></a><span class="lesson">筋肉は裏切らない #ドラえもん #anime #胸キュン #恋愛</span></li>
+<li class="item"><a class="hit" href="player.html?v=TPloRDoG2QY"></a><span class="lesson">【ドラえもん】キレッキレな迷言【あにまん考察】</span></li>
+<li class="item"><a class="hit" href="player.html?v=lsepco7RBiA"></a><span class="lesson">【癒しASMR】ドラえもん  のステッカーを優しく剥がす音Realxing ASMR with Doraemon Sticker</span></li>
+<li class="item"><a class="hit" href="player.html?v=6qkqqvZB5SM"></a><span class="lesson">いたわりロボットドラえもんテレ朝動画</span></li>
+<li class="item"><a class="hit" href="player.html?v=ZP-y-n2FqIs"></a><span class="lesson">アニメになってない幻の最終回【ドラえもんがマジで帰り戻らない話】</span></li>
+<li class="item"><a class="hit" href="player.html?v=FdWt5o0WWOY"></a><span class="lesson">連載初期のドラえもんと今のドラえもんの違い#原作#shortsfeed #ガチャ子#日テレ版ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=EcH0wdJG6hg"></a><span class="lesson">先生を完璧論破 #ドラえもん #創作 #anime #アニメ</span></li>
+<li class="item"><a class="hit" href="player.html?v=YyaN5QAluiU"></a><span class="lesson">ドラえもん 2025  ドラえもん Vol 2869   真夜中の巨大ドラたぬき</span></li>
+<li class="item"><a class="hit" href="player.html?v=vEyDyNiWg8Y"></a><span class="lesson">ドラアニから学ぶ常識#雑学チャンネル #ドラえもん #ドラえもんアニメ #ドラえもん映画</span></li>
+<li class="item"><a class="hit" href="player.html?v=9sUtxLsLn4U"></a><span class="lesson">野比家の不思議な間取り【ドラえもん雑学】</span></li>
+<li class="item"><a class="hit" href="player.html?v=SEwsQuJwdeI"></a><span class="lesson">バービーのオモチャで遊ぼう！アンパンマンたちとドラえもんのバスボムで遊ぶよ！ レオスマイル</span></li>
+<li class="item"><a class="hit" href="player.html?v=gypOlOhi-Nk"></a><span class="lesson">ドラえもんキャラに対するピストンの違い #ドラえもん #doraemon #アニメ #shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=WGI0Ok4Cu78"></a><span class="lesson">ドラえもんのお皿にお菓子を盛り付けよう！</span></li>
+<li class="item"><a class="hit" href="player.html?v=UY1dUqqXyes"></a><span class="lesson">戦争を題材したドラえもんの珍しい回について#のび助#国民的アニメ#漫画#shortsfeed</span></li>
+<li class="item"><a class="hit" href="player.html?v=fYT4ZdLoUqo"></a><span class="lesson">割り算のあまり #ドラえもん #創作 #2ch #パパ</span></li>
+<li class="item"><a class="hit" href="player.html?v=ZdI0xomuXFs"></a><span class="lesson">【ドラえもん】しずかちゃんはのび太の優しさと芯の強さに惚れて結婚した #アニメ #漫画</span></li>
+<li class="item"><a class="hit" href="player.html?v=cM5pzIonJuI"></a><span class="lesson">女の子はみんな可愛い #ドラえもん #anime #胸キュン #恋愛</span></li>
+<li class="item"><a class="hit" href="player.html?v=XlcmiV4tTK0"></a><span class="lesson">ドラえもんのうた</span></li>
+<li class="item"><a class="hit" href="player.html?v=s4pgnGqkNEU"></a><span class="lesson">大杉久美子 - ドラえもんのうた</span></li>
+<li class="item"><a class="hit" href="player.html?v=y8s-a7YVtsE"></a><span class="lesson">ドラえもんアニメから学ぶ常識#雑学チャンネル #ドラえもん #ドラえもんアニメ #ドラえもん映画</span></li>
+<li class="item"><a class="hit" href="player.html?v=b8v7UaoZCHw"></a><span class="lesson">ドラえもん | Doraemon走れドラえもん!銀河グランプリ</span></li>
+<li class="item"><a class="hit" href="player.html?v=bSBkXX8K68Y"></a><span class="lesson">いじめようとした結果…＃バズれ＃ドラえもん＃ショート</span></li>
+<li class="item"><a class="hit" href="player.html?v=j_eHFKcYnXc"></a><span class="lesson">実った恋 #ドラえもん #創作 #anime #胸キュン #恋愛</span></li>
+<li class="item"><a class="hit" href="player.html?v=50msekFDTdA"></a><span class="lesson">未来から来たのに価値観が全然アップデートされてないドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=5is9yxvyKbo"></a><span class="lesson">バス か でんしゃ で ゆうえんちへいこう　おもちゃ アニメ【ドラえもん】</span></li>
+<li class="item"><a class="hit" href="player.html?v=tAWhEe-dar0"></a><span class="lesson">【冬バージョン】TVアニメ「ドラえもん」ノンクレジットエンディング映像｜Tani Yuuki『もしものがたり』</span></li>
+<li class="item"><a class="hit" href="player.html?v=3b60mvstoFs"></a><span class="lesson">ドラえもん本物と偽物！#どらえもん #ドラミちゃん#本物と偽物</span></li>
+<li class="item"><a class="hit" href="player.html?v=gLV_CX9sHvI"></a><span class="lesson">ドラえもんとのび太君の家のおもちゃでタイムマシーンやどこでもドアで22世紀や恐竜の時代にあそびにいくよ♪</span></li>
+<li class="item"><a class="hit" href="player.html?v=pHfUL5Gbe4A"></a><span class="lesson">ドラえもん弁当とドラミちゃん弁当を、モリモリ食べる！　大好きなおかずがいっぱい入ってた　お子様ランチ　ほっともっと</span></li>
+<li class="item"><a class="hit" href="player.html?v=kgmVQV0U0_0"></a><span class="lesson">この声が… #弾き語り #歌ってみた #cover #ドラえもん #創作 #胸キュン</span></li>
+<li class="item"><a class="hit" href="player.html?v=BvhZSRmkX7A"></a><span class="lesson">青空でドラえもんを塗れ！#ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=bsQhy0jnNNY"></a><span class="lesson">中国版ドラえもんをツッコミまくる</span></li>
+<li class="item"><a class="hit" href="player.html?v=me3Yzg1cvcU"></a><span class="lesson">旧ドラえもんOP</span></li>
+<li class="item"><a class="hit" href="player.html?v=_auEjcWt2bE"></a><span class="lesson">癖が強いドラえもん/狩野英孝</span></li>
+<li class="item"><a class="hit" href="player.html?v=UUtCLFtlytU"></a><span class="lesson">大山版ドラえもん　第1413話　持ち主を探せ!</span></li>
+<li class="item"><a class="hit" href="player.html?v=8FUCTGZW_z8"></a><span class="lesson">【MAD】ドラえもん×虹</span></li>
+<li class="item"><a class="hit" href="player.html?v=TV7cqTDJDpg"></a><span class="lesson">貯金箱にお金を入れて遊ぼう！ドラえもん、ポケモン、ミニオンの貯金箱！ レオスマイル</span></li>
+<li class="item"><a class="hit" href="player.html?v=AO_kE3HWpuM"></a><span class="lesson">野菜のなかでかくれんぼ 誰がでてくるかな？【 ドラえもんおもちゃアニメ 】</span></li>
+<li class="item"><a class="hit" href="player.html?v=f0OmAYL4sTI"></a><span class="lesson">昔と今のしずかちゃんの違い4選#ドラえもん#漫画#アニメ#shortsfeed</span></li>
+<li class="item"><a class="hit" href="player.html?v=NpSfVe602jk"></a><span class="lesson">声優を使って遊ぶアニメ4選part8#shorts #ドラえもん #ヤッターマン #おそ松さん</span></li>
+<li class="item"><a class="hit" href="player.html?v=CWdMWK_sdXc"></a><span class="lesson">【ドラえもん】ジャイアンのパンチ力</span></li>
+<li class="item"><a class="hit" href="player.html?v=bSowX3IoWp8"></a><span class="lesson">14万再生！ドラえもん　涙の最終回【感動の都市伝説】</span></li>
+<li class="item"><a class="hit" href="player.html?v=4os4tK5vr34"></a><span class="lesson">「ドラえもん」を弾き続けたギタリスト　#創作　#漫画　#ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=e0z-d9QKliQ"></a><span class="lesson">【ドラえもん】みんな楽しみ♪おいしい給食の時間 / Delicious school lunch time</span></li>
+<li class="item"><a class="hit" href="player.html?v=fzqFCJd8QdY"></a><span class="lesson">実は食べなくていい！？ほんやくコンニャク！【ドラえもん雑学】</span></li>
+<li class="item"><a class="hit" href="player.html?v=mOLc46LI47A"></a><span class="lesson">カウンターをくらい続ける人 #ドラえもん #創作 #anime #恋愛</span></li>
+<li class="item"><a class="hit" href="player.html?v=EfSCwDNKIL4"></a><span class="lesson">しずかちゃんの声俺の声でも違和感ない説 #shorts #新人vtuber #しずかちゃん #ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=FQDidr7pyc8"></a><span class="lesson">ドラえもんに登場するのび太のママについての雑学#国民的アニメ#うんたく#アニメ#漫画#shortsfeed#大山のぶ代さんお疲れ様でした</span></li>
+<li class="item"><a class="hit" href="player.html?v=cQogYn-9cRQ"></a><span class="lesson">映画『STAND BY ME ドラえもん』予告編</span></li>
+<li class="item"><a class="hit" href="player.html?v=PA9SORnyNDg"></a><span class="lesson">サイコドラえもん #イラスト#ドラえもん#イケメン#のび太#shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=CaiVBbpU4-8"></a><span class="lesson">【寸劇】ドラえもんのスモールライトでパパを小さくしちゃえ～～～</span></li>
+<li class="item"><a class="hit" href="player.html?v=LpFMHKEpAkg"></a><span class="lesson">【ドラえもん】しずかちゃんが限界突破！全国ののび太が目覚める神回【ボケて】【ゆっくり解説】#ドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=_sYXeSAa-xY"></a><span class="lesson">ラジオ体操第1 (フルキャスト バージョン)</span></li>
+<li class="item"><a class="hit" href="player.html?v=TX9wCsF15j8"></a><span class="lesson">【ドラえもん】ボケてのドラえもんネタに本気でアフレコしてツッコんでみたらヤバすぎたｗｗｗｗ【第210弾】#shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=n1zkvwE5QAc"></a><span class="lesson">おでかけ 北海道 新千歳空港 ドラえもんわくわくスカイパークでレオくんがあそぶよ！ トイキッズ</span></li>
+<li class="item"><a class="hit" href="player.html?v=9GSiCWJMTLs"></a><span class="lesson">【ボイストレーナーと生徒が歌う】夢をかなえてドラえもん / mao【歌い方解説付き by シアーミュージック】</span></li>
+<li class="item"><a class="hit" href="player.html?v=qeJ7DOb4ZgE"></a><span class="lesson">【劇場版ドラえもん】 のび太と壊れた人形  ～ code : DORAMI ～ ｜アメコミ風 AIアレンジMV</span></li>
+<li class="item"><a class="hit" href="player.html?v=rSYvkVXI2yU"></a><span class="lesson">ジェラシーしずか #ドラえもん #創作 #アニメ #anime #恋愛 #嫉妬</span></li>
+<li class="item"><a class="hit" href="player.html?v=FLghh8ggBtg"></a><span class="lesson">ドラえもん感動シーン泣かない人いますか？ #ドラえもん #感動</span></li>
+<li class="item"><a class="hit" href="player.html?v=VefC7rLDdyQ"></a><span class="lesson">藤田和日郎「他の作者はどんな風にドラえもんを忍ばせたのかな………は？」に対する読者の反応集</span></li>
+<li class="item"><a class="hit" href="player.html?v=degDoeK_hUg"></a><span class="lesson">のひ太のコスフレてトラえもんに会ってみた！</span></li>
+<li class="item"><a class="hit" href="player.html?v=hkLRciCHIbs"></a><span class="lesson">『映画ドラえもん のび太の地球交響楽』特報【2024年3月1日公開】</span></li>
+<li class="item"><a class="hit" href="player.html?v=_AoEA8xM94s"></a><span class="lesson">放送事故を起こしたキャラ5選#shorts #アニメ #ドラえもん #くまモン #わんわん</span></li>
+<li class="item"><a class="hit" href="player.html?v=6jS7sqOMxoc"></a><span class="lesson">中国版ドラえもんのツッコミ#つっこみ</span></li>
+<li class="item"><a class="hit" href="player.html?v=NFM0PEG56t8"></a><span class="lesson">『ドラえもん映画ガチ勢が好きな作品挙げてけ』に対するネットの反応集</span></li>
+<li class="item"><a class="hit" href="player.html?v=NFuELCjGUOc"></a><span class="lesson">ドラえもんのおもちゃを組み立てて遊ぶよ♪のび太の部屋でドラえもんのパーツを探すよ！</span></li>
+<li class="item"><a class="hit" href="player.html?v=4TMTCDJAXN8"></a><span class="lesson">さよなら、しずかちゃん #創作 #ドラえもん #anime  #アニメ</span></li>
+<li class="item"><a class="hit" href="player.html?v=pe9JyXjhKjM"></a><span class="lesson">【巨大】ドラえもん ころがスイッチ全部つなげてみた！大量ひみつ道具のピタゴラスイッチ！ どこでもドアに空気砲、ガリバートンネル！ ★サンサンキッズTV★</span></li>
+<li class="item"><a class="hit" href="player.html?v=-1EJ7XNcgwA"></a><span class="lesson">ドラえもんのひみつ道具だけで無人島100時間サバイバル！！</span></li>
+<li class="item"><a class="hit" href="player.html?v=N4o9fZ47h-w"></a><span class="lesson">のび太達の学校ごっこ</span></li>
+<li class="item"><a class="hit" href="player.html?v=G2PPc7zr-94"></a><span class="lesson">ドラえもん 「ハッピー★ラッキー・バースデー！」</span></li>
+<li class="item"><a class="hit" href="player.html?v=s9X0TfNV9_8"></a><span class="lesson">70万回【ドラえもん】のび太がついに1人暮らし!?#shorts</span></li>
+<li class="item"><a class="hit" href="player.html?v=tEyQFFKEmqU"></a><span class="lesson">ドラえもん | Doraemon 鏡の中の世界 </span></li>
+<li class="item"><a class="hit" href="player.html?v=ityXbrdfCMI"></a><span class="lesson">『映画ドラえもん のび太と空の理想郷』3分ダイジェスト</span></li>
+<li class="item"><a class="hit" href="player.html?v=AeMRXJtg500"></a><span class="lesson">スキマスイッチ - 「ボクノート」Music Video：SUKIMASWITCH - BOKU NOOTO Music Video</span></li>
+<li class="item"><a class="hit" href="player.html?v=djoOc9HgvE0"></a><span class="lesson">大山版ドラえもん　第1412話　ウキウキプール</span></li>
+<li class="item"><a class="hit" href="player.html?v=r2dHXNMNxZk"></a><span class="lesson">夢をかなえてドラえもん</span></li>
+<li class="item"><a class="hit" href="player.html?v=1t7Uo6xlU8o"></a><span class="lesson">大山版ドラえもん　第1484話　特賞!のび太温泉</span></li>
+<li class="item"><a class="hit" href="player.html?v=UfR4Oex6IQE"></a><span class="lesson">【総集編】【ドラえもん】【ボケて】爆笑ボケて＆ツッコミ特集！殿堂入り2chボケてスレ【四国めたん解説】 #0003</span></li>
+<li class="item"><a class="hit" href="player.html?v=85eeAL2zUbQ"></a><span class="lesson">Part2 #恋愛 #創作 #胸キュン #ドラえもん #anime #失恋</span></li>
+<li class="item"><a class="hit" href="player.html?v=-dbSBGBf7iA"></a><span class="lesson">【バレーボール】ドラえもんの殿堂入りボケてがマジでツッコミどころ満載だったwww【1237弾】</span></li>
+<li class="item"><a class="hit" href="player.html?v=f7NjLCL-3sI"></a><span class="lesson">有名キャラのヤバすぎる発言が面白いww  #アニメ #ドラえもん #クレヨンしんちゃん</span></li>
+<li class="item"><a class="hit" href="player.html?v=DYCvUgIv6Ec"></a><span class="lesson">【MAD】ドラえもん×今はいいんだよ。【Covered by Kotoha】</span></li>
+<li class="item"><a class="hit" href="player.html?v=wKZjStJ5RaE"></a><span class="lesson">ドラえもんのオリジナル漫画描いたw #2ちゃんまとめ  #2ch面白いスレ #5ch #2ch #大喜利</span></li>
+<li class="item"><a class="hit" href="player.html?v=HCFm1utJAhs"></a><span class="lesson">最後までわからない告白 #創作 #ドラえもん #anime #胸キュン #恋愛</span></li>
+<li class="item"><a class="hit" href="player.html?v=ctlhbFAjj4M"></a><span class="lesson">【うごメモ】翼をくださいの替え歌が面白すぎたｗｗｗｗｗ【ドラえもん＆のび太】#shorts</span></li>
+
 
 </ul>
 </div>
