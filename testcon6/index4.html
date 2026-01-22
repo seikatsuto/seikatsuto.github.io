@@ -65,6 +65,10 @@
       margin-bottom: 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
+    h2 {
+      text-align: center;
+      font-size: 16px;
+    }
     a {
       display: block;
       text-decoration: none;
@@ -77,7 +81,7 @@
     }
     .note {
       text-align: center;
-      font-size: 0.9em;
+      font-size: 12px;
       color: #666;
       margin-top: 30px;
     }
@@ -148,12 +152,12 @@ a {
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<h1>📘 ひみつの五次元ポケット塾 </h1>
+<h1>📘 ひみつの五次元(じげん)ポケット塾(じゅく) </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0122 1500 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0122 1600 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
-名前を選んでください。
+名前(なまえ)をえらんでください。
 </textarea>
 <br>
 <button class="child-btn" onclick="setChild(this, '惟人君')">惟人君</button>
@@ -224,10 +228,10 @@ function setChild(btn, name) {
 </script>
 <br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<h2>見たい動画を選んで</h2>
-<div class="note">
-  今のポイント＝<span id="point"></span>　　
-  漫画以外は1秒見ると１ポイントアップ　300ポイント以上で漫画が見られ1秒見ると１ポイントダウン
+<h2> 見たい動画(どうが)をえらんで   今のポイント＝<span id="point"></span> </h2>
+  <div class="note">
+   <!--  見たい動画(どうが)をえらんで   今のポイント＝<span id="point"></span>　　-->
+  漫画以外は１０秒(今はサービス期間で１秒)見ると１ポイントアップ　３００ポイント以上で漫画が見られ１秒見ると１ポイントダウン
 </div>
   
 <button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')">算1</button>
@@ -315,7 +319,7 @@ function setSubje(btn, name) {
 <textarea id="guideText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
 どの ▶ をえらんでもOK！　チャレンジするだけでえらいよ。
 むずかしくても、何回も見てみよう。気づいたら、できるようになっているよ。
-１秒=1ポイント で３００ポイントためたら、ドラえもんのまんがが見られるよ！
+今は１秒=1ポイント で３００ポイントためたら、ドラえもんのまんがが見られるよ！
 </textarea><br>
 <!--  <button onclick="speak()">読み上げ</button>   -->
 
