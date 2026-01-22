@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<meta charset="UTF-8">
+
+<style>
+ruby rt { visibility: hidden; }
+ruby.show rt { visibility: visible; }
+</style>
+
+<div id="content">
+  <ruby>辛抱<rt>しんぼう</rt></ruby>して
+  <ruby>勉強<rt>べんきょう</rt></ruby>しよう
+</div>
+
+<script>
+document.getElementById("content").addEventListener("click", e => {
+  const r = e.target.closest("ruby");
+  if (r) r.classList.toggle("show");
+});
+</script>
+</html>

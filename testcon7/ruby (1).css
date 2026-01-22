@@ -1,0 +1,9 @@
+ruby rt {
+  display: none;
+  font-size: 0.6em;
+  color: #555;
+}
+
+ruby.show rt {
+  display: ruby-text;
+}
