@@ -2,12 +2,18 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>li抽出 完成版</title>
+<title>YouTube視聴可否チェック 完成版</title>
+<style>
+  #checker {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+</style>
 </head>
 <body>
 
-<h3>元データ</h3>
-<textarea id="src" rows="12" cols="120">
+<ul id="videoList">
   <li class="item" ><a class="hit" href="player.html?v=-_xIanPXx9Q"></a><span class="lesson">【ドラえもん】ドラえもんもお風呂に!?　温泉旅行《公式》</span></li>
   <li class="item" ><a class="hit" href="player.html?v=hsf2-xxoKKo"></a><span class="lesson">【期間限定】年末年始もドラえもん！午年スペシャル《ドラえもん公式》</span></li>
   <li class="item" ><a class="hit" href="player.html?v=ZhBjsiYGigQ"></a><span class="lesson">ドラえもん | ジャイアンの歌がやめられない</span></li>
@@ -57,31 +63,80 @@
   <li class="item" ><a class="hit" href="player.html?v=iBDDzaM5txM"></a><span class="lesson">【ドラえもんあるある②】ひげは取り外し可能！？ #ドラえもん #Doraemon #豆知識</span></li>
   <li class="item" ><a class="hit" href="player.html?v=XmvQwiYbRqs"></a><span class="lesson">ドラえもん好きは絶対行くべき藤子F不二雄ミュージアムカフェ巨大ドラえもんカレーや暗記パンが食べれる！ #神奈川グルメ</span></li>
 
+</ul>
 
-</textarea>
+<!-- 判定用（画面には表示されない） -->
+<div id="checker"></div>
 
-<br><br>
-<button onclick="filterLi()">抽出</button>
-
-<h3>結果（原データそのまま）</h3>
-<textarea id="out" rows="12" cols="120"></textarea>
+<script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
-function filterLi() {
-  const src = document.getElementById("src").value;
+let items = [];
+let index = 0;
+let player = null;
+let timer = null;
 
-  // ① 1行ずつ処理
-  const lines = src.split('\n');
+function onYouTubeIframeAPIReady() {
+  items = Array.from(document.querySelectorAll("#videoList li"));
+  checkNext();
+}
 
-  // ② 条件に一致する行だけ残す
-  const regex = /^<li\s+class=.*?v=.*?<\/span><\/li>$/;
+function checkNext() {
+  if (index >= items.length) return;
 
-  const result = lines.filter(line => regex.test(line));
+  const li = items[index];
+  const a = li.querySelector("a.hit");
+  const params = new URLSearchParams(a.getAttribute("href").split("?")[1]);
+  const videoId = params.get("v");
 
-  // ③ 原データを一切変更せず出力
-  document.getElementById("out").value = result.join('\n');
+  player = new YT.Player("checker", {
+    videoId: videoId,
+    playerVars: {
+      autoplay: 1,
+      controls: 0
+    },
+    events: {
+      onReady: e => {
+        e.target.playVideo();
+
+        // 3秒以内に再生できなければアウト
+        timer = setTimeout(() => {
+          removeItem(li);
+        }, 3000);
+      },
+      onStateChange: e => {
+        if (e.data === YT.PlayerState.PLAYING) {
+          // ✅ 視聴可能
+          cleanup();
+          index++;
+          checkNext();
+        }
+      },
+      onError: () => {
+        // ❌ 非公開・削除・制限
+        removeItem(li);
+      }
+    }
+  });
+}
+
+function removeItem(li) {
+  cleanup();
+  li.remove();          // ← 原データ形式は一切変更せず「削除のみ」
+  index++;
+  checkNext();
+}
+
+function cleanup() {
+  clearTimeout(timer);
+  timer = null;
+  if (player) {
+    player.destroy();
+    player = null;
+  }
 }
 </script>
 
 </body>
 </html>
+
