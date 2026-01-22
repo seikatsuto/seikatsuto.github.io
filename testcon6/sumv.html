@@ -1688,6 +1688,7 @@ const VIDEO_LIST_HTML = `
 const parser = new DOMParser();
 const doc = parser.parseFromString(`<ul>${VIDEO_LIST_HTML}</ul>`, "text/html");
 
+/*
 const videoList = [...doc.querySelectorAll("a")].map((a, i) => {
   const url = new URL(a.href, location.href);
   const title = a.textContent.trim();
@@ -1698,6 +1699,32 @@ const videoList = [...doc.querySelectorAll("a")].map((a, i) => {
     shortTitle: title.slice(0, 15)
   };
 });
+*/
+/*  ★ liの別形式にも対応   */
+const videoList = [...doc.querySelectorAll("li")].map((li, i) => {
+  const a = li.querySelector("a");
+  if (!a) return null;
+
+  const url = new URL(a.href, location.href);
+
+  // タイトル取得（2形式対応）
+  let title = a.textContent.trim();
+  if (!title) {
+    //const lesson = li.querySelector(".lesson");
+    const lesson = li.querySelector(".lesson, span");  //★
+
+    
+    if (lesson) title = lesson.textContent.trim();
+  }
+
+  return {
+    no: i + 1,
+    videoId: url.searchParams.get("v"),
+    title: title || "(タイトル不明)",
+    shortTitle: (title || "(タイトル不明)").slice(0, 15)
+  };
+}).filter(Boolean);
+
 
 const videoIndex = {};
 videoList.forEach((v, i) => videoIndex[v.videoId] = i);
