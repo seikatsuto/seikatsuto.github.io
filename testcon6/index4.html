@@ -151,7 +151,7 @@ a {
 <h1>📘 ひみつの五次元ポケット塾 </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0122 1310 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0122 1500 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
 名前を選んでください。
 </textarea>
@@ -226,8 +226,8 @@ function setChild(btn, name) {
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <h2>見たい動画を選んで</h2>
 <div class="note">
-  現在のポイント＝<span id="point"></span>　　
-  漫画以外は1秒視聴でで１ポイントアップ　漫画は1秒視聴でで１ポイント使用　300ポイント以上で漫画視聴可能
+  今のポイント＝<span id="point"></span>　　
+  漫画以外は1秒見ると１ポイントアップ　300ポイント以上で漫画が見られ1秒見ると１ポイントダウン
 </div>
   
 <button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')">算1</button>
@@ -301,7 +301,7 @@ function setSubje(btn, name) {
   else if (name === '歴史') { gbegin = 1201; gend = 1300; }
   else if (name === '公民') { gbegin = 1301; gend = 1400; }
  
-  else if (name === '漫画' && pointima<=299) { gbegin = 1401; gend = 1402; }//★  
+  else if (name === '漫画' && pointima<=299) { gbegin = 1401; gend = 1401; }//★  
   else if (name === '漫画') { gbegin = 1401; gend = 1619; }
   //else if (name === '漫画') { gbegin = 1401; gend = 1402; }//★
   //else if (name === '漫画' && pointima>=300) { gbegin = 1401; gend = 1619; }//★
@@ -315,7 +315,7 @@ function setSubje(btn, name) {
 <textarea id="guideText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
 どの ▶ をえらんでもOK！　チャレンジするだけでえらいよ。
 むずかしくても、何回も見てみよう。気づいたら、できるようになっているよ。
-3回に1回、ドラえもんのまんがが見られるよ！
+１秒=1ポイント で３００ポイントためたら、ドラえもんのまんがが見られるよ！
 </textarea><br>
 <!--  <button onclick="speak()">読み上げ</button>   -->
 
