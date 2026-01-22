@@ -165,10 +165,12 @@ a {
 //const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");// ★ポイント
 //let pointima = Number(logs.at(-1)?.pointima ?? 0); //■■ 
 //document.getElementById("point").textContent = pointima;// ★ 
-
+let pointima = 0;   // ★ グローバル
 window.addEventListener("load", () => {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-  let pointima = Number(logs.at(-1)?.pointima ?? 0);
+  pointima = Number(logs.at(-1)?.pointima ?? 0);
+  document.getElementById("point").textContent = pointima;
+  
   const pointEl = document.getElementById("point");
   if (pointEl) pointEl.textContent = pointima;
   const subje = localStorage.getItem("subjeName");
