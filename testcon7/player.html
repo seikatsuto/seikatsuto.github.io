@@ -185,7 +185,7 @@ function closeWithReason(level) {
 
 <!-- ■■  広告注意 -->
 <div id="notice">
-※ こうこくがでたらおわるまでまって。0123 1630
+※ こうこくがでたらおわるまでまって。0123 1950
 </div>
 
 <div id="battery"
@@ -351,6 +351,7 @@ window.addEventListener("beforeunload", () => {//■■
     pointima2=Math.round((Date.now() - startTime)/1000)*mang+ pointpre2;  // ← ★ ポイント　秒
   }else {pointima2= pointpre2; 
   }
+  alert(child+'  '+Date.now()+'  '+startTime+'  '+mangpoint+'  '+prepointpre2+'  '+pointima+'  '+pointima2); //  ★
   logs.push({
     id: logId,
     //page: "player.html",
