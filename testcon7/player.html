@@ -299,7 +299,7 @@ if (rand >= dora) {
 /*
 // iframe設定
 if (selectedV) {
-  document.getElementById("video").textContent = "v=" + selectedV;    /* 削除か　前に出すか　このままか */
+  document.getElementById("video").textContent = "v=" + selectedV;    // 削除か　前に出すか　このままか
   document.getElementById("yt").src =
     "https://www.youtube.com/embed/" + selectedV +
     "?rel=0&modestbranding=1&fs=0&iv_load_policy=3";
@@ -388,6 +388,9 @@ function clearcons() {
 -->
   
 <!--  log_viewer.html を「自動で一瞬だけ開く」  -->
+<script>
+alert("JS 最後まで動いてます");
+</script>
  
 </body>
 </html>
