@@ -6,6 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <style>
+#player {     /* 1.5 倍速 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
 .vol {
   position: fixed;
   top: 50px;
@@ -19,7 +26,13 @@
 .v1 { left: 10px; }
 .v2 { left: 50px; }
 .v3 { left: 100px; }  /* ← 数値表示 */
-  
+
+.vol.active {         /* 1.5 倍速  CSS（選択中を見える化） */
+  background: #4CAF50;
+  color: #fff;
+  font-weight: bold;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -113,6 +126,41 @@ function setVol(delta) {
 
 }
 </script>
+
+<!-- 1.5倍速ボタンを追加  -->
+<button class="vol v1" onclick="setSpeed(1)">1.0×</button>
+<button class="vol v2 active" onclick="setSpeed(1.5)">1.5×</button>
+<button class="vol v3" onclick="setSpeed(2)">2.0×</button>
+
+<script>
+function onPlayerReady(e) {
+  videoDuration = player.getDuration();
+  player.setPlaybackRate(1.5);   // ★デフォルト 1.5倍
+  setActiveSpeed(1.5);
+}
+function setSpeed(rate) {
+  if (!player || !player.setPlaybackRate) return;
+
+  player.setPlaybackRate(rate);
+  setActiveSpeed(rate);
+}
+
+function setActiveSpeed(rate) {
+  document.querySelectorAll(".vol").forEach(btn => {
+    btn.classList.remove("active");
+    if (btn.textContent.startsWith(rate)) {
+      btn.classList.add("active");
+    }
+  });
+}
+
+</script>
+
+
+
+
+
+
 <!-- 戻る 
 <a id="back" href="index4.html">← 一覧に戻る</a>
 -->
@@ -163,12 +211,6 @@ if ('getBattery' in navigator) {
 }
 </script>
  
-<!-- YouTube -->
-<iframe id="yt"
-  allow="autoplay; encrypted-media"
-  allowfullscreen>
-</iframe>
-
 <!-- デバッグ表示（不要なら消してOK） -->
 <p id="video" style="display:none"></p>
   
@@ -244,7 +286,7 @@ const rand = Math.random();
 let selectedV;
 // 67%以上でランダム差し替え
 //const dora = 0.67;   //★ dora～1  ではドラえもん
-const dora = 0.99;   //★ dora～1  ではドラえもん
+const dora = 1.1;   //★ dora～1  ではドラえもん
 if (rand >= dora) {
   selectedV = vArray[Math.floor(Math.random() * vArray.length)];
   console.log("ランダム再生:", selectedV);
