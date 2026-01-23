@@ -88,9 +88,7 @@ html, body {
   font-size: 10px;
   text-align: center;
 }
-
-/* iframe */
-iframe {
+#player iframe {
   position: fixed;
   top: 0;
   left: 0;
@@ -98,6 +96,7 @@ iframe {
   height: 100vh;
   border: 0;
 }
+
 </style>
 </head>
 
@@ -117,13 +116,9 @@ function setVol(delta) {
   if (window.fully && fully.setVolume) {
     fully.setVolume(volume);
   } else {
-    alert("fully.setVolume が使えません");
+    //alert("fully.setVolume が使えません");
   }
-  alert(
-    "fully = " + typeof window.fully + "\n" +
-    "setVolume = " + (window.fully && typeof fully.setVolume)
-  );
-
+  //alert("fully = " + typeof window.fully + "\n" +"setVolume = " + (window.fully && typeof fully.setVolume));
 }
 //保存関数を独立させるzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
   function saveLog() {
@@ -194,7 +189,7 @@ function closeWithReason(level) {
 
 <!-- ■■  広告注意zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="notice">
-※ こうこくがでたらおわるまでまって。0123 2150
+※ こうこくがでたらおわるまでまって。0123 2230
 </div>
 <!-- ■■  バッテリzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="battery"
@@ -300,7 +295,7 @@ if (rand >= dora) {
 } else {
   const params = new URLSearchParams(location.search);
   selectedV = params.get("v");
-  if (!selectedV) return;  //★
+  if (!selectedV) {location.href = "index4.html";} //★
   console.log("指定動画:", selectedV);
   
   console.log(selectedV, typeof selectedV);
@@ -361,7 +356,7 @@ window.addEventListener("beforeunload", () => {//■■
     pointima2=Math.round((Date.now() - startTime)/1000)*mang+ pointpre2;  // ← ★ ポイント　秒
   }else {pointima2= pointpre2; 
   }
-  alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
+  //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
   logs.push({
     id: logId,
     //page: "player.html",
@@ -400,7 +395,7 @@ function clearcons() {
   
 <!--  log_viewer.html を「自動で一瞬だけ開く」 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <script>
-alert("JS 最後まで動いてます");
+//alert("JS 最後まで動いてます");
 </script>
  
 </body>
