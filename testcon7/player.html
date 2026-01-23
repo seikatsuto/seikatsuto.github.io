@@ -185,7 +185,7 @@ function closeWithReason(level) {
 
 <!-- ■■  広告注意 -->
 <div id="notice">
-※ こうこくがでたらおわるまでまって。0123 1430
+※ こうこくがでたらおわるまでまって。0123 1630
 </div>
 
 <div id="battery"
@@ -237,9 +237,6 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-function onPlayerReady(e) {
-  videoDuration = player.getDuration();
-}
 </script>
 
 <!-- 動画ID配列         zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
@@ -299,6 +296,7 @@ if (rand >= dora) {
   console.log(selectedV, typeof selectedV);
 }
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+/*
 // iframe設定
 if (selectedV) {
   document.getElementById("video").textContent = "v=" + selectedV;    /* 削除か　前に出すか　このままか */
@@ -308,7 +306,7 @@ if (selectedV) {
 } else {
   location.href = "index4.html";
 }
-
+*/
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 let watchTimer = null;
 
@@ -345,10 +343,14 @@ window.addEventListener("beforeunload", () => {//■■
     : null;
   let mang=1; //■■
   if(subje==='漫画') mang=-1; //■■
-  if(child===('唯人君' || '惺太郎君'))pointima=Math.round((Date.now() - startTime)/1000)*mang+ pointpre;  // ← ★ ポイント　秒
-  else pointima= pointpre; 
-  if(child===('啓人君' || '日花里君'))pointima2=Math.round((Date.now() - startTime)/1000)*mang+ pointpre2;  // ← ★ ポイント　秒
-  else pointima2= pointpre2; 
+  if(child === '唯人君' || child === '惺太郎君') {
+    pointima=Math.round((Date.now() - startTime)/1000)*mang+ pointpre;  // ← ★ ポイント　秒
+  }else {pointima= pointpre; 
+  }
+  if(child === '啓人君' || child === '日花里君') {
+    pointima2=Math.round((Date.now() - startTime)/1000)*mang+ pointpre2;  // ← ★ ポイント　秒
+  }else {pointima2= pointpre2; 
+  }
   logs.push({
     id: logId,
     //page: "player.html",
