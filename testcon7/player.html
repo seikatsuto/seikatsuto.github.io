@@ -125,9 +125,23 @@ function setVol(delta) {
   );
 
 }
+//保存関数を独立させるzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  function saveLog() {
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  logs.push({
+    video: selectedV,
+    child,
+    subje,
+    level: closeLevel,
+    duration: Date.now() - startTime,
+    pointima,
+    pointima2
+  });
+  localStorage.setItem("studyLogs", JSON.stringify(logs));
+}
 </script>
 
-<!-- 1.5倍速ボタンを追加  -->
+<!-- 1.5倍速ボタンを追加 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <button class="vol v1" onclick="setSpeed(1)">1.0×</button>
 <button class="vol v2 active" onclick="setSpeed(1.5)">1.5×</button>
 <button class="vol v3" onclick="setSpeed(2)">2.0×</button>
@@ -153,14 +167,9 @@ function setActiveSpeed(rate) {
     }
   });
 }
-
 </script>
 
-
-
-
-
-
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 <!-- 戻る 
 <a id="back" href="index4.html">← 一覧に戻る</a>
 -->
@@ -175,19 +184,19 @@ function setActiveSpeed(rate) {
 
 <script>
 let closeLevel = null;   // 1〜5（×が押されなかった場合は null）
-
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 function closeWithReason(level) {
   closeLevel = level;    // ← ここが重要
+  saveLog();//★
   location.href = "index4.html";
 }
 </script>
 
-
-<!-- ■■  広告注意 -->
+<!-- ■■  広告注意zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="notice">
-※ こうこくがでたらおわるまでまって。0123 1950
+※ こうこくがでたらおわるまでまって。0123 2150
 </div>
-
+<!-- ■■  バッテリzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="battery"
      style="position:fixed; bottom:10px; left:200px;
             background:rgba(0,0,0,0.6);
@@ -211,7 +220,7 @@ if ('getBattery' in navigator) {
 }
 </script>
  
-<!-- デバッグ表示（不要なら消してOK） -->
+<!-- デバッグ表示（不要なら消してOK）zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <p id="video" style="display:none"></p>
   
 <script>
@@ -291,6 +300,7 @@ if (rand >= dora) {
 } else {
   const params = new URLSearchParams(location.search);
   selectedV = params.get("v");
+  if (!selectedV) return;  //★
   console.log("指定動画:", selectedV);
   
   console.log(selectedV, typeof selectedV);
@@ -343,7 +353,7 @@ window.addEventListener("beforeunload", () => {//■■
     : null;
   let mang=1; //■■
   if(subje==='漫画') mang=-1; //■■
-  if(child === '唯人君' || child === '惺太郎君') {
+  if(child === '惟人君' || child === '惺太郎君') {
     pointima=Math.round((Date.now() - startTime)/1000)*mang+ pointpre;  // ← ★ ポイント　秒
   }else {pointima= pointpre; 
   }
@@ -351,7 +361,7 @@ window.addEventListener("beforeunload", () => {//■■
     pointima2=Math.round((Date.now() - startTime)/1000)*mang+ pointpre2;  // ← ★ ポイント　秒
   }else {pointima2= pointpre2; 
   }
-  alert(child+'  '+Date.now()+'  '+startTime+'  '+mangpoint+'  '+prepointpre2+'  '+pointima+'  '+pointima2); //  ★
+  alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
   logs.push({
     id: logId,
     //page: "player.html",
@@ -377,7 +387,7 @@ setTimeout(() => {
 //alert(Object.keys(localStorage).join("\n"));       //■■
 </script>
 
-<!-- Consoleの表示を消去 
+<!-- Consoleの表示を消去 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 <button onclick="clearcons()">Consoleを消去</button>
 <script>
 function clearcons() {
@@ -388,7 +398,7 @@ function clearcons() {
 </script>
 -->
   
-<!--  log_viewer.html を「自動で一瞬だけ開く」  -->
+<!--  log_viewer.html を「自動で一瞬だけ開く」 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <script>
 alert("JS 最後まで動いてます");
 </script>
