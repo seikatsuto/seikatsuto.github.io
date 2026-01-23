@@ -163,74 +163,6 @@ a {
 <button class="child-btn" onclick="setChild(this, '惺太郎君')">惺太郎君</button>
 <button class="child-btn" onclick="setChild(this, '日花里君')">日花里君</button>
 <button class="child-btn" onclick="setChild(this, '啓人君')">啓人君</button>
-
-<script>
-//const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");// ★ポイント
-//let pointima = Number(logs.at(-1)?.pointima ?? 0); //■■ 
-//document.getElementById("point").textContent = pointima;// ★ 
-let pointima = 0;   // ★ グローバル
-window.addEventListener("load", () => {
-  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-  
-  
-  if(name==='啓人君' || '日花里君') pointima=pointima2   //★
-  
-  
-  pointima = Number(logs.at(-1)?.pointima ?? 0);
-  document.getElementById("point").textContent = pointima;
-  
-  const pointEl = document.getElementById("point");
-  if (pointEl) pointEl.textContent = pointima;
-  const subje = localStorage.getItem("subjeName");
-
-  if (subje === '漫画' && pointima<=299) { gbegin = 1401; gend = 1401; updateListDisplay();  }//★
-});
- 
-  
-/* ===== 表示制御（先に定義） ===== */
-function updateListDisplay() {
-  const items = document.querySelectorAll("#videoList li");
-  if (!items.length) return;
-  items.forEach((li, index) => {
-    const no = index + 1;
-    if (no >= gbegin && no <= gend) {
-      li.style.display = "";
-    } else {
-      li.style.display = "none";
-    }
-  });
- }
-let dare = null;   //★★誰
-function setChild(btn, name) {
-  // 全ボタンの active を外す
-  document.querySelectorAll('.child-btn').forEach(b =>
-    b.classList.remove('active')
-  );
-
-  // 押したボタンだけ active
-  btn.classList.add('active');
-  // 状態保存
-  dare = name;
-  localStorage.setItem("childName", name);
-  // 視聴状況反映
-  applyStatus();
-}
- 
-/* ページ再読み込み時に前回選択を復元 */
- window.addEventListener("load", () => {
-  const saved = localStorage.getItem("childName");
-  if (!saved) return;
-  dare = saved;
-  document.querySelectorAll('.child-btn').forEach(btn => {
-    if (btn.textContent.trim() === saved) {
-      btn.classList.add('active');
-    }
-  });
-  applyStatus();
-});
-
-</script>
-<br>
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <h2> 見たい動画(どうが)をえらんで &nbsp;&nbsp;  今のポイント＝<span id="point"></span> </h2>
   <div class="note">
@@ -261,24 +193,93 @@ function setChild(btn, name) {
 <button class="subje-btn" data-subje="歴史"  onclick="setSubje(this, '歴史')">歴史</button>
 <button class="subje-btn" data-subje="公民"  onclick="setSubje(this, '公民')">公民</button>
 <button class="subje-btn" data-subje="漫画"  onclick="setSubje(this, '漫画')">漫画</button>
+  
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<textarea id="guideText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
+どの ▶ をえらんでもOK！　手あたりしだいチャレンジするだけでえらいよ。
+むずかしくても、何回も見てみよう。気づいたら、できるようになっているよ。
+今は１秒=1ポイントで、300ポイントためたらドラえもんのまんがが見られるよ！
+</textarea><br>
+<!--  <button onclick="speak()">読み上げ</button>   -->
+
+  
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 
 <script>
+/* ===== グローバル状態 =====zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz */
+let dare = null;        // 選択中の子ども
+let pointima = 0;       // 通常ポイント
+let pointima2 = 0;      // 別枠ポイント（啓人君・日花里君用）
+let gbegin = 1;
+let gend = 600;
+</script>
+
+<script>
+//load 処理を【これ1本】に統一zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 window.addEventListener("load", () => {
-  const saved = localStorage.getItem("subjeName");
-  if (!saved) return;
-  document.querySelectorAll('.subje-btn').forEach(btn => {
-    //if (btn.textContent === saved) {
-    if (btn.dataset.subje === saved) {
-        setSubje(btn, saved);   // ★ click() を使わない
-        //btn.click(); // ← 範囲＋表示も復元
-    }
-  });
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  const last = logs.at(-1) || {};
+
+  // ポイント復元zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  pointima  = Number(last.pointima  ?? 0);
+  pointima2 = Number(last.pointima2 ?? 0);
+
+  // 子ども復元zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  dare = localStorage.getItem("childName");
+  if (dare) {
+    document.querySelectorAll(".child-btn").forEach(btn => {
+      if (btn.textContent.trim() === dare) {
+        btn.classList.add("active");
+      }
+    });
+  }
+
+  // 科目復元zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  const subje = localStorage.getItem("subjeName");
+  if (subje) {
+    document.querySelectorAll(".subje-btn").forEach(btn => {
+      if (btn.dataset.subje === subje) {
+        setSubje(btn, subje);
+      }
+    });
+  }
+
+  // ポイント表示zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  updatePointView();
+
+  // 視聴状況反映zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  applyStatus();
 });
 </script>
-   
+
 <script>
-let gbegin = 1;
-let gend   = 600;
+// ポイント表示を「関数化」zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz 
+function updatePointView() {
+  let p = pointima;
+
+  // この2人だけ pointima2 を使う設計
+  if (dare === '啓人君' || dare === '日花里君') {
+    p = pointima2;
+  }
+
+  const el = document.getElementById("point");
+  if (el) el.textContent = Math.floor(p);
+}
+
+//setChild を最小修正（表示更新だけ追加）zzzzzzzzzzzzzzzzzzzzzzzzzzz
+function setChild(btn, name) {
+  document.querySelectorAll('.child-btn').forEach(b =>
+    b.classList.remove('active')
+  );
+
+  btn.classList.add('active');
+  dare = name;
+  localStorage.setItem("childName", name);
+
+  updatePointView();   // ★ これだけ追加
+  applyStatus();
+}
+//setSubje は今のままでOK（最後だけ確認）zzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 function setSubje(btn, name) {
   // ボタンの色リセット
   document.querySelectorAll('.subje-btn').forEach(b => {
@@ -317,27 +318,11 @@ function setSubje(btn, name) {
   //console.log("表示範囲:", gbegin, "〜", gend);
   updateListDisplay();   // ← ★これを追加するだけ
 }
-</script>
+//デバッグ確認（最初だけ）zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+console.log("child =", dare);
+console.log("pointima =", pointima, "pointima2 =", pointima2);
 
-<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<textarea id="guideText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-どの ▶ をえらんでもOK！　手あたりしだいチャレンジするだけでえらいよ。
-むずかしくても、何回も見てみよう。気づいたら、できるようになっているよ。
-今は１秒=1ポイントで、300ポイントためたらドラえもんのまんがが見られるよ！
-</textarea><br>
-<!--  <button onclick="speak()">読み上げ</button>   -->
-
-<script>
-//alert(localStorage.getItem("studyLogs"));
-console.log("logs =", localStorage.getItem("studyLogs"));
-//alert("logs = " + localStorage.getItem("studyLogs"));
-localStorage.getItem("childName");
-//pointima =1000;   // ★ポイント　初期値
-
-</script>
-
-<!-- studyLogs を集計する  難度色とポイントzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<script>
+//studyLogs を集計する  難度色とポイントzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 function buildVideoStatus() {
   if (!dare) return {}; // ★
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
@@ -378,9 +363,7 @@ function buildVideoStatus() {
   return videoStatus;
 }
 
-</script>
-<!-- DOM を見て class を付けるzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<script>
+// DOM を見て class を付けるzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 function applyStatus() {
   const videoStatus = buildVideoStatus();
 
