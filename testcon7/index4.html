@@ -213,6 +213,19 @@ let pointima2 = 0;      // 別枠ポイント（啓人君・日花里君用）
 let gbegin = 1;
 let gend = 600;
 
+/* ===== 表示制御（先に定義） =====zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz */
+function updateListDisplay() {
+  const items = document.querySelectorAll("#videoList li");
+  if (!items.length) return;
+  items.forEach((li, index) => {
+    const no = index + 1;
+    if (no >= gbegin && no <= gend) {
+      li.style.display = "";
+    } else {
+      li.style.display = "none";
+    }
+  });
+ }
 //setChild を最小修正（表示更新だけ追加）zzzzzzzzzzzzzzzzzzzzzzzzzzz
 function setChild(btn, name) {
   document.querySelectorAll('.child-btn').forEach(b =>
