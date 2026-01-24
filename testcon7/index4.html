@@ -242,6 +242,7 @@ function setChild(btn, name) {
   localStorage.setItem("childName", name);
 
   updatePointView();   // ★ これだけ追加
+  setSubje();   // ★ 名前が変わっても漫画の表示数変わらずのため追加
   applyStatus();
 }  
   
