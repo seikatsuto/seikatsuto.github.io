@@ -154,7 +154,7 @@ a {
 <h1>📘 ひみつの五次元(じげん)ポケット塾(じゅく) </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0124 1330 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0124 1430 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
 名前(なまえ)をえらんでください。
 </textarea>
@@ -198,7 +198,7 @@ a {
 <textarea id="guideText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
 どの ▶ をえらんでもOK！　手あたりしだいチャレンジするだけでえらいよ。
 むずかしくても、何回も見てみよう。気づいたら、できるようになっているよ。
-今は１秒=1ポイントで、300ポイントためたらドラえもんのまんがが見られるよ！
+今は１秒=1ポイントで300ポイントためたらドラえもんの漫画が見られるよ！
 </textarea><br>
 <!--  <button onclick="speak()">読み上げ</button>   -->
 
@@ -208,6 +208,7 @@ a {
 <script>
 /* ===== グローバル状態 =====zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz */
 let dare = null;        // 選択中の子ども
+let subject = null;     // 選択中の科目
 let pointima = 0;       // 通常ポイント 惟人君
 let pointima2 = 0;      // 別枠ポイント 啓人君
 
@@ -244,11 +245,11 @@ function setChild(btn, name) {
   updatePointView();   // ★ これだけ追加
   //setSubjemang();   // ★ 名前が変わっても漫画の表示数変わらずのため追加
   
-  if (name === '漫画' && dare==='惟人君' && pointima<=299) { gbegin = 1401; gend = 1401; }//★  
-  else if (name === '漫画' && dare==='啓人君' && pointima2<=299) { gbegin = 1401; gend = 1401; }//★  
-  else if (name === '漫画' && dare==='惺太郎君' && pointimas<=299) { gbegin = 1401; gend = 1401; }//★  
-  else if (name === '漫画' && dare==='日花里君' && pointimah<=299) { gbegin = 1401; gend = 1401; }//★  
-  else if (name === '漫画') { gbegin = 1401; gend = 1619; }
+  if (subject === '漫画' && dare==='惟人君' && pointima<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (subject === '漫画' && dare==='啓人君' && pointima2<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (subject === '漫画' && dare==='惺太郎君' && pointimas<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (subject === '漫画' && dare==='日花里君' && pointimah<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (subject === '漫画') { gbegin = 1401; gend = 1619; }
   
   updateListDisplay();   // ← ★これを追加するだけ
   applyStatus();
@@ -291,6 +292,7 @@ function setSubje(btn, name) {
   else if (name === '漫画' && dare==='日花里君' && pointimah<=299) { gbegin = 1401; gend = 1401; }//★  
   else if (name === '漫画') { gbegin = 1401; gend = 1619; }
   
+  subject=name;    //★科目名をsubjectに
   //console.log("表示範囲:", gbegin, "〜", gend);
   updateListDisplay();   // ← ★これを追加するだけ
 }
