@@ -242,9 +242,17 @@ function setChild(btn, name) {
   localStorage.setItem("childName", name);
 
   updatePointView();   // ★ これだけ追加
-  setSubje();   // ★ 名前が変わっても漫画の表示数変わらずのため追加
+  //setSubjemang();   // ★ 名前が変わっても漫画の表示数変わらずのため追加
+  
+  if (name === '漫画' && dare==='惟人君' && pointima<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画' && dare==='啓人君' && pointima2<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画' && dare==='惺太郎君' && pointimas<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画' && dare==='日花里君' && pointimah<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画') { gbegin = 1401; gend = 1619; }
+  
+  updateListDisplay();   // ← ★これを追加するだけ
   applyStatus();
-}  
+}
   
 //setSubje は今のままでOK（最後だけ確認）zzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 function setSubje(btn, name) {
