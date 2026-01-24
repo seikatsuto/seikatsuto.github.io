@@ -208,8 +208,13 @@ a {
 <script>
 /* ===== グローバル状態 =====zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz */
 let dare = null;        // 選択中の子ども
-let pointima = 0;       // 通常ポイント
-let pointima2 = 0;      // 別枠ポイント（啓人君・日花里君用）
+let pointima = 0;       // 通常ポイント 惟人君
+let pointima2 = 0;      // 別枠ポイント 啓人君
+
+let pointimas = 0;       // 通常ポイント 惺太郎君
+let pointimah = 0;      // 別枠ポイント 日花里君
+
+  
 let gbegin = 1;
 let gend = 600;
 
@@ -271,10 +276,11 @@ function setSubje(btn, name) {
   else if (name === '歴史') { gbegin = 1201; gend = 1300; }
   else if (name === '公民') { gbegin = 1301; gend = 1400; }
  
-  else if (name === '漫画' && pointima<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画' && dare==='惟人君' && pointima<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画' && dare==='啓人君' && pointima2<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画' && dare==='惺太郎君' && pointimas<=299) { gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画' && dare==='日花里君' && pointimah<=299) { gbegin = 1401; gend = 1401; }//★  
   else if (name === '漫画') { gbegin = 1401; gend = 1619; }
-  //else if (name === '漫画') { gbegin = 1401; gend = 1402; }//★
-  //else if (name === '漫画' && pointima>=300) { gbegin = 1401; gend = 1619; }//★
   
   //console.log("表示範囲:", gbegin, "〜", gend);
   updateListDisplay();   // ← ★これを追加するだけ
@@ -310,14 +316,6 @@ function buildVideoStatus() {
     if (watched) videoStatus[l.video] = "watched";
     else if (watchednan) videoStatus[l.video] = "watchednan";
     else videoStatus[l.video] = "nan";
-
-    
-  /* ポイント
-    if(l.subje ==='漫画') pointima = pointima - l.duration/1000 ; // ★★ ポイント　計算
-    else  pointima = pointima + l.duration/1000 ;
-
-    alert ('ポイント＝'+' mm='+mm+' nn='+nn+'   '+  l.subje +'   '+ pointima +'   '+ l.duration);   // ★★
-  */
   });
   //document.getElementById("point").textContent = pointima;// ★ 
 
@@ -343,18 +341,14 @@ function applyStatus() {
 
 // ポイント表示を「関数化」zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz 
 function updatePointView() {
-  let p = pointima;
-
-  // この2人だけ pointima2 を使う設計
-  if (dare === '啓人君' || dare === '日花里君') {
-    p = pointima2;
-  }
-
+  let p = pointima;  //惟人君
+  if (dare === '啓人君')      {p = pointima2;}
+  else if (dare === '惺太郎君') {p = pointimas;}
+  else if (dare === '日花里君') {p = pointimah;}
+  
   const el = document.getElementById("point");
   if (el) el.textContent = Math.floor(p);
 }
-
-
 </script>
 <script>
 //load 処理を【これ1本】に統一zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
@@ -365,6 +359,8 @@ window.addEventListener("load", () => {
   // ポイント復元zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
   pointima  = Number(last.pointima  ?? 0);
   pointima2 = Number(last.pointima2 ?? 0);
+  pointimas = Number(last.pointimas ?? 0);
+  pointimah = Number(last.pointimah ?? 0);
 
   // 子ども復元zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
   dare = localStorage.getItem("childName");
