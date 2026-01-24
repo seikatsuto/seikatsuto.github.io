@@ -27,13 +27,14 @@
       <th>難度1-5</th>
       <th>視聴％</th>  
       <th>視聴時間(秒)</th>
-      <th>ポイント</th>
-      <th>ポイント2</th>  
+      <th>ポイント惟人君</th>
+      <th>ポイント2啓人君</th>  
+      <th>ポイントs惺太郎君</th>
+      <th>ポイントh日花里君</th>  
     </tr>
   </thead>
   <tbody id="logBody"></tbody>
 </table>
-
 <script>
 const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
 const tbody = document.getElementById("logBody");
@@ -52,6 +53,8 @@ logs.forEach(l => {
     <td>${Math.round(l.duration / 1000)}</td>
     <td>${l.pointima}</td>             <!-- "pointnow" ★★-->
     <td>${l.pointima2}</td>             <!-- "pointnow" ★★-->
+    <td>${l.pointimas}</td>             <!-- "pointnow" ★★-->
+    <td>${l.pointimah}</td>             <!-- "pointnow" ★★-->
   `;
   tbody.appendChild(tr);
 });
@@ -90,7 +93,9 @@ function exportCSV() {
       Math.round(l.watchedRatio),     //★★
       Math.round(l.duration / 1000),
      l.pointima || "",     //★★
-     l.pointima2 || ""     //★★
+     l.pointima2 || "",    //★★
+     l.pointimas || "",    //★★
+     l.pointimah || ""     //★★
     ];
     csv += row.join(",") + "\n";
   });
