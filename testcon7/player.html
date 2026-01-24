@@ -147,7 +147,7 @@ function setVol(delta) {
 let sec=0; //★
 function onPlayerReady(e) {
   videoDuration = player.getDuration();
-  //sec = Math.floor(player.getDuration());　　//★ビデオの長さ
+  sec = Math.floor(player.getDuration());　　//★ビデオの長さ
   //alert(sec + " 秒");
   player.setPlaybackRate(1.5);   // ★デフォルト 1.5倍
   setActiveSpeed(1.5);
@@ -194,7 +194,7 @@ function closeWithReason(level) {
 
 <!-- ■■  広告注意zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="notice">
-※ こうこくがでたらおわるまでまって。0124 1100
+※ こうこくがでたらおわるまでまって。0124 1120
 </div>
 <!-- ■■  バッテリzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="battery"
@@ -362,13 +362,13 @@ window.addEventListener("beforeunload", () => {//■■
   pointima2= pointpre2;
   pointimas= pointpres;
   pointimah= pointpreh;
-  //const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
- const secmin = Math.min(Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
+  const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
+ //const secmin = Math.min(Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
   
-  if(child === '惟人君' ) {pointima=secmin)*mang+ pointpre;}  // ← ★ ポイント　秒
-  else if(child === '啓人君')  {pointima2=secmin)*mang+ pointpre2;}  // ← ★ ポイント　秒
-  else if(child === '惺太郎君'){pointimas=secmin)*mang+ pointpres;}  // ← ★ ポイント　秒
-  else if(child === '日花里君'){pointimah=secmin)*mang+ pointpreh;}  // ← ★ ポイント　秒
+  if(child === '惟人君' ) {pointima=secmin*mang+ pointpre;}  // ← ★ ポイント　秒
+  else if(child === '啓人君')  {pointima2=secmin*mang+ pointpre2;}  // ← ★ ポイント　秒
+  else if(child === '惺太郎君'){pointimas=secmin*mang+ pointpres;}  // ← ★ ポイント　秒
+  else if(child === '日花里君'){pointimah=secmin*mang+ pointpreh;}  // ← ★ ポイント　秒
   //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
   logs.push({
     id: logId,
