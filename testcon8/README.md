@@ -1,0 +1,1 @@
+# seikatsuto.github.io

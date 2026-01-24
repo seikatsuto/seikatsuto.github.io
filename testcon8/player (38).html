@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>動画をみる</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<style>
+#player {     /* 1.5 倍速 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.vol {
+  position: fixed;
+  top: 50px;
+  z-index: 10002;   /* ★これが必須 */
+  font-size: 14px;
+  padding: 6px 8px;
+  margin: 8px;
+  background: #fff;
+  border-radius: 6px;
+}
+.v1 { left: 10px; }
+.v2 { left: 60px; }
+.v3 { left: 110px; }  /* ← 数値表示 */
+
+.vol.active {         /* 1.5 倍速  CSS（選択中を見える化） */
+  background: #4CAF50;
+  color: #fff;
+  font-weight: bold;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  height: 100%;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+/* 戻るボタン */
+#back {
+  position: fixed;
+  top: 50px;
+  left: 8px;
+  z-index: 10000;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+/* 閉じるボタン */
+.close {
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  z-index: 10001;
+  font-size: 14px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.lv1 { right: 10px; }
+.lv2 { right: 90px; }
+.lv3 { right: 170px; }
+.lv4 { right: 250px; }
+.lv5 { right: 330px; }
+
+
+/* 広告注意表示 */
+#notice {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: rgba(255,255,255,0.9);
+  color: #000;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 10px;
+  text-align: center;
+}
+#player iframe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+}
+
+</style>
+</head>
+
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<body>
+<!--
+<button class="vol v1" onclick="setVol(-5)">−</button>
+<button class="vol v2" onclick="setVol(+5)">+</button>
+<div id="volValue" class="vol v3">50</div>
+-->
+<script>
+let volume = 50; // 初期音量（安全域）
+function setVol(delta) {
+  //volume = Math.min(60, Math.max(30, volume + delta));
+  volume = Math.min(90, Math.max(30, volume + delta));
+  document.getElementById("volValue").textContent = volume;
+  if (window.fully && fully.setVolume) {
+    fully.setVolume(volume);
+  } else {
+    //alert("fully.setVolume が使えません");
+  }
+  //alert("fully = " + typeof window.fully + "\n" +"setVolume = " + (window.fully && typeof fully.setVolume));
+}
+//保存関数を独立させるzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  function saveLog() {
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  logs.push({
+    video: selectedV,
+    child,
+    subje,
+    level: closeLevel,
+    duration: Date.now() - startTime,
+    pointima,
+    pointima2
+    pointimas,
+    pointimah
+  });
+  localStorage.setItem("studyLogs", JSON.stringify(logs));
+}
+</script>
+
+<!-- 1.5倍速ボタンを追加 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<button class="vol v1" onclick="setSpeed(1)">1.0×</button>
+<button class="vol v2 active" onclick="setSpeed(1.5)">1.5×</button>
+<button class="vol v3" onclick="setSpeed(2)">2.0×</button>
+
+<script>
+let sec=0; //★
+function onPlayerReady(e) {
+  videoDuration = player.getDuration();
+  sec = Math.floor(player.getDuration());　　//★ビデオの長さ
+  //alert(sec + " 秒");
+  player.setPlaybackRate(1.5);   // ★デフォルト 1.5倍
+  setActiveSpeed(1.5);
+}
+function setSpeed(rate) {
+  if (!player || !player.setPlaybackRate) return;
+
+  player.setPlaybackRate(rate);
+  setActiveSpeed(rate);
+}
+
+function setActiveSpeed(rate) {
+  document.querySelectorAll(".vol").forEach(btn => {
+    btn.classList.remove("active");
+    if (btn.textContent.startsWith(rate)) {
+      btn.classList.add("active");
+    }
+  });
+}
+</script>
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+<!-- 戻る 
+<a id="back" href="index4.html">← 一覧に戻る</a>
+-->
+<!-- 閉じる
+<a class="close" href="index4.html">×</a>
+-->
+<button class="close lv1" onclick="closeWithReason(1)">×簡単すぎ</button>
+<button class="close lv2" onclick="closeWithReason(2)">×かんたん</button>
+<button class="close lv3" onclick="closeWithReason(3)">×ちょうど</button>
+<button class="close lv4" onclick="closeWithReason(4)">×むずかしい</button>
+<button class="close lv5" onclick="closeWithReason(5)">×難しすぎ</button>
+
+<script>
+let closeLevel = null;   // 1〜5（×が押されなかった場合は null）
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+function closeWithReason(level) {
+  closeLevel = level;    // ← ここが重要
+  //saveLog();//★
+  location.href = "index4.html";
+}
+</script>
+
+<!-- ■■  広告注意zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<div id="notice">
+※ こうこくがでたらおわるまでまって。0124 1120
+</div>
+<!-- ■■  バッテリzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<div id="battery"
+     style="position:fixed; bottom:10px; left:200px;
+            background:rgba(0,0,0,0.6);
+            color:#fff; padding:6px 10px;
+            border-radius:8px;
+            z-index:10000; font-size:14px;">
+🔋 --
+</div>
+
+<script>
+if ('getBattery' in navigator) {
+  navigator.getBattery().then(battery => {
+    function update() {
+      const level = Math.round(battery.level * 100);
+      document.getElementById('battery').textContent =
+        '🔋 ' + level + '%';
+    }
+    update();
+    battery.addEventListener('levelchange', update);
+  });
+}
+</script>
+ 
+<!-- デバッグ表示（不要なら消してOK）zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<p id="video" style="display:none"></p>
+  
+<script>
+let startTime = Date.now();
+</script>
+
+<!-- 何割（％）まで見たか  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<script src="https://www.youtube.com/iframe_api"></script>
+<div id="player"></div>
+
+<script>
+let player;
+let videoDuration = 0;
+let maxWatched = 0;   // 最大到達秒（重要）
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    videoId: selectedV,
+    events: {
+      onReady: onPlayerReady,
+      onStateChange: onPlayerStateChange
+    }
+  });
+}
+
+</script>
+
+<!-- 動画ID配列         zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<script>
+const vArray = [
+'EkJgegIjN3A', '6oqDpcLVg28', 'ypRTzt1KrF8', 'I2orZvEEsbI', 'EJorJjaEwz4', 'T9R-NPhRi1M', 'PfnJTlxdPe4', 
+'kCZhBZ9B6LA', '2MrnafzXERI', '4jMcz9wkmEI', '8EhqqDxuzqo', 'oX0_nZ7UAyQ', 'zo3zNNlNoNo', 'rvWbH_KOREY', 
+'rjMxhFgtclo', 'MWwmuAqky5E', 'hLPH2X0gTcA', 'gpOnNj314fU', 'hj2O-_lT4SE', 'AFZccMnGPy8', 'XmvQwiYbRqs', 
+'1eaAYugv6Kk', 'UXSSFRWSjbA', '6HSgfSTvZ_4', 'ho-3meHaJoo', 'INLxGFsWpaQ', 'b8v7UaoZCHw', '9ktD8bF3Hws', 
+'KpstG9ipLRc', 'ZXbtsBTNtpM', 'YyaN5QAluiU', 'tEyQFFKEmqU', 'dxFFQT93V7Y', 'pOi6i6566uQ', 'SFOXhmXfoTY', 
+'T2nH5RrcgrM', 'D3PBlHKAcp0', '0S-j-Sowg1w', 'pLmkwbGUUFA', 'uucE41eyyTs', 'hhlBChKBWx0', 'MVJHsIxVY0Y', 
+'TKRIrtqugOM', 'ewhRE-BvJCg', 'MYtSL8OqYtU', 'tS-yvhTrCvw', 'ZXOqEieczNQ', 'HAP3068GwFM', 'vKpNJUKUknU', 
+'50msekFDTdA', '_aHrx99d5UA', '8VSZGnWbeCM', 'GXXIRXaSvao', 'tXNavHkkhxw', 'p0JFc5giu9U', '0dlYQUzUdq4', 
+'4ywGjIu3Lis', 'FXLEBpj38u0', 'n0Wtq98GZvM', 'tFz7vjn52gY', 'OTb24cbzIhk', 'Ub94TJ_SFfM', '154daImUY6c', 
+'jgsN-nG9aBI', 'rYvTCYy-Wek', '5vM_pC7QN4E', 'CUEEKjm0wnE', 'wyn65r5N8IQ', 'kGm5kJVbH6A', 'YB_hLuMGFqM', 
+'_kQErRVmCKM', 'hPJD9O3ZRbk', 'vvcsRM8qFcY', 'yG0QG_lhVok', '9gGyDzgLsOA', 'dxFFQT93V7Y', 'bIAZYmhWLgk', 
+'LEUjzXHpIng', 'JdiRcj7I4ZM', '_NZl0qp7Y2c', '9sUtxLsLn4U', 'm9iperdA28E', 'yQVA-cbecI0', 'LS5PGgh0XGQ', 
+'rPv2O32Rl_E', '5uJto_B-FNU', 'IRI79bGM6LU', 'qmemwBDrUrs', 'nc45MGGFLpo', 'sLf0aggA1VE', 'yfP9qJPZu1E', 
+'sEJ6dEfb1i0', 'CIXP7YIsTc4', 'cjH4M7V6MbU', 'YcWewZ38_F4', 'Htx3qfmZsts', 'D0Y5YBHYouQ', 'bcFlDb0hsHU', 
+'4gC1drlVMq0', 'XPEw96BIMnM', 'o9s1ml3UVQw', 'k0B4Vn5wrWQ', 'gwc1x7mRk3c', 'gOKzuKgzeA8', 'Jr7hiZLiacM', 
+'ATVeTR7nta8', 'TvtsaUXUq1s', 'MYXmPCsvANc', 'gypOlOhi-Nk', 'Gt-4poS33qk', 'uO6K6zfU0MU', 'tTH4K4hIC-E', 
+'3b60mvstoFs', '95HRp5Lbv4o', '0oLPTdEqKA4', 'rg-yM8MuojA', 'YyaN5QAluiU', 'EJxBu-ZTKfA', 'X2Ct1m5pM7M', 
+'WqpJUTWj07Y', 'CWdMWK_sdXc', 'AFzsX5TKlig', 'D4nWbM64-Ms', 'CGzbVcu6I50', '1ybcIbK0vLQ', 'N6GLfCGJJTg', 
+'tohgVcGB6bE', '5z4d_dgov4A', 'f_PddM12vxI', 'KYMtvT5b8fM', 'aH0O4ONcte8', 'ityWTWCA56s', 'd5xKasxtDUc', 
+'1CVOpniIryQ', 'TPloRDoG2QY', 'lsepco7RBiA', '6qkqqvZB5SM', 'ZP-y-n2FqIs', 'FdWt5o0WWOY', 'EcH0wdJG6hg', 
+'YyaN5QAluiU', 'vEyDyNiWg8Y', '9sUtxLsLn4U', 'SEwsQuJwdeI', 'gypOlOhi-Nk', 'WGI0Ok4Cu78', 'UY1dUqqXyes', 
+'fYT4ZdLoUqo', 'ZdI0xomuXFs', 'cM5pzIonJuI', 'XlcmiV4tTK0', 's4pgnGqkNEU', 'y8s-a7YVtsE', 'b8v7UaoZCHw', 
+'bSBkXX8K68Y', 'j_eHFKcYnXc', '50msekFDTdA', '5is9yxvyKbo', 'tAWhEe-dar0', '3b60mvstoFs', 'gLV_CX9sHvI', 
+'pHfUL5Gbe4A', 'kgmVQV0U0_0', 'BvhZSRmkX7A', 'bsQhy0jnNNY', 'me3Yzg1cvcU', '_auEjcWt2bE', 'UUtCLFtlytU', 
+'8FUCTGZW_z8', 'TV7cqTDJDpg', 'AO_kE3HWpuM', 'f0OmAYL4sTI', 'NpSfVe602jk', 'CWdMWK_sdXc', 'bSowX3IoWp8', 
+'4os4tK5vr34', 'e0z-d9QKliQ', 'fzqFCJd8QdY', 'mOLc46LI47A', 'EfSCwDNKIL4', 'FQDidr7pyc8', 'cQogYn-9cRQ', 
+'PA9SORnyNDg', 'CaiVBbpU4-8', 'LpFMHKEpAkg', '_sYXeSAa-xY', 'TX9wCsF15j8', 'n1zkvwE5QAc', '9GSiCWJMTLs', 
+'qeJ7DOb4ZgE', 'rSYvkVXI2yU', 'FLghh8ggBtg', 'VefC7rLDdyQ', 'degDoeK_hUg', 'hkLRciCHIbs', '_AoEA8xM94s', 
+'6jS7sqOMxoc', 'NFM0PEG56t8', 'NFuELCjGUOc', '4TMTCDJAXN8', 'pe9JyXjhKjM', '-1EJ7XNcgwA', 'N4o9fZ47h-w', 
+'G2PPc7zr-94', 's9X0TfNV9_8', 'tEyQFFKEmqU', 'ityXbrdfCMI', 'AeMRXJtg500', 'djoOc9HgvE0', 'r2dHXNMNxZk', 
+'1t7Uo6xlU8o', 'UfR4Oex6IQE', '85eeAL2zUbQ', '-dbSBGBf7iA', 'f7NjLCL-3sI', 'DYCvUgIv6Ec', 'wKZjStJ5RaE', 
+'HCFm1utJAhs', 'ctlhbFAjj4M'
+];
+  // …（長いので省略：元の配列そのまま使ってOK）
+//console.clear();   //■■
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+// 乱数
+const rand = Math.random();
+let selectedV;
+// 67%以上でランダム差し替え
+//const dora = 0.67;   //★ dora～1  ではドラえもん
+const dora = 1.1;   //★ dora～1  ではドラえもん
+if (rand >= dora) {
+  selectedV = vArray[Math.floor(Math.random() * vArray.length)];
+  console.log("ランダム再生:", selectedV);
+  console.log(selectedV, typeof selectedV);
+} else {
+  const params = new URLSearchParams(location.search);
+  selectedV = params.get("v");
+  if (!selectedV) {location.href = "index4.html";} //★
+  console.log("指定動画:", selectedV);
+  
+  console.log(selectedV, typeof selectedV);
+}
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+/*
+// iframe設定
+if (selectedV) {
+  document.getElementById("video").textContent = "v=" + selectedV;    // 削除か　前に出すか　このままか
+  document.getElementById("yt").src =
+    "https://www.youtube.com/embed/" + selectedV +
+    "?rel=0&modestbranding=1&fs=0&iv_load_policy=3";
+} else {
+  location.href = "index4.html";
+}
+*/
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+let watchTimer = null;
+
+function onPlayerStateChange(e) {
+  if (e.data === YT.PlayerState.PLAYING) {
+    watchTimer = setInterval(() => {
+      const t = player.getCurrentTime();
+      if (t > maxWatched) maxWatched = t;
+    }, 1000);
+  } else {
+    clearInterval(watchTimer);
+  }
+}
+  
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+/* ★追加①：入室ログ */
+//const startTime = new Date().toISOString();   //削除した　　
+const child = localStorage.getItem("childName") || "未選択";
+const subje = localStorage.getItem("subjeName") || "未選択";
+const logId = Date.now();
+let logged = false; 
+let level = 0;//■■
+let perc = 0;//■■ パーセント
+let pointima = 0;//■■ ポイント
+let pointima2 = 0;//■■ ポイント
+let pointimas = 0;//■■ ポイント
+let pointimah = 0;//■■ ポイント
+
+window.addEventListener("beforeunload", () => {//■■
+  if (logged) return;
+  logged = true;
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  let pointpre = Number(logs.at(-1)?.pointima ?? 0); //■■ 
+  let pointpre2 = Number(logs.at(-1)?.pointima2 ?? 0); //■■ 
+  let pointpres = Number(logs.at(-1)?.pointimas ?? 0); //■■ 
+  let pointpreh = Number(logs.at(-1)?.pointimah ?? 0); //■■ 
+  const watchedRatio = videoDuration
+    ? Math.round((maxWatched / videoDuration) * 100)
+    : null;
+  let mang=1; //■■
+  if(subje==='漫画') mang=-1; //■■
+  pointima= pointpre;
+  pointima2= pointpre2;
+  pointimas= pointpres;
+  pointimah= pointpreh;
+  const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
+ //const secmin = Math.min(Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
+  
+  if(child === '惟人君' ) {pointima=secmin*mang+ pointpre;}  // ← ★ ポイント　秒
+  else if(child === '啓人君')  {pointima2=secmin*mang+ pointpre2;}  // ← ★ ポイント　秒
+  else if(child === '惺太郎君'){pointimas=secmin*mang+ pointpres;}  // ← ★ ポイント　秒
+  else if(child === '日花里君'){pointimah=secmin*mang+ pointpreh;}  // ← ★ ポイント　秒
+  //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
+  logs.push({
+    id: logId,
+    //page: "player.html",
+    video: selectedV,
+    child: child,
+    subje: subje, 
+    start: startTime,
+    end: Date.now(),
+    level: closeLevel,   // ← ★追加（1〜5 or null）
+    watchedRatio: watchedRatio,      // ← ★ 何割見たか（％）
+    duration: Date.now() - startTime,
+    pointima: pointima,    // ← ★ ポイント　秒
+    pointima2: pointima2,  // ← ★ ポイント　秒
+    pointimas: pointimas,  // ← ★ ポイント　秒
+    pointimah: pointimah   // ← ★ ポイント　秒
+
+  });
+  localStorage.setItem("studyLogs", JSON.stringify(logs));
+});
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+// 広告注意は5秒で消す
+setTimeout(() => {
+  document.getElementById("notice").style.display = "none";
+}, 5000);
+//alert(Object.keys(localStorage).join("\n"));       //■■
+</script>
+
+<!-- Consoleの表示を消去 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+<button onclick="clearcons()">Consoleを消去</button>
+<script>
+function clearcons() {
+  //console.clear();
+  //logs.clear();
+  localStorage.removeItem("studyLogs");   //■■
+}
+</script>
+-->
+  
+<!--  log_viewer.html を「自動で一瞬だけ開く」 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<script>
+//alert("JS 最後まで動いてます");
+</script>
+ 
+</body>
+</html>
