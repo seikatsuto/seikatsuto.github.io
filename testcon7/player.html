@@ -131,6 +131,8 @@ function setVol(delta) {
     duration: Date.now() - startTime,
     pointima,
     pointima2
+    pointimas,
+    pointimah
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 }
@@ -189,7 +191,7 @@ function closeWithReason(level) {
 
 <!-- ■■  広告注意zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="notice">
-※ こうこくがでたらおわるまでまって。0123 2230
+※ こうこくがでたらおわるまでまって。0124 0930
 </div>
 <!-- ■■  バッテリzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="battery"
@@ -337,25 +339,30 @@ let level = 0;//■■
 let perc = 0;//■■ パーセント
 let pointima = 0;//■■ ポイント
 let pointima2 = 0;//■■ ポイント
+let pointimas = 0;//■■ ポイント
+let pointimah = 0;//■■ ポイント
+
 window.addEventListener("beforeunload", () => {//■■
   if (logged) return;
   logged = true;
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   let pointpre = Number(logs.at(-1)?.pointima ?? 0); //■■ 
   let pointpre2 = Number(logs.at(-1)?.pointima2 ?? 0); //■■ 
+  let pointpres = Number(logs.at(-1)?.pointimas ?? 0); //■■ 
+  let pointpreh = Number(logs.at(-1)?.pointimah ?? 0); //■■ 
   const watchedRatio = videoDuration
     ? Math.round((maxWatched / videoDuration) * 100)
     : null;
   let mang=1; //■■
   if(subje==='漫画') mang=-1; //■■
-  if(child === '惟人君' || child === '惺太郎君') {
-    pointima=Math.round((Date.now() - startTime)/1000)*mang+ pointpre;  // ← ★ ポイント　秒
-  }else {pointima= pointpre; 
-  }
-  if(child === '啓人君' || child === '日花里君') {
-    pointima2=Math.round((Date.now() - startTime)/1000)*mang+ pointpre2;  // ← ★ ポイント　秒
-  }else {pointima2= pointpre2; 
-  }
+  pointima= pointpre;
+  pointima2= pointpre2;
+  pointimas= pointpres;
+  pointimah= pointpreh;
+  if(child === '惟人君' ) {pointima=Math.round((Date.now() - startTime)/1000)*mang+ pointpre;}  // ← ★ ポイント　秒
+  else if(child === '啓人君')  {pointima2=Math.round((Date.now() - startTime)/1000)*mang+ pointpre2;}  // ← ★ ポイント　秒
+  else if(child === '惺太郎君'){pointimas=Math.round((Date.now() - startTime)/1000)*mang+ pointpres;}  // ← ★ ポイント　秒
+  else if(child === '日花里君'){pointimah=Math.round((Date.now() - startTime)/1000)*mang+ pointpreh;}  // ← ★ ポイント　秒
   //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
   logs.push({
     id: logId,
@@ -368,8 +375,10 @@ window.addEventListener("beforeunload", () => {//■■
     level: closeLevel,   // ← ★追加（1〜5 or null）
     watchedRatio: watchedRatio,      // ← ★ 何割見たか（％）
     duration: Date.now() - startTime,
-    pointima: pointima,  // ← ★ ポイント　秒
-    pointima2: pointima2  // ← ★ ポイント　秒
+    pointima: pointima,    // ← ★ ポイント　秒
+    pointima2: pointima2,  // ← ★ ポイント　秒
+    pointimas: pointimas,  // ← ★ ポイント　秒
+    pointimah: pointimah   // ← ★ ポイント　秒
 
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
