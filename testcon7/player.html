@@ -144,8 +144,11 @@ function setVol(delta) {
 <button class="vol v3" onclick="setSpeed(2)">2.0×</button>
 
 <script>
+let sec=0; //★
 function onPlayerReady(e) {
   videoDuration = player.getDuration();
+  sec = Math.floor(player.getDuration());　　//★ビデオの長さ
+  //alert(sec + " 秒");
   player.setPlaybackRate(1.5);   // ★デフォルト 1.5倍
   setActiveSpeed(1.5);
 }
@@ -359,10 +362,12 @@ window.addEventListener("beforeunload", () => {//■■
   pointima2= pointpre2;
   pointimas= pointpres;
   pointimah= pointpreh;
-  if(child === '惟人君' ) {pointima=Math.round((Date.now() - startTime)/1000)*mang+ pointpre;}  // ← ★ ポイント　秒
-  else if(child === '啓人君')  {pointima2=Math.round((Date.now() - startTime)/1000)*mang+ pointpre2;}  // ← ★ ポイント　秒
-  else if(child === '惺太郎君'){pointimas=Math.round((Date.now() - startTime)/1000)*mang+ pointpres;}  // ← ★ ポイント　秒
-  else if(child === '日花里君'){pointimah=Math.round((Date.now() - startTime)/1000)*mang+ pointpreh;}  // ← ★ ポイント　秒
+  const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
+  
+  if(child === '惟人君' ) {pointima=secmin)*mang+ pointpre;}  // ← ★ ポイント　秒
+  else if(child === '啓人君')  {pointima2=secmin)*mang+ pointpre2;}  // ← ★ ポイント　秒
+  else if(child === '惺太郎君'){pointimas=secmin)*mang+ pointpres;}  // ← ★ ポイント　秒
+  else if(child === '日花里君'){pointimah=secmin)*mang+ pointpreh;}  // ← ★ ポイント　秒
   //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
   logs.push({
     id: logId,
