@@ -1,41 +1,20 @@
 <!DOCTYPE html>
 <html>
 <body>
-<button onclick="send()">送信テスト</button>
+<button onclick="test()">通信テスト</button>
 <pre id="out"></pre>
 
 <script>
-const USER = "seikatsuto";
-const REPO = "testcon8";
-//const TOKEN = "ghp_ここにあなたのトークン";
-const TOKEN = "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"; // ghp_xxxxxxxxxxxxxxxxxトークン
-
-async function send() {
+async function test() {
   const out = document.getElementById("out");
-  out.textContent = "送信中...\n";
-
-  const content = btoa("hello test " + new Date());
+  out.textContent = "通信中...\n";
 
   try {
-    const res = await fetch(
-      `https://api.github.com/repos/${USER}/${REPO}/contents/testlog.txt`,
-      {
-        method: "PUT",
-        headers: {
-          "Authorization": "token " + TOKEN,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: "test upload",
-          content: content
-        })
-      }
-    );
-
-    const text = await res.text();
-    out.textContent += "status = " + res.status + "\n\n" + text;
+    const res = await fetch("https://api.github.com");
+    out.textContent += "status=" + res.status + "\n";
+    out.textContent += await res.text();
   } catch (e) {
-    out.textContent += "通信エラー:\n" + e;
+    out.textContent += "エラー:\n" + e;
   }
 }
 </script>
