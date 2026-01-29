@@ -10,32 +10,39 @@ const REPO="testcon8";
 //const TOKEN="ghp_あなたのトークン";
 const TOKEN = "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";   // ghp_xxxxxxxxxxxxxxxxxトークン
 
+function toBase64(str){
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
 async function send(){
- const out=document.getElementById("out");
- out.textContent="送信中...\n";
+  const out=document.getElementById("out");
+  out.textContent="送信中...\n";
 
- const content=btoa("test "+new Date());
+  try{
+    const text="日本語テスト "+new Date();
+    const content=toBase64(text);
 
- try{
-  const res=await fetch(
-   `https://api.github.com/repos/${USER}/${REPO}/contents/kiosk_test.txt`,
-   {
-    method:"PUT",
-    headers:{
-     "Authorization":"token "+TOKEN,
-     "Content-Type":"application/json"
-    },
-    body:JSON.stringify({
-     message:"kiosk test",
-     content:content
-    })
-   }
-  );
-  out.textContent+="status="+res.status+"\n";
-  out.textContent+=await res.text();
- }catch(e){
-  out.textContent+="通信失敗:\n"+e;
- }
+    const res=await fetch(
+      `https://api.github.com/repos/${USER}/${REPO}/contents/kiosk_test.txt`,
+      {
+        method:"PUT",
+        headers:{
+          "Authorization":"token "+TOKEN,
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          message:"kiosk test",
+          content:content
+        })
+      }
+    );
+
+    out.textContent+="status="+res.status+"\n";
+    out.textContent+=await res.text();
+
+  }catch(e){
+    out.textContent+="エラー:\n"+e;
+  }
 }
 </script>
 </body>
