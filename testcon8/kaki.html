@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>GitHub通信テスト</title>
+</head>
+<body>
+
+<h2>GitHub通信テスト</h2>
+<button onclick="testGitHub()">GitHubに書き込みテスト</button>
+<p id="result"></p>
+
+<script>
+const USER = "seikatsuto";  //あなたのGitHubユーザー名
+const REPO = "testcon8";    //あなたのリポジトリ名
+const TOKEN = "ghp_xxxxxxxxxxxxxxxxx"; // トークン
+const PATH = "test_from_fully.txt";
+
+async function testGitHub() {
+  const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${PATH}`;
+
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Authorization": "token " + TOKEN,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: "test from Fully Kiosk",
+      content: btoa("hello fully kiosk")
+    })
+  });
+
+  document.getElementById("result").textContent =
+    "status = " + res.status;
+}
+</script>
+
+</body>
+</html>
