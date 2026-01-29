@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button onclick="send()">送信テスト</button>
+
+<script>
+const USER = "seikatsuto";
+const REPO = "testcon7";
+const TOKEN = "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"; // ghp_xxxxxxxxxxxxxxxxxトークン
+//const TOKEN = "ghp_ここにあなたのトークン";
+
+async function send() {
+  const content = btoa("hello test " + new Date());
+
+  const res = await fetch(
+    `https://api.github.com/repos/${USER}/${REPO}/contents/testlog.txt`,
+    {
+      method: "PUT",
+      headers: {
+        "Authorization": "token " + TOKEN,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: "test upload",
+        content: content
+      })
+    }
+  );
+
+  alert(res.status);
+}
+</script>
+</body>
+</html>
