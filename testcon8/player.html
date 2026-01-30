@@ -130,7 +130,7 @@ function setVol(delta) {
     level: closeLevel,
     duration: Date.now() - startTime,
     pointima,
-    pointima2
+    pointima2, 　//★    
     pointimas,
     pointimah
   });
@@ -353,9 +353,7 @@ window.addEventListener("beforeunload", () => {//■■
   let pointpre2 = Number(logs.at(-1)?.pointima2 ?? 0); //■■ 
   let pointpres = Number(logs.at(-1)?.pointimas ?? 0); //■■ 
   let pointpreh = Number(logs.at(-1)?.pointimah ?? 0); //■■ 
-  const watchedRatio = videoDuration
-    ? Math.round((maxWatched / videoDuration) * 100)
-    : null;
+  
   let mang=1; //■■
   if(subje==='漫画') mang=-1; //■■
   pointima= pointpre;
@@ -370,6 +368,9 @@ window.addEventListener("beforeunload", () => {//■■
   else if(child === '惺太郎君'){pointimas=secmin*mang+ pointpres;}  // ← ★ ポイント　秒
   else if(child === '日花里君'){pointimah=secmin*mang+ pointpreh;}  // ← ★ ポイント　秒
   //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
+  const watchedRatio = videoDuration
+    ? Math.round((maxWatched / videoDuration) * 100)
+    : null;    //★
   logs.push({
     id: logId,
     //page: "player.html",
