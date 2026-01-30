@@ -389,6 +389,29 @@ window.addEventListener("beforeunload", () => {//■■
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 });
+// GitHubへCSV追記 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+const csvLine = [
+  child,
+  subje,
+  selectedV,
+  new Date(startTime).toLocaleString(),
+  new Date().toLocaleString(),
+  closeLevel,
+  watchedRatio,
+  Math.round((Date.now() - startTime) / 1000),
+  pointima,
+  pointima2,
+  pointimas,
+  pointimah
+].join(",");
+
+navigator.sendBeacon(
+  //"https://script.google.com/macros/s/XXXX/exec",     //■■
+
+  "https://script.google.com/macros/s/AKfycbwZShmRZUAGnZSVQqnOjDqXx34WnNeiuyUV94lFEGnNpC6nBba7c8V11IpjNOLQSEo38g/exec", //■■
+  new URLSearchParams({ text: csvLine })
+);
+
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 // 広告注意は5秒で消す
 setTimeout(() => {
