@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button onclick="test()">トークン確認</button>
+<pre id="out"></pre>
+
+<script>
+const TOKEN="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";
+
+async function test(){
+ const out=document.getElementById("out");
+ const res=await fetch("https://api.github.com/user",{
+   headers:{ "Authorization":"token "+TOKEN }
+ });
+ out.textContent="status="+res.status+"\n"+await res.text();
+}
+</script>
+</body>
+</html>
