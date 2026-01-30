@@ -344,7 +344,7 @@ let pointima = 0;//■■ ポイント
 let pointima2 = 0;//■■ ポイント
 let pointimas = 0;//■■ ポイント
 let pointimah = 0;//■■ ポイント
-
+let watchedRatio = 0;//■■
 window.addEventListener("beforeunload", () => {//■■
   if (logged) return;
   logged = true;
@@ -368,7 +368,7 @@ window.addEventListener("beforeunload", () => {//■■
   else if(child === '惺太郎君'){pointimas=secmin*mang+ pointpres;}  // ← ★ ポイント　秒
   else if(child === '日花里君'){pointimah=secmin*mang+ pointpreh;}  // ← ★ ポイント　秒
   //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
-  const watchedRatio = videoDuration
+  watchedRatio = videoDuration
     ? Math.round((maxWatched / videoDuration) * 100)
     : null;    //★
   logs.push({
