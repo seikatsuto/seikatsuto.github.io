@@ -194,7 +194,7 @@ function closeWithReason(level) {
 
 <!-- ■■  広告注意zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="notice">
-※ こうこくがでたらおわるまでまって。0124 1120
+※ こうこくがでたらおわるまでまって。0131 2200
 </div>
 <!-- ■■  バッテリzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="battery"
@@ -389,7 +389,7 @@ window.addEventListener("beforeunload", () => {//■■
 
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
-});
+
 // GitHubへCSV追記 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 const csvLine = [
   child,
@@ -412,7 +412,7 @@ navigator.sendBeacon(
   "https://script.google.com/macros/s/AKfycbwZShmRZUAGnZSVQqnOjDqXx34WnNeiuyUV94lFEGnNpC6nBba7c8V11IpjNOLQSEo38g/exec", //■■
   new URLSearchParams({ text: csvLine })
 );
-
+});
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 // 広告注意は5秒で消す
 setTimeout(() => {
