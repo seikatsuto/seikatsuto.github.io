@@ -406,12 +406,14 @@ const csvLine = [
   pointimah
 ].join(",");
 
-navigator.sendBeacon(
+const ok = navigator.sendBeacon(   //■■
+//navigator.sendBeacon(
   //"https://script.google.com/macros/s/XXXX/exec",     //■■
 
   "https://script.google.com/macros/s/AKfycbwZShmRZUAGnZSVQqnOjDqXx34WnNeiuyUV94lFEGnNpC6nBba7c8V11IpjNOLQSEo38g/exec", //■■
   new URLSearchParams({ text: csvLine })
 );
+console.log("sendBeacon result =", ok);   //■■
 });
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 // 広告注意は5秒で消す
