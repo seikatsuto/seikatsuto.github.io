@@ -7,10 +7,10 @@
 
 <style>
 #player {     /* 1.5 倍速 */
-  position: fixed;
+  position: fixed; 
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100vw; 
   height: 100vh;
 }
 .vol {
@@ -109,6 +109,17 @@ html, body {
 -->
 <script>
 let volume = 50; // 初期音量（安全域）
+
+//端末名を乱数でzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+function getDeviceId() {
+  let id = localStorage.getItem("deviceId");
+  if (!id) {
+    id = crypto.randomUUID(); // 例: "c3a1e9b4-..."
+    localStorage.setItem("deviceId", id);
+  }
+  return id;
+}  
+//ボリューム設定zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 function setVol(delta) {
   //volume = Math.min(60, Math.max(30, volume + delta));
   volume = Math.min(90, Math.max(30, volume + delta));
@@ -124,13 +135,14 @@ function setVol(delta) {
   function saveLog() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   logs.push({
+    deviceId,
     video: selectedV,
     child,
     subje,
     level: closeLevel,
     duration: Date.now() - startTime,
     pointima,
-    pointima2,  //★
+    pointima2,  //★    
     pointimas,
     pointimah
   });
@@ -194,7 +206,7 @@ function closeWithReason(level) {
 
 <!-- ■■  広告注意zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="notice">
-※ こうこくがでたらおわるまでまって。0124 1120
+※ こうこくがでたらおわるまでまって。0201 1630
 </div>
 <!-- ■■  バッテリzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="battery"
@@ -339,12 +351,14 @@ const subje = localStorage.getItem("subjeName") || "未選択";
 const logId = Date.now();
 let logged = false; 
 let level = 0;//■■
-let perc = 0;//■■ パーセント
+//let perc = 0;//■■ パーセント
 let pointima = 0;//■■ ポイント
 let pointima2 = 0;//■■ ポイント
 let pointimas = 0;//■■ ポイント
 let pointimah = 0;//■■ ポイント
-
+let watchedRatio = 0;//■■
+const deviceId = getDeviceId();//■■端末乱数
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 window.addEventListener("beforeunload", () => {//■■
   if (logged) return;
   logged = true;
@@ -353,9 +367,7 @@ window.addEventListener("beforeunload", () => {//■■
   let pointpre2 = Number(logs.at(-1)?.pointima2 ?? 0); //■■ 
   let pointpres = Number(logs.at(-1)?.pointimas ?? 0); //■■ 
   let pointpreh = Number(logs.at(-1)?.pointimah ?? 0); //■■ 
-  const watchedRatio = videoDuration
-    ? Math.round((maxWatched / videoDuration) * 100)
-    : null;
+  
   let mang=1; //■■
   if(subje==='漫画') mang=-1; //■■
   pointima= pointpre;
@@ -370,7 +382,11 @@ window.addEventListener("beforeunload", () => {//■■
   else if(child === '惺太郎君'){pointimas=secmin*mang+ pointpres;}  // ← ★ ポイント　秒
   else if(child === '日花里君'){pointimah=secmin*mang+ pointpreh;}  // ← ★ ポイント　秒
   //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
+  watchedRatio = videoDuration
+    ? Math.round((maxWatched / videoDuration) * 100)
+    : null;    //★
   logs.push({
+    deviceId: deviceId,
     id: logId,
     //page: "player.html",
     video: selectedV,
@@ -385,9 +401,34 @@ window.addEventListener("beforeunload", () => {//■■
     pointima2: pointima2,  // ← ★ ポイント　秒
     pointimas: pointimas,  // ← ★ ポイント　秒
     pointimah: pointimah   // ← ★ ポイント　秒
-
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
+
+// GitHubへCSV追記 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+const csvLine = [
+  deviceId,
+  child,
+  subje,
+  selectedV,
+  new Date(startTime).toLocaleString(),
+  new Date().toLocaleString(),
+  closeLevel,
+  watchedRatio,
+  Math.round((Date.now() - startTime) / 1000),
+  pointima,
+  pointima2,
+  pointimas,
+  pointimah
+].join(",");
+
+const ok = navigator.sendBeacon(   //■■
+//navigator.sendBeacon(
+  //"https://script.google.com/macros/s/XXXX/exec",     //■■
+  //"https://script.google.com/macros/s/AKfycbwZShmRZUAGnZSVQqnOjDqXx34WnNeiuyUV94lFEGnNpC6nBba7c8V11IpjNOLQSEo38g/exec", //■■
+  "https://script.google.com/macros/s/AKfycbxD0bv5iR_cJXlKqHEyLlKRGFab9Hzj50zvOy0Pefw2lJDiqBCfSEKWxR4cVCst4c25/exec", //■■
+  new URLSearchParams({ text: csvLine })
+);
+console.log("sendBeacon result =", ok);   //■■
 });
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 // 広告注意は5秒で消す
