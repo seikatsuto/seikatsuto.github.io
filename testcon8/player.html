@@ -109,6 +109,17 @@ html, body {
 -->
 <script>
 let volume = 50; // 初期音量（安全域）
+
+//端末名を乱数でzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+function getDeviceId() {
+  let id = localStorage.getItem("deviceId");
+  if (!id) {
+    id = crypto.randomUUID(); // 例: "c3a1e9b4-..."
+    localStorage.setItem("deviceId", id);
+  }
+  return id;
+}  
+//ボリューム設定zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 function setVol(delta) {
   //volume = Math.min(60, Math.max(30, volume + delta));
   volume = Math.min(90, Math.max(30, volume + delta));
@@ -124,6 +135,7 @@ function setVol(delta) {
   function saveLog() {
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   logs.push({
+    deviceId,
     video: selectedV,
     child,
     subje,
@@ -194,7 +206,7 @@ function closeWithReason(level) {
 
 <!-- ■■  広告注意zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="notice">
-※ こうこくがでたらおわるまでまって。0131 2200
+※ こうこくがでたらおわるまでまって。0201 1630
 </div>
 <!-- ■■  バッテリzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="battery"
@@ -339,12 +351,14 @@ const subje = localStorage.getItem("subjeName") || "未選択";
 const logId = Date.now();
 let logged = false; 
 let level = 0;//■■
-let perc = 0;//■■ パーセント
+//let perc = 0;//■■ パーセント
 let pointima = 0;//■■ ポイント
 let pointima2 = 0;//■■ ポイント
 let pointimas = 0;//■■ ポイント
 let pointimah = 0;//■■ ポイント
 let watchedRatio = 0;//■■
+const deviceId = getDeviceId();//■■端末乱数
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 window.addEventListener("beforeunload", () => {//■■
   if (logged) return;
   logged = true;
@@ -372,6 +386,7 @@ window.addEventListener("beforeunload", () => {//■■
     ? Math.round((maxWatched / videoDuration) * 100)
     : null;    //★
   logs.push({
+    deviceId: deviceId,
     id: logId,
     //page: "player.html",
     video: selectedV,
@@ -386,12 +401,12 @@ window.addEventListener("beforeunload", () => {//■■
     pointima2: pointima2,  // ← ★ ポイント　秒
     pointimas: pointimas,  // ← ★ ポイント　秒
     pointimah: pointimah   // ← ★ ポイント　秒
-
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 
 // GitHubへCSV追記 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
 const csvLine = [
+  deviceId,
   child,
   subje,
   selectedV,
