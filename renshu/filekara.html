@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>学習スタート</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+</style>
+</head>
+
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<body>
+<button onclick="fetch()">読み</button>
+
+<script>
+fetch("data.csv")
+  .then(res => res.text())
+  .then(text => {
+    const lines = text.trim().split("\n");
+
+    lines.forEach(line => {
+      //const [a, b, c] = line.split(",");
+      const [a, b, c] = line.split(",").map(v => v.trim());
+
+      console.log("a =", a);
+      console.log("b =", b);
+      console.log("c =", c);
+
+    });
+    alert("a="+a+"  B="+b+"  c="+c);
+  });
+
+
+</script>
+</body>
+</html>
+
