@@ -10,10 +10,10 @@
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<button onclick="fetch()">読み</button>
-
+<button onclick="loadCSV()">読み</button>
 <script>
-fetch("data.csv")
+function loadCSV() {
+  fetch("data.csv")
   .then(res => res.text())
   .then(text => {
     const lines = text.trim().split("\n");
@@ -25,12 +25,10 @@ fetch("data.csv")
       console.log("a =", a);
       console.log("b =", b);
       console.log("c =", c);
-
+     alert("a="+a+"  B="+b+"  c="+c);
     });
-    alert("a="+a+"  B="+b+"  c="+c);
   });
-
-
+]
 </script>
 </body>
 </html>
