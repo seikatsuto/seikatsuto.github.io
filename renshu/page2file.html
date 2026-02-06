@@ -9,7 +9,7 @@
     const params = new URLSearchParams(location.search);
     const score = params.get("score");
    //document.getElementById("out").textContent = "score=" + score;
-    document.getElementById("out").textContent = "score=" + score+"a="+a+"  B="+b+"  c="+c;
+    //document.getElementById("out").textContent = "score=" + score+"a="+a+"  B="+b+"  c="+c;
     
 // ファイル読み込み zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz    
 function loadCSV() {
@@ -26,6 +26,9 @@ function loadCSV() {
       console.log("b =", b);
       console.log("c =", c);
      alert("a="+a+"  B="+b+"  c="+c);
+
+     document.getElementById("out").textContent = "score=" + score+"a="+a+"  B="+b+"  c="+c;
+
     });
   });
 }
