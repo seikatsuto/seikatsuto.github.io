@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<body>
+  <div id="out"></div>
+  
+  <button onclick="loadCSV()">読み</button>
+  
+  <script>
+    const params = new URLSearchParams(location.search);
+    const score = params.get("score");
+    document.getElementById("out").textContent = "score=" + score;
+    
+// ファイル読み込み zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz    
+function loadCSV() {
+  fetch("data.csv")
+  .then(res => res.text())
+  .then(text => {
+    const lines = text.trim().split("\n");
+
+    lines.forEach(line => {
+      //const [a, b, c] = line.split(",");
+      const [a, b, c] = line.split(",").map(v => v.trim());
+
+      console.log("a =", a);
+      console.log("b =", b);
+      console.log("c =", c);
+     alert("a="+a+"  B="+b+"  c="+c);
+    });
+  });
+}
+
+    
+    
+  </script>
+</body>
+</html>
