@@ -36,7 +36,7 @@ function loadCSV() {
     lines.forEach(line => {
       //const [a, b, c] = line.split(",");
       const [a, b, c] = line.split(",").map(v => v.trim());
-      if(score != a) return;
+      //if(score != a) return;//★
       console.log("a =", a);
       console.log("b =", b);
       console.log("c =", c);
