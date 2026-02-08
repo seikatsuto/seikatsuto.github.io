@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- ★ https://seikatsuto.github.io/testcon7/index4.html?score=1001****  前4桁順番 後４桁乱数 -->
+
+
+<head>
+  <meta charset="UTF-8">
+  <title>学習スタート</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+     /* 名前のボタン zzzzzzzzzzzzzzzzzzzzzzzzz 以下略zzzzzzzzzzzzzz  */
+     
+ 
+
+/* zzz    ここまで略        zzzzzzzzzzzzzzzzzzzzzz  */
+   
+</style>
+</head>
+
+<body>
+<!-- 家族選択    zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+  <div id="out"></div>
+  
+  <button onclick="loadCSV()">読み</button>
+  
+  <script>
+    const params = new URLSearchParams(location.search);
+    const score = params.get("score");
+// ファイル読み込み zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz    
+function loadCSV() {
+  fetch("data.csv")
+  .then(res => res.text())
+  .then(text => {
+    const lines = text.trim().split("\n");
+
+    lines.forEach(line => {
+      //const [a, b, c] = line.split(",");
+      const [a, b, c] = line.split(",").map(v => v.trim());
+      if(score !=== a) return;
+      console.log("a =", a);
+      console.log("b =", b);
+      console.log("c =", c);
+     alert("a="+a+"  B="+b+"  c="+c);
+
+     document.getElementById("out").textContent = "score=" + score+"a="+a+"  B="+b+"  c="+c;
+
+    });
+  });
+}
+
+    
+    
+  </script>
+
+
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+</body>
+</html>
