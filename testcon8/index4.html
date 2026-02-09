@@ -202,13 +202,13 @@ function loadCSV() {
       come = h;
     });
     // score 機器ID共に不適合
-    if((ninzu <=0) ||  (ninzu >=5))  {throw new Error("登録されていません");}//★
+    //if((ninzu <=0) ||  (ninzu >=5))  {throw new Error("登録されていません");}//★
        
   });
 }
 loadCSV();//★
 // score 機器ID共に不適合
-if((ninzu <=0) ||  (ninzu >=5))  {throw new Error("登録されていません");}//★
+if((ninzu <=0) ||  (ninzu >=5))  {location.href = "next.html";}   //★  throw new Error("登録されていません");
     
     
 </script>
@@ -221,7 +221,7 @@ if((ninzu <=0) ||  (ninzu >=5))  {throw new Error("登録されていません")
 <h1>📘 ひみつの五次元(じげん)ポケット塾(じゅく) </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0209 1620 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0209 1740 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
 名前(なまえ)をえらんでください。
 </textarea>
