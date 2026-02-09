@@ -142,9 +142,9 @@ function setVol(delta) {
     level: closeLevel,
     duration: Date.now() - startTime,
     pointima,
-    pointima2,  //★    
     pointimas,
     pointimah
+    pointima2,  //★    
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 }
@@ -353,9 +353,9 @@ let logged = false;
 let level = 0;//■■
 //let perc = 0;//■■ パーセント
 let pointima = 0;//■■ ポイント
-let pointima2 = 0;//■■ ポイント
 let pointimas = 0;//■■ ポイント
 let pointimah = 0;//■■ ポイント
+let pointima2 = 0;//■■ ポイント
 let watchedRatio = 0;//■■
 const deviceId = getDeviceId();//■■端末乱数
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
@@ -364,23 +364,23 @@ window.addEventListener("beforeunload", () => {//■■
   logged = true;
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   let pointpre = Number(logs.at(-1)?.pointima ?? 0); //■■ 
-  let pointpre2 = Number(logs.at(-1)?.pointima2 ?? 0); //■■ 
   let pointpres = Number(logs.at(-1)?.pointimas ?? 0); //■■ 
   let pointpreh = Number(logs.at(-1)?.pointimah ?? 0); //■■ 
+  let pointpre2 = Number(logs.at(-1)?.pointima2 ?? 0); //■■ 
   
   let mang=1; //■■
   if(subje==='漫画') mang=-1; //■■
-  pointima= pointpre;
-  pointima2= pointpre2;
+  pointima = pointpre;
   pointimas= pointpres;
   pointimah= pointpreh;
+  pointima2= pointpre2;
   const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
  //const secmin = Math.min(Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
   
-  if(child === '惟人君' ) {pointima=secmin*mang+ pointpre;}  // ← ★ ポイント　秒
-  else if(child === '啓人君')  {pointima2=secmin*mang+ pointpre2;}  // ← ★ ポイント　秒
+  if     (child === '惟人君' ) {pointima=secmin*mang+ pointpre;}  // ← ★ ポイント　秒
   else if(child === '惺太郎君'){pointimas=secmin*mang+ pointpres;}  // ← ★ ポイント　秒
   else if(child === '日花里君'){pointimah=secmin*mang+ pointpreh;}  // ← ★ ポイント　秒
+  else if(child === '啓人君')  {pointima2=secmin*mang+ pointpre2;}  // ← ★ ポイント　秒
   //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
   watchedRatio = videoDuration
     ? Math.round((maxWatched / videoDuration) * 100)
@@ -398,9 +398,9 @@ window.addEventListener("beforeunload", () => {//■■
     watchedRatio: watchedRatio,      // ← ★ 何割見たか（％）
     duration: Date.now() - startTime,
     pointima: pointima,    // ← ★ ポイント　秒
-    pointima2: pointima2,  // ← ★ ポイント　秒
     pointimas: pointimas,  // ← ★ ポイント　秒
     pointimah: pointimah   // ← ★ ポイント　秒
+    pointima2: pointima2,  // ← ★ ポイント　秒
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 
@@ -416,9 +416,9 @@ const csvLine = [
   watchedRatio,
   Math.round((Date.now() - startTime) / 1000),
   pointima,
-  pointima2,
   pointimas,
   pointimah
+  pointima2,
 ].join(",");
 
 const ok = navigator.sendBeacon(   //■■
