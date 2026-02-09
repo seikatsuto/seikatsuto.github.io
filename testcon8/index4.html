@@ -208,7 +208,7 @@ function loadCSV() {
 }
 loadCSV();//★
 // score 機器ID共に不適合
-document.getElementById("out").textContent = "ninzu=" + ninzu;
+document.getElementById("out").textContent = "ninzu=" + String(ninzu);
     
 if((ninzu <=0) ||  (ninzu >=5))  {location.href = "next.html"; }   //★  throw new Error("登録されていません");
     
