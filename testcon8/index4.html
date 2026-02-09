@@ -170,10 +170,11 @@ let come = "";
     
 // 各家族ファイル読み込み zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz    
 function loadCSV() {
-    // 機器IDを読む
+  // 機器IDを読む
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  const last = logs.at(-1) || {};
   let id = localStorage.getItem("deviceId");
   alert("deviceId="+deviceId);
-
 
   fetch("data2.csv")
   .then(res => res.text())
