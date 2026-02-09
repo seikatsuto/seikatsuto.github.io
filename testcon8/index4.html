@@ -185,7 +185,7 @@ function loadCSV() {
     lines.forEach(line => {
       //const [a, b, c] = line.split(",");
       const [a, b, c, d, e, f, g, h] = line.split(",").map(v => v.trim());
-      if(String(score) != String(a)) return;  //★
+      if((String(score) != String(a)) && (id != b))return;  //★score が正しくなければ機器IDを使用
       console.log("a =", a);
       console.log("b =", b);
       console.log("c =", c);
@@ -201,13 +201,14 @@ function loadCSV() {
       yoni = g;
       come = h;
     });
-    // score が正しくなければ機器IDを使用
-    
-    
-    
+    // score 機器ID共に不適合
+    if((ninzu <=0) ||  (ninzu >=5))  {throw new Error("登録されていません");}//★
+       
   });
 }
 loadCSV();//★
+// score 機器ID共に不適合
+if((ninzu <=0) ||  (ninzu >=5))  {throw new Error("登録されていません");}//★
     
     
 </script>
