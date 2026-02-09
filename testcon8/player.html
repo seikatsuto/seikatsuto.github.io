@@ -399,8 +399,8 @@ window.addEventListener("beforeunload", () => {//■■
     duration: Date.now() - startTime,
     pointima: pointima,    // ← ★ ポイント　秒
     pointimas: pointimas,  // ← ★ ポイント　秒
-    pointimah: pointimah   // ← ★ ポイント　秒
-    pointima2: pointima2,  // ← ★ ポイント　秒
+    pointimah: pointimah,   // ← ★ ポイント　秒
+    pointima2: pointima2  // ← ★ ポイント　秒
   });
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 
@@ -417,8 +417,8 @@ const csvLine = [
   Math.round((Date.now() - startTime) / 1000),
   pointima,
   pointimas,
-  pointimah
-  pointima2,
+  pointimah,
+  pointima2
 ].join(",");
 
 const ok = navigator.sendBeacon(   //■■
