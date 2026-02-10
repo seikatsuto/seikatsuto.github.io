@@ -247,8 +247,13 @@ main();
 <button class="child-btn"></button>
 
 <script>
-  //const datas = [hito,futa,sann,yoni];
-  const datas = ['惟人君','惺太郎君','日花里君','啓人君'];
+  const datas = [hito,futa,sann,yoni];
+      console.log("hito =", hito);
+      console.log("futa =", futa);
+
+  
+  
+  //const datas = ['惟人君','惺太郎君','日花里君','啓人君'];
   
   document.querySelectorAll(".child-btn").forEach((btn, i) => {
     btn.textContent = datas[i];
