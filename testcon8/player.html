@@ -347,6 +347,9 @@ function onPlayerStateChange(e) {
 /* ★追加①：入室ログ */
 //const startTime = new Date().toISOString();   //削除した　　
 const child = localStorage.getItem("childName") || "未選択";
+const childno = localStorage.getItem("childNo") || "未選択";//■■0-3
+
+
 const subje = localStorage.getItem("subjeName") || "未選択";
 const logId = Date.now();
 let logged = false; 
@@ -377,10 +380,10 @@ window.addEventListener("beforeunload", () => {//■■
   const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
  //const secmin = Math.min(Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
   
-  if     (child === '惟人君' ) {pointima=secmin*mang+ pointpre;}  // ← ★ ポイント　秒
-  else if(child === '惺太郎君'){pointimas=secmin*mang+ pointpres;}  // ← ★ ポイント　秒
-  else if(child === '日花里君'){pointimah=secmin*mang+ pointpreh;}  // ← ★ ポイント　秒
-  else if(child === '啓人君')  {pointima2=secmin*mang+ pointpre2;}  // ← ★ ポイント　秒
+  if     (childno === 0) {pointima=secmin*mang+ pointpre;}  // ← ★ ポイント　秒
+  else if(childno === 1) {pointimas=secmin*mang+ pointpres;}  // ← ★ ポイント　秒
+  else if(childno === 2) {pointimah=secmin*mang+ pointpreh;}  // ← ★ ポイント　秒
+  else if(childno === 3) {pointima2=secmin*mang+ pointpre2;}  // ← ★ ポイント　秒
   //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
   watchedRatio = videoDuration
     ? Math.round((maxWatched / videoDuration) * 100)
