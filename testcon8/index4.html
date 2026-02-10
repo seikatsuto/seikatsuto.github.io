@@ -216,6 +216,24 @@ async function main() {
   //if((ninzu <=0) ||  (ninzu >=5))  {location.href = "next.html"; }   //★  throw new Error("登録されていません");
   if((hito ==='') && (futa ==='') && (sann ==='') && (yoni ==='')) {location.href = "next.html"; }   //★  throw new Error("登録されていません");
   console.log(ninzu);  // ← ここでOK
+
+
+  const datas = [hito,futa,sann,yoni];//★
+      console.log("hito =", hito);
+      console.log("futa =", futa);
+  //const datas = ['惟人君','惺太郎君','日花里君','啓人君'];
+   document.querySelectorAll(".child-btn").forEach((btn, i) => {
+    btn.textContent = datas[i];
+    btn.dataset.child = datas[i];
+    btn.onclick = () => setChild(btn, datas[i]);
+  });//★
+
+
+
+
+
+
+
 }
 
 main();    
@@ -229,7 +247,7 @@ main();
 <h1>📘 ひみつの五次元(じげん)ポケット塾(じゅく) </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0210 1420 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0210 2200 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
 名前(なまえ)をえらんでください。
 </textarea>
@@ -247,19 +265,12 @@ main();
 <button class="child-btn"></button>
 
 <script>
-  const datas = [hito,futa,sann,yoni];
-      console.log("hito =", hito);
-      console.log("futa =", futa);
+
+
+//抜いた//★
+
 
   
-  
-  //const datas = ['惟人君','惺太郎君','日花里君','啓人君'];
-  
-  document.querySelectorAll(".child-btn").forEach((btn, i) => {
-    btn.textContent = datas[i];
-    btn.dataset.child = datas[i];
-    btn.onclick = () => setChild(btn, datas[i]);
-  });
 </script>
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
