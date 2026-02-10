@@ -214,7 +214,7 @@ async function main() {
   //document.getElementById("out").textContent = "ninzu=" + ninzu +' hito='+hito;
     
   //if((ninzu <=0) ||  (ninzu >=5))  {location.href = "next.html"; }   //★  throw new Error("登録されていません");
-  if(hito ==='')  {location.href = "next.html"; }   //★  throw new Error("登録されていません");
+  if((hito ==='') && (futa ==='') && (sann ==='') && (yoni ==='')) {location.href = "next.html"; }   //★  throw new Error("登録されていません");
   console.log(ninzu);  // ← ここでOK
 }
 
