@@ -179,11 +179,10 @@ async function loadCSV() {
 
   const res = await fetch("data2.csv"); // ←ここで待つ
   const text = await res.text();        // ←ここで待つ
-
   const lines = text.trim().split("\n");
 
-    // score が正しければこれを使用
-    lines.forEach(line => {
+  // score が正しければこれを使用
+  lines.forEach(line => {
       //const [a, b, c] = line.split(",");
       const [a, b, c, d, e, f, g, h] = line.split(",").map(v => v.trim());
       if((String(score) != String(a)) && (id != b))return;  //★score が正しくなければ機器IDを使用
@@ -203,20 +202,23 @@ async function loadCSV() {
       yoni = g;
       come = h;
       return;
-    });
+  });
     // score 機器ID共に不適合
     //if((ninzu <=0) ||  (ninzu >=5))  {throw new Error("登録されていません");}//★
-       
 }
-loadCSV();//★
-// score 機器ID共に不適合
-document.getElementById("out").textContent = "ninzu=" + String(ninzu)+" ninzu=" + ninzu+' hito='+hito;
-//document.getElementById("out").textContent = "ninzu=" + ninzu +' hito='+hito;
+async function main() {
+  await loadCSV();      // ← 終わるまで待つ
+  //loadCSV();//★
+  // score 機器ID共に不適合
+  document.getElementById("out").textContent = "ninzu=" + String(ninzu)+" ninzu=" + ninzu+' hito='+hito;
+  //document.getElementById("out").textContent = "ninzu=" + ninzu +' hito='+hito;
     
-//if((ninzu <=0) ||  (ninzu >=5))  {location.href = "next.html"; }   //★  throw new Error("登録されていません");
-if(hito !='')  {location.href = "next.html"; }   //★  throw new Error("登録されていません");
-    
-    
+  //if((ninzu <=0) ||  (ninzu >=5))  {location.href = "next.html"; }   //★  throw new Error("登録されていません");
+  if(hito !='')  {location.href = "next.html"; }   //★  throw new Error("登録されていません");
+  console.log(ninzu);  // ← ここでOK
+}
+
+main();    
 </script>
 
 
@@ -227,7 +229,7 @@ if(hito !='')  {location.href = "next.html"; }   //★  throw new Error("登録�
 <h1>📘 ひみつの五次元(じげん)ポケット塾(じゅく) </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0210 1240 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0210 1320 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
 名前(なまえ)をえらんでください。
 </textarea>
