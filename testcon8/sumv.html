@@ -24,13 +24,13 @@
 <script>
 // zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 //  人定義（Python互換）
+  let hito =localStorage.getItem("hito");  //HTML変数引継ぎ方法
+  let futa = localStorage.getItem("futa");  //HTML変数引継ぎ方法
+  let sann = localStorage.getItem("sann");  //HTML変数引継ぎ方法
+  let yoni = localStorage.getItem("yoni");  //HTML変数引継ぎ方法
+  //const persons = [  ["P1", "0君"],  ["P2", "1君"],  ["P3", "2君"],  ["P4", "3君"]]; //★
+  const persons = [  ["P1", hito],  ["P2", futa],  ["P3", sann],  ["P4", yoni]];  //★
 
-  const persons = [
-  ["P1", "惟人君"],
-  ["P2", "惺太郎君"],
-  ["P3", "日花里君"],
-  ["P4", "啓人君"]
-];
 const nameToIndex = {};
 persons.forEach((p, i) => nameToIndex[p[1]] = i);
 
