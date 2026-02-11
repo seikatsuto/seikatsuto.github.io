@@ -384,6 +384,14 @@ window.addEventListener("beforeunload", () => {//■■
   else if(childno === 1) {pointimas=secmin*mang+ pointpres;}  // ← ★ ポイント　秒
   else if(childno === 2) {pointimah=secmin*mang+ pointpreh;}  // ← ★ ポイント　秒
   else if(childno === 3) {pointima2=secmin*mang+ pointpre2;}  // ← ★ ポイント　秒
+  
+  
+  console.log("childno =",childno);  // ← ★
+  console.log("secmin =", secmin);  // ← ★
+  console.log("sec =", sec);  // ← ★
+  console.log("mang =", mang);  // ← ★
+  
+  
   //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
   watchedRatio = videoDuration
     ? Math.round((maxWatched / videoDuration) * 100)
