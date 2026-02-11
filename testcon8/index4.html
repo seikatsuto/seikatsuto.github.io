@@ -16,8 +16,8 @@
 <!-- 家族選択    zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <div id="out"></div>
   
-<!-- <button onclick="loadCSV()">読み</button>
-<button onclick="main()">main1610</button>  -->
+<!-- <button onclick="loadCSV()">読み</button>  -->
+<!-- <button onclick="main()">main1610</button>  -->
   
 <script>
 const params = new URLSearchParams(location.search);
@@ -76,7 +76,7 @@ async function main() {
     
   //if((ninzu <=0) ||  (ninzu >=5))  {location.href = "next.html"; }   //★  throw new Error("登録されていません");
   if((hito ==='') && (futa ==='') && (sann ==='') && (yoni ==='')) {location.href = "next.html";    //★  throw new Error("登録されていません");
-  }else{console.log(ninzu);  // ← ここでOK
+  }else{console.log(ninzu); console.log(hito);  // ← ここでOK
        localStorage.setItem("ninzu",ninzu );  //HTML変数引継ぎ方法
        localStorage.setItem("hito",hito );  //HTML変数引継ぎ方法
        localStorage.setItem("futa",futa );  //HTML変数引継ぎ方法
