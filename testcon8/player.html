@@ -159,7 +159,7 @@ function setVol(delta) {
 let sec=0; //★
 function onPlayerReady(e) {
   videoDuration = player.getDuration();
-  sec = Math.floor(player.getDuration());　　//★ビデオの長さ
+  sec = Math.floor(player.getDuration());//★ビデオの長さ
   //alert(sec + " 秒");
   player.setPlaybackRate(1.5);   // ★デフォルト 1.5倍
   setActiveSpeed(1.5);
