@@ -27,10 +27,10 @@
       <th>難度1-5</th>
       <th>視聴％</th>  
       <th>視聴時間(秒)</th>
-      <th>ポイント惟人君</th>
-      <th>ポイント2啓人君</th>  
-      <th>ポイントs惺太郎君</th>
-      <th>ポイントh日花里君</th>  
+      <th>ポイント君</th>
+      <th>ポイントs君</th>
+      <th>ポイントh君</th>  
+      <th>ポイント2君</th>  
     </tr>
   </thead>
   <tbody id="logBody"></tbody>
@@ -52,9 +52,9 @@ logs.forEach(l => {
     <!-- <td>${Math.round(l.duration / 60000)}</td>  ★★-->
     <td>${Math.round(l.duration / 1000)}</td>
     <td>${l.pointima}</td>             <!-- "pointnow" ★★-->
-    <td>${l.pointima2}</td>             <!-- "pointnow" ★★-->
     <td>${l.pointimas}</td>             <!-- "pointnow" ★★-->
     <td>${l.pointimah}</td>             <!-- "pointnow" ★★-->
+    <td>${l.pointima2}</td>             <!-- "pointnow" ★★-->
   `;
   tbody.appendChild(tr);
 });
@@ -93,9 +93,9 @@ function exportCSV() {
       Math.round(l.watchedRatio),     //★★
       Math.round(l.duration / 1000),
      l.pointima || "",     //★★
-     l.pointima2 || "",    //★★
      l.pointimas || "",    //★★
-     l.pointimah || ""     //★★
+     l.pointimah || "",   //★★
+     l.pointima2 || ""    //★★
     ];
     csv += row.join(",") + "\n";
   });
