@@ -183,10 +183,10 @@ function setActiveSpeed(rate) {
 
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 <!-- 戻る 
-<a id="back" href="index4.html">← 一覧に戻る</a>
+<a id="back" href="index444.html">← 一覧に戻る</a>
 -->
 <!-- 閉じる
-<a class="close" href="index4.html">×</a>
+<a class="close" href="index444.html">×</a>
 -->
 <button class="close lv1" onclick="closeWithReason(1)">×簡単すぎ</button>
 <button class="close lv2" onclick="closeWithReason(2)">×かんたん</button>
@@ -200,7 +200,7 @@ let closeLevel = null;   // 1〜5（×が押されなかった場合は null）
 function closeWithReason(level) {
   closeLevel = level;    // ← ここが重要
   //saveLog();//★
-  location.href = "index4.html";
+  location.href = "index444.html";
 }
 </script>
 
@@ -312,7 +312,7 @@ if (rand >= dora) {
 } else {
   const params = new URLSearchParams(location.search);
   selectedV = params.get("v");
-  if (!selectedV) {location.href = "index4.html";} //★
+  if (!selectedV) {location.href = "index444.html";} //★
   console.log("指定動画:", selectedV);
   
   console.log(selectedV, typeof selectedV);
@@ -326,7 +326,7 @@ if (selectedV) {
     "https://www.youtube.com/embed/" + selectedV +
     "?rel=0&modestbranding=1&fs=0&iv_load_policy=3";
 } else {
-  location.href = "index4.html";
+  location.href = "index444.html";
 }
 */
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
