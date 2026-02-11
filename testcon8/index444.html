@@ -154,7 +154,7 @@ a {
 <h1>📘 ひみつの五次元(じげん)ポケット塾(じゅく) </h1>
 <!--  <textarea id="text" rows="3" cols="60">  -->
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0210 2200 むにゃむにゃ...
+こんにちは、ぼくドラちゃんです。0211 1720 むにゃむにゃ...
 きみは惟人君？惺太郎君？日花里君？啓人君？
 名前(なまえ)をえらんでください。
 </textarea>
@@ -172,31 +172,22 @@ a {
 <button class="child-btn"></button>
 
 <script>
-let ninzu = 0+0;
-let hito = "";
-let futa = "";
-let sann = "";
-let yoni = "";
-let come = "";
-localStorage.getItem("ninzu",ninzu );  //HTML変数引継ぎ方法
-localStorage.getItem("hito",hito );  //HTML変数引継ぎ方法
-localStorage.getItem("futa",futa );  //HTML変数引継ぎ方法
-localStorage.getItem("sann",sann );  //HTML変数引継ぎ方法
-localStorage.getItem("yoni",yoni );  //HTML変数引継ぎ方法
-localStorage.getItem("come",come );  //HTML変数引継ぎ方法
+let ninzu = localStorage.getItem("ninzu");  //HTML変数引継ぎ方法
+let hito =localStorage.getItem("hito");  //HTML変数引継ぎ方法
+let futa = localStorage.getItem("futa");  //HTML変数引継ぎ方法
+let sann = localStorage.getItem("sann");  //HTML変数引継ぎ方法
+let yoni = localStorage.getItem("yoni");  //HTML変数引継ぎ方法
+let come = localStorage.getItem("come");  //HTML変数引継ぎ方法
 
-
-
-
-  const datas = [hito,futa,sann,yoni];//★
+const datas = [hito,futa,sann,yoni];//★
       console.log("hito =", hito);
       console.log("futa =", futa);
   //const datas = ['惟人君','惺太郎君','日花里君','啓人君'];
-   document.querySelectorAll(".child-btn").forEach((btn, i) => {
+document.querySelectorAll(".child-btn").forEach((btn, i) => {
     btn.textContent = datas[i];
     btn.dataset.child = datas[i];
     btn.onclick = () => setChild(btn, datas[i]);
-  });//★
+});//★
 
 </script>
 
