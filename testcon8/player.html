@@ -348,7 +348,7 @@ function onPlayerStateChange(e) {
 //const startTime = new Date().toISOString();   //削除した　　
 const child = localStorage.getItem("childName") || "未選択";
 const childno = localStorage.getItem("childNo") || "未選択";//■■0-3
-
+const byou = localStorage.getItem("byou") || "未選択";//■■ byou =1point
 
 const subje = localStorage.getItem("subjeName") || "未選択";
 const logId = Date.now();
@@ -371,7 +371,8 @@ window.addEventListener("beforeunload", () => {//■■
   let pointpreh = Number(logs.at(-1)?.pointimah ?? 0); //■■ 
   let pointpre2 = Number(logs.at(-1)?.pointima2 ?? 0); //■■ 
   
-  let mang=1; //■■
+  let mang=1/Number(byou); //■■
+  console.log("mang =", mang); //■■
   if(subje==='漫画') mang=-1; //■■
   pointima = pointpre;
   pointimas= pointpres;
