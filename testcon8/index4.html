@@ -44,8 +44,9 @@ let hito = "";
 let futa = "";
 let sann = "";
 let yoni = "";
+let byou = "";
 let come = "";
-    
+  
 // 各家族ファイル読み込み zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz    
 async function loadCSV() {
   // 機器IDを読む
@@ -62,7 +63,8 @@ async function loadCSV() {
   // score が正しければこれを使用
   lines.forEach(line => {
       //const [a, b, c] = line.split(",");
-      const [a, b, c, d, e, f, g, h] = line.split(",").map(v => v.trim());
+      const [z1,z2,a, b, c, d, e, f, g, z3,z4,h] = line.split(",").map(v => v.trim());
+      if(String(z1) !='1')return; 
       if((String(score) != String(a)) && (id != b))return;  //★score が正しくなければ機器IDを使用
       console.log("a =", a);
       console.log("b =", b);
@@ -78,6 +80,7 @@ async function loadCSV() {
       futa = e;
       sann = f;
       yoni = g;
+      byou = z4;
       come = h;
       return;
   });
@@ -88,7 +91,7 @@ async function main() {
   await loadCSV();      // ← 終わるまで待つ
   //loadCSV();//★
   // score 機器ID共に不適合
-  document.getElementById("out").textContent = "ninzu=" + String(ninzu)+" ninzu=" + ninzu+' hito='+hito;
+  //document.getElementById("out").textContent = "ninzu=" + String(ninzu)+" ninzu=" + ninzu+' hito='+hito;
   //document.getElementById("out").textContent = "ninzu=" + ninzu +' hito='+hito;
     
   //if((ninzu <=0) ||  (ninzu >=5))  {location.href = "next.html"; }   //★  throw new Error("登録されていません");
@@ -99,6 +102,7 @@ async function main() {
        localStorage.setItem("futa",futa );  //HTML変数引継ぎ方法
        localStorage.setItem("sann",sann );  //HTML変数引継ぎ方法
        localStorage.setItem("yoni",yoni );  //HTML変数引継ぎ方法
+       localStorage.setItem("byou",byou );  //HTML変数引継ぎ方法
        localStorage.setItem("come",come );  //HTML変数引継ぎ方法
        location.href = "index444.html"; 
    }   //★
