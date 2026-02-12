@@ -267,19 +267,17 @@ function setChild(btn, name) {
 
   btn.classList.add('active');
   dare = name;
-  if      (name===datas[0]){childno=0;   // ★
+  if      (name===''      ){childno=9;   // ★無名の場合
+  }else if(name===datas[0]){childno=0;
   }else if(name===datas[1]){childno=1;
   }else if(name===datas[2]){childno=2;
   }else if(name===datas[3]){childno=3;
   }else {console.log("ERRchildno =", childno);       // ★
   }   
-  
+   
   localStorage.setItem("childName", name);
   localStorage.setItem("childNo", childno); // ★
-  
-  
-  
-
+ 
   updatePointView();   // ★ これだけ追加
   //setSubjemang();   // ★ 名前が変わっても漫画の表示数変わらずのため追加
   
@@ -391,7 +389,8 @@ function applyStatus() {
 // ポイント表示を「関数化」zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz 
 function updatePointView() {
   let p = 0;  
-  if      (dare === datas[0] ) {p = pointima;}
+  if      (dare===''      ){p=0; }   // ★無名の場合
+  else if (dare === datas[0] ) {p = pointima;}
   else if (dare === datas[1] ) {p = pointimas;}
   else if (dare === datas[2] ) {p = pointimah;}
   else if (dare === datas[3] ) {p = pointima2;}
