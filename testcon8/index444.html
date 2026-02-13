@@ -150,35 +150,37 @@ a {
 </head>
 
 <body>
-<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<h1>📘 ひみつの五次元(じげん)ポケット塾(じゅく) </h1>
+<!-- <h1>📘 ひみつの五次元(じげん)ポケット塾(じゅく) </h1>  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<h1 id="title"></h1>
+<script>
+let ninzu = localStorage.getItem("ninzu");  //HTML変数引継ぎ方法
+let hito =localStorage.getItem("hito");   //HTML変数引継ぎ方法
+let futa = localStorage.getItem("futa");  //HTML変数引継ぎ方法
+let sann = localStorage.getItem("sann");  //HTML変数引継ぎ方法
+let yoni = localStorage.getItem("yoni");  //HTML変数引継ぎ方法
+let byou = localStorage.getItem("byou");  //HTML変数引継ぎ方法
+let come = localStorage.getItem("come");  //HTML変数引継ぎ方法
+  
+if(come !===""){document.getElementById("title").textContent = come;}
+else{document.getElementById("title").textContent = "📘 ひみつの五次元(じげん)ポケット塾(じゅく)";}
+</script>
+  
 <!--  <textarea id="text" rows="3" cols="60">  -->
-<textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-こんにちは、ぼくドラちゃんです。0211 1720 むにゃむにゃ...
-きみは惟人君？惺太郎君？日花里君？啓人君？
-名前(なまえ)をえらんでください。
-</textarea>
+<textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;"></textarea>
+<script>
+const text =
+    "こんにちは、ぼくドラちゃんです。0211 1720 むにゃむにゃ...\n" +
+    "きみは "+ hito +"？ "+ futa +"？ "+ sann +"？ "+ yoni +"？ \n" +
+    "名前(なまえ)をえらんでください。";
+document.getElementById("introText").value = text;
+</script>
 <br>
-<!--  
-<button class="child-btn" onclick="setChild(this, '惟人君')">惟人君</button>
-<button class="child-btn" onclick="setChild(this, '惺太郎君')">惺太郎君</button>
-<button class="child-btn" onclick="setChild(this, '日花里君')">日花里君</button>
-<button class="child-btn" onclick="setChild(this, '啓人君')">啓人君</button>
--->
-
 <button class="child-btn"></button>
 <button class="child-btn"></button>
 <button class="child-btn"></button>
 <button class="child-btn"></button>
 
 <script>
-let ninzu = localStorage.getItem("ninzu");  //HTML変数引継ぎ方法
-let hito =localStorage.getItem("hito");  //HTML変数引継ぎ方法
-let futa = localStorage.getItem("futa");  //HTML変数引継ぎ方法
-let sann = localStorage.getItem("sann");  //HTML変数引継ぎ方法
-let yoni = localStorage.getItem("yoni");  //HTML変数引継ぎ方法
-let come = localStorage.getItem("come");  //HTML変数引継ぎ方法
-
 const datas = [hito,futa,sann,yoni];//★
       console.log("hito =", hito);
       console.log("futa =", futa);
@@ -188,15 +190,19 @@ document.querySelectorAll(".child-btn").forEach((btn, i) => {
     btn.dataset.child = datas[i];
     btn.onclick = () => setChild(btn, datas[i]);
 });//★
-
 </script>
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <h2> 見たい動画(どうが)をえらんで &nbsp;&nbsp;  今のポイント＝<span id="point"></span> </h2>
-  <div class="note">
-   <!--  見たい動画(どうが)をえらんで   今のポイント＝<span id="point"></span>　　-->
+<!-- <div class="note">
   漫画以外は１０秒(今はサービス期間で１秒)見ると１ポイントアップ。<br>３００ポイント以上で漫画が見られ１秒見ると１ポイントダウン
-</div>
+</div> -->
+
+<div class="note" id="byouinp"></div>   <!-- ★zzzzzzzzzzzzzzzzzzzzz -->
+<script>  
+  document.getElementById("byouinp").textContent = "漫画以外は１０秒(今はサービス期間中で "+byou+"秒)見ると１ポイントアップ。\n"
+    +"３００ポイント以上で漫画が見られ１秒見ると１ポイントダウン";
+</script>
   
 <button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')">算1</button>
 <button class="subje-btn" data-subje="算数2年"  onclick="setSubje(this, '算数2年')">算2</button>
