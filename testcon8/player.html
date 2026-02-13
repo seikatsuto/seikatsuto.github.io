@@ -381,10 +381,10 @@ window.addEventListener("beforeunload", () => {//■■
   const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
  //const secmin = Math.min(Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
   
-  if     ((childno === 0) || (childno === '0')){pointima=secmin*mang+ pointpre;}  // ← ★ ポイント　秒
-  else if((childno === 1) || (childno === '1')){pointimas=secmin*mang+ pointpres;}  // ← ★ ポイント　秒
-  else if((childno === 2) || (childno === '2')){pointimah=secmin*mang+ pointpreh;}  // ← ★ ポイント　秒
-  else if((childno === 3) || (childno === '3')){pointima2=secmin*mang+ pointpre2;}  // ← ★ ポイント　秒
+  if     ((childno === 0) || (childno === '0')){pointima=Math.round(secmin*mang+ pointpre);}  // ← ★ ポイント　秒
+  else if((childno === 1) || (childno === '1')){pointimas=Math.round(secmin*mang+ pointpres);}  // ← ★ ポイント　秒
+  else if((childno === 2) || (childno === '2')){pointimah=Math.round(secmin*mang+ pointpreh);}  // ← ★ ポイント　秒
+  else if((childno === 3) || (childno === '3')){pointima2=Math.round(secmin*mang+ pointpre2);}  // ← ★ ポイント　秒
   
   
   console.log("childno =",childno);  // ← ★
