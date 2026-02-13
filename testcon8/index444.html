@@ -160,8 +160,9 @@ let sann = localStorage.getItem("sann");  //HTML変数引継ぎ方法
 let yoni = localStorage.getItem("yoni");  //HTML変数引継ぎ方法
 let byou = localStorage.getItem("byou");  //HTML変数引継ぎ方法
 let come = localStorage.getItem("come");  //HTML変数引継ぎ方法
+let come2 = localStorage.getItem("come2");  //HTML変数引継ぎ方法
   
-if(come != ""){document.getElementById("title").textContent = come;}
+if(come != ""){document.getElementById("title").textContent = "📘"+ come;}
 else{document.getElementById("title").textContent = "📘 ひみつの五次元(じげん)ポケット塾(じゅく)";}
 </script>
   
@@ -200,7 +201,7 @@ document.querySelectorAll(".child-btn").forEach((btn, i) => {
 
 <div class="note" id="byouinp"></div>   <!-- ★zzzzzzzzzzzzzzzzzzzzz -->
 <script>  
-  document.getElementById("byouinp").textContent = "漫画以外は１０秒(今はサービス期間中で "+byou+"秒)見ると１ポイントアップ。\n"
+  document.getElementById("byouinp").textContent = "漫画以外は１０秒(今はサービス期間中で "+byou+"秒)見ると１ポイントアップ。<br>"
     +"３００ポイント以上で漫画が見られ１秒見ると１ポイントダウン";
 </script>
   
@@ -229,14 +230,16 @@ document.querySelectorAll(".child-btn").forEach((btn, i) => {
 <button class="subje-btn" data-subje="漫画"  onclick="setSubje(this, '漫画')">漫画</button>
   
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<textarea id="guideText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;">
-どの ▶ をえらんでもOK！　手あたりしだいチャレンジするだけでえらいよ。
-むずかしくても、何回も見てみよう。気づいたら、できるようになっているよ。
-今は１秒=1ポイントで300ポイントためたらドラえもんの漫画が見られるよ！
-</textarea><br>
+<textarea id="guideText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;"></textarea>
+<script>
+const gtext =
+    "どの ▶ をえらんでもOK！　手あたりしだいチャレンジするだけでえらいよ。\n"
+    +"むずかしくても、何回も見てみよう。気づいたら、できるようになっているよ。\n"
+    + come2;
+document.getElementById("guideText").value = gtext;
+</script>
+<br>
 <!--  <button onclick="speak()">読み上げ</button>   -->
-
-  
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 
 <script>
