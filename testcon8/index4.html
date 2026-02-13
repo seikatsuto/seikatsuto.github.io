@@ -46,7 +46,7 @@ let sann = "";
 let yoni = "";
 let byou = "";
 let come = "";
-  
+let come2 = "";  
 // 各家族ファイル読み込み zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz    
 async function loadCSV() {
   // 機器IDを読む
@@ -63,7 +63,7 @@ async function loadCSV() {
   // score が正しければこれを使用
   lines.forEach(line => {
       //const [a, b, c] = line.split(",");
-      const [z1,z2,a, b, c, d, e, f, g, z3,z4,h] = line.split(",").map(v => v.trim());
+      const [z1,z2,a, b, c, d, e, f, g, z3,z4,h,k] = line.split(",").map(v => v.trim());
       if(String(z1) !='1')return; 
       if((String(score) != String(a)) && (id != b))return;  //★score が正しくなければ機器IDを使用
       console.log("a =", a);
@@ -82,6 +82,7 @@ async function loadCSV() {
       yoni = g;
       byou = z4;
       come = h;
+      come2 = k;
       return;
   });
     // score 機器ID共に不適合
@@ -104,6 +105,7 @@ async function main() {
        localStorage.setItem("yoni",yoni );  //HTML変数引継ぎ方法
        localStorage.setItem("byou",byou );  //HTML変数引継ぎ方法
        localStorage.setItem("come",come );  //HTML変数引継ぎ方法
+       localStorage.setItem("come2",come2 );  //HTML変数引継ぎ方法
        location.href = "index444.html"; 
    }   //★
 }
