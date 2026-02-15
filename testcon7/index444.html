@@ -422,12 +422,23 @@ window.addEventListener("load", () => {
 
   // 子ども復元zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
   dare = localStorage.getItem("childName");
+  let hito2 = localStorage.getItem("hito");   //HTML変数引継ぎ方法
+  let futa2 = localStorage.getItem("futa");  //HTML変数引継ぎ方法
+  let sann2 = localStorage.getItem("sann");  //HTML変数引継ぎ方法
+  let yoni2 = localStorage.getItem("yoni");  //HTML変数引継ぎ方法
+  let childno2 ='';
   if (dare) {
     document.querySelectorAll(".child-btn").forEach(btn => {
       if (btn.textContent.trim() === dare) {
         btn.classList.add("active");
+        if     (dare===hito2){childno2=0;}// ← ★
+        else if(dare===futa2){childno2=1;}
+        else if(dare===sann2){childno2=2;}
+        else if(dare===yoni2){childno2=3;}
       }
     });
+    localStorage.setItem("childNo",childno2);
+   console.log("childno =",childno2);  // ← ★
   }
 
   // 科目復元zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
