@@ -47,12 +47,13 @@ let yoni = "";
 let byou = "";
 let come = "";
 let come2 = "";  
+let id    = ""; 
 // 各家族ファイル読み込み zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz    
 async function loadCSV() {
   // 機器IDを読む
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   const last = logs.at(-1) || {};
-  let id = localStorage.getItem("deviceId");
+  id = localStorage.getItem("deviceId");
   document.getElementById("out").textContent = "score=" + score+" id="+id;
   //alert("deviceId="+deviceId);
 
