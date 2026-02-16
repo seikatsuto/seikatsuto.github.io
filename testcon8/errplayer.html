@@ -15,7 +15,6 @@
 
 <script>
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
-window.addEventListener("beforeunload", () => {//■■
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
 
   let deviceId  = logs.at(-1)?.deviceId  ;
@@ -79,7 +78,6 @@ const ok = navigator.sendBeacon(   //■■
 console.log("sendBeacon result =", ok);   //■■
 location.href = "index444.html";
 
-});
 
 </script>
  
