@@ -47,12 +47,13 @@ let yoni = "";
 let byou = "";
 let come = "";
 let come2 = "";  
+let id    = ""; 
 // 各家族ファイル読み込み zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz    
 async function loadCSV() {
   // 機器IDを読む
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
   const last = logs.at(-1) || {};
-  let id = localStorage.getItem("deviceId");
+  id = localStorage.getItem("deviceId");
   document.getElementById("out").textContent = "score=" + score+" id="+id;
   //alert("deviceId="+deviceId);
 
@@ -106,7 +107,15 @@ async function main() {
        localStorage.setItem("byou",byou );  //HTML変数引継ぎ方法
        localStorage.setItem("come",come );  //HTML変数引継ぎ方法
        localStorage.setItem("come2",come2 );  //HTML変数引継ぎ方法
-       location.href = "index444.html"; 
+       
+       //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+       console.log("id =", id);
+       //if(id==='5c749a51-f146-471a-90e5-1ff360907751'){location.href = "errplayer.html";} //★★管理パソコン
+       if(id==='672021e3-07e0-4ad1-8734-8d92b416637d'){location.href = "errplayer.html";} //★★邦
+       //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+       else{location.href = "index444.html"; }
+
+       
    }   //★
 }
 main();     //★
