@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>データ修正</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<style>
+
+</style>
+</head>
+
+<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+<body>
+
+<script>
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+window.addEventListener("beforeunload", () => {//■■
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+
+  let deviceId  = logs.at(-1)?.deviceId  ;
+  let id        = logs.at(-1)?.id  ;
+  let video     = logs.at(-1)?.video  ;
+  let child     = logs.at(-1)?.child  ;
+  let subje     = logs.at(-1)?.subje  ;
+  let start     = logs.at(-1)?.start  ;
+  let end       = logs.at(-1)?.end  ;
+  let level     = logs.at(-1)?.level  ;
+  let watchedRatio  = logs.at(-1)?.watchedRatio  ;
+  let duration  = logs.at(-1)?.duration  ;
+  let pointima  = logs.at(-1)?.pointima  ;
+  let pointimas = logs.at(-1)?.pointimas  ;
+  let pointimah  = logs.at(-1)?.pointimah  ;
+  let pointima2  = logs.at(-1)?.pointima2  ;
+//  以下で修正  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  if((pointima !='1803.3') || (pointimas !='128') || (pointimah !='185') || (pointima2 !='0') ){location.href = "index444.html";}
+  pointimas='99';
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  logs.push({
+    deviceId: deviceId,
+    id:       id,
+    video:    video,
+    child:    child,
+    subje:    subje, 
+    start:    start,
+    end:      end,
+    level:    level,   
+    watchedRatio: watchedRatio,   
+    duration: duration,
+    pointima: pointima,   
+    pointimas:pointimas,  
+    pointimah:pointimah, 
+    pointima2:pointima2 
+  });
+  localStorage.setItem("studyLogs", JSON.stringify(logs));
+
+// GitHubへCSV追記 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+const csvLine = [
+  deviceId,
+  child,
+  subje,
+  video,
+  new Date(start).toLocaleString(),
+  new Date(end).toLocaleString(),
+  level,
+  watchedRatio,
+  Math.round(duration / 1000),
+  pointima,
+  pointimas,
+  pointimah,
+  pointima2
+].join(",");
+
+const ok = navigator.sendBeacon(   //■■
+  "https://script.google.com/macros/s/AKfycbxD0bv5iR_cJXlKqHEyLlKRGFab9Hzj50zvOy0Pefw2lJDiqBCfSEKWxR4cVCst4c25/exec", //■■
+  new URLSearchParams({ text: csvLine })
+);
+console.log("sendBeacon result =", ok);   //■■
+location.href = "index444.html";
+
+});
+
+</script>
+ 
+</body>
+</html>
