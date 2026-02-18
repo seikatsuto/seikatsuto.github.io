@@ -378,7 +378,8 @@ window.addEventListener("beforeunload", () => {//■■
   pointimas= pointpres;
   pointimah= pointpreh;
   pointima2= pointpre2;
-  const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),1200); // ← ★max1200秒
+  const secmin = Math.min(sec/1.5,Math.round((Date.now() - startTime)/1000)); // ← ★max1200秒
+ //const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),1200); // ← ★max1200秒
  //const secmin = Math.min(Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
   
   if     ((childno === 0) || (childno === '0')){pointima=Math.round(secmin*mang+ pointpre);}  // ← ★ ポイント　秒
