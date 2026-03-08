@@ -374,10 +374,10 @@ window.addEventListener("beforeunload", () => {//■■
   let mang=1/Number(byou); //■■
   console.log("mang =", mang); //■■
   if(subje==='漫画') mang=-1; //■■
-  pointima = pointpre;
-  pointimas= pointpres;
-  pointimah= pointpreh;
-  pointima2= pointpre2;
+  pointima = Math.round(pointpre); //■■
+  pointimas= Math.round(pointpres); //■■
+  pointimah= Math.round(pointpreh); //■■
+  pointima2= Math.round(pointpre2); //■■
   const secmin = Math.min(sec/1.5,Math.round((Date.now() - startTime)/1000)); // ← ★max  秒
  //const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),1200); // ← ★max1200秒
  //const secmin = Math.min(Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
