@@ -31,11 +31,15 @@
   let pointimas = logs.at(-1)?.pointimas  ;
   let pointimah  = logs.at(-1)?.pointimah  ;
   let pointima2  = logs.at(-1)?.pointima2  ;
-//  以下で修正  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-  console.log("pointimas =", pointimas);  // 0,-759,-189,0
-  if((pointima !=='0') || (pointimas !=='-759') || (pointimah !=='-189') || (pointima2 !=='0') ){location.href = "index444.html";}
-  pointimas='604';
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+//  以下で修正  ■■zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  console.log("pointima =", pointima);  //1803,106,-9,0
+  console.log("pointimas =", pointimas);  //
+  console.log("pointimah =", pointimah);  //
+  console.log("pointima2 =", pointima2);  //
+  if((String(pointima) !=='1803') || (String(pointimas) !=='106') || (String(pointimah) !=='-9') || (String(pointima2) !=='0') ){
+    location.href = "index444.html"; console.log("pointimas =", pointimas);
+  }else{pointimas='9999'; console.log("pointimass =", pointimas);
+//  ■■zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
   logs.push({
     deviceId: deviceId,
     id:       id,
@@ -77,7 +81,7 @@ const ok = navigator.sendBeacon(   //■■
 );
 console.log("sendBeacon result =", ok);   //■■
 location.href = "index444.html";
-
+} //■■
 
 </script>
  
