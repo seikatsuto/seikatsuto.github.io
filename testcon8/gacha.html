@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>プロ仕様スロット</title>
+
+<style>
+body{
+text-align:center;
+background:#000;
+color:#fff;
+font-family:sans-serif;
+overflow:hidden;
+}
+
+#slot{
+display:flex;
+justify-content:center;
+margin-top:30px;
+}
+
+.reel{
+width:100px;
+height:150px;
+overflow:hidden;
+border:3px solid #fff;
+margin:10px;
+border-radius:10px;
+cursor:pointer;
+position:relative;
+}
+
+.inner{
+position:absolute;
+width:100%;
+top:0;
+left:0;
+}
+
+.symbol{
+height:50px;
+line-height:50px;
+font-size:28px;
+text-align:center;
+}
+
+/* 中央ライン */
+.line{
+position:absolute;
+top:50%;
+left:0;
+width:100%;
+height:2px;
+background:red;
+transform:translateY(-50%);
+pointer-events:none;
+}
+
+button{font-size:18px;padding:10px 20px;margin:10px;}
+
+.win{background:gold;color:black;}
+
+</style>
+</head>
+
+<body>
+
+<h2>🎰 プロ仕様スロット（目押し可）</h2>
+
+<div id="slot">
+<div class="reel" onclick="stopReel(0)">
+<div class="inner" id="r0"></div>
+<div class="line"></div>
+</div>
+
+<div class="reel" onclick="stopReel(1)">
+<div class="inner" id="r1"></div>
+<div class="line"></div>
+</div>
+
+<div class="reel" onclick="stopReel(2)">
+<div class="inner" id="r2"></div>
+<div class="line"></div>
+</div>
+</div>
+
+<button onclick="spin()">SPIN</button>
+
+<h3 id="result"></h3>
+
+<script>
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+const symbols=["7️⃣","⭐","🍎","🍀","🔷"]
+
+let reels=[false,false,false]
+let timers=[null,null,null]
+let pos=[0,0,0]
+let speed=[0,0,0]
+let nkaimade = 3  // ★spinは3回まで
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+function build(i){
+const el=document.getElementById("r"+i)
+el.innerHTML=""
+
+// 多めに生成（無限用）
+for(let j=0;j<200;j++){
+const d=document.createElement("div")
+d.className="symbol"
+
+// 7は少なめ
+if(Math.random()<0.05){
+d.innerText="7️⃣"
+}else{
+d.innerText=symbols[Math.floor(Math.random()*symbols.length)]
+}
+
+el.appendChild(d)
+}
+}
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+function spin(){
+nkaimade -= nkaimade // ★spinは3回まで
+document.getElementById("result").innerText=""
+document.body.classList.remove("win")
+
+for(let i=0;i<3;i++){
+
+build(i)
+reels[i]=true
+
+speed[i]=15 + Math.random()*3
+
+timers[i]=setInterval(()=>{
+
+pos[i]+=speed[i]
+
+// 無限ループ
+pos[i] %= (50*180)
+
+document.getElementById("r"+i).style.transform=
+"translateY(-"+pos[i]+"px)"
+
+},20)
+
+}
+
+}
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+function stopReel(i){
+
+if(!reels[i]) return
+
+reels[i]=false
+clearInterval(timers[i])
+
+// 🎯 目押し位置（中央）
+let index=Math.round(pos[i]/50)
+
+// 🎰 滑り（±1コマ）
+let slip=Math.floor(Math.random()*3)-1
+index+=slip
+
+pos[i]=index*50
+
+document.getElementById("r"+i).style.transform=
+"translateY(-"+pos[i]+"px)"
+
+if(reels.every(r=>!r)) judge()
+
+}
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+function getCenter(i){
+
+let reel=document.getElementById("r"+i)
+//let index=Math.round(pos[i]/50) //★
+
+// 中央の補正（75px = 1.5マス）
+let index = Math.round((pos[i] + 50) / 50) //★
+
+return reel.children[index % 200].innerText
+}
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+function judge(){
+
+let a=getCenter(0)
+let b=getCenter(1)
+let c=getCenter(2)
+
+
+if(a==b && b==c){
+
+document.body.classList.add("win")
+
+
+if(a=="7️⃣"){
+document.getElementById("result").innerText="🌈 777 SSR!!!"
+}else{
+
+//document.getElementById("result").innerText="🎉 あたり！"  //★
+
+document.getElementById("result").innerText="🎉 あたり！  中段: " + lines[1].join(" ")  //★
+}
+
+}else{
+//document.getElementById("result").innerText="はずれ" //★
+document.getElementById("result").innerText =getCenter(0)+" "+getCenter(1)+" "+getCenter(2) +"はずれ" //★
+
+
+}
+if(nkaimade <= 0){location.href = "index444.html";} // ★spinは3回まで★★ガチャ終
+}
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+</script>
+
+</body>
+</html>
