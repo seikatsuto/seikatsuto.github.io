@@ -65,8 +65,9 @@ button{font-size:18px;padding:10px 20px;margin:10px;}
 
 <body>
 
-<h2>🎰 プロ仕様スロット（目押し可）</h2>
+<h2>🎰 今日のうんだめし</h2>
 
+<div id="coins"></div>
 <div id="slot">
 <div class="reel" onclick="stopReel(0)">
 <div class="inner" id="r0"></div>
@@ -84,9 +85,15 @@ button{font-size:18px;padding:10px 20px;margin:10px;}
 </div>
 </div>
 
-<button onclick="spin()">SPIN</button>
+<!--  <button onclick="spin()">SPIN</button>  -->
+<button onclick="spin()">まわす</button>
 
 <h3 id="result"></h3>
+<div id="flash"></div>
+
+<audio id="coinSound" src="coin.mp3"></audio>
+<audio id="winSound" src="win.mp3"></audio>
+<audio id="hazureSound" src="hazure.mp3"></audio>
 
 <script>
 
@@ -97,7 +104,17 @@ let reels=[false,false,false]
 let timers=[null,null,null]
 let pos=[0,0,0]
 let speed=[0,0,0]
-let nkaimade = 3  // ★spinは3回まで
+//let nkaimade = 3  // ★spinは3回まで
+//let coins=Number(localStorage.getItem("coins"))||30
+let coins=30
+
+update()
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+function update(){
+//document.getElementById("coins").innerText="コイン: "+coins  //★
+}
+
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 function build(i){
 const el=document.getElementById("r"+i)
@@ -109,7 +126,8 @@ const d=document.createElement("div")
 d.className="symbol"
 
 // 7は少なめ
-if(Math.random()<0.05){
+//if(Math.random()<0.05){
+if(Math.random()<0.5){
 d.innerText="7️⃣"
 }else{
 d.innerText=symbols[Math.floor(Math.random()*symbols.length)]
@@ -121,7 +139,16 @@ el.appendChild(d)
 
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 function spin(){
-nkaimade -= nkaimade // ★spinは3回まで
+//if(coins<10)return
+if(coins<10){location.href = "index444.html";} // ★spinは3回まで★★ガチャ終
+
+coins-=10
+save()
+
+sound("coinSound")
+
+
+//nkaimade -= nkaimade // ★spinは3回まで
 document.getElementById("result").innerText=""
 document.body.classList.remove("win")
 
@@ -198,7 +225,10 @@ document.body.classList.add("win")
 
 
 if(a=="7️⃣"){
-document.getElementById("result").innerText="🌈 777 SSR!!!"
+document.getElementById("result").innerText="🌈 777 大あたり!!!"
+SSR()
+
+
 }else{
 
 //document.getElementById("result").innerText="🎉 あたり！"  //★
@@ -209,10 +239,82 @@ document.getElementById("result").innerText="🎉 あたり！  中段: " + line
 }else{
 //document.getElementById("result").innerText="はずれ" //★
 document.getElementById("result").innerText =getCenter(0)+" "+getCenter(1)+" "+getCenter(2) +"はずれ" //★
-
+sound("hazureSound")
 
 }
-if(nkaimade <= 0){location.href = "index444.html";} // ★spinは3回まで★★ガチャ終
+//if(nkaimade <= 0){location.href = "index444.html";} // ★spinは3回まで★★ガチャ終
+
+//coins-=10
+//setTimeout(function() {if(coins<10){location.href = "index444.html";}}, 10000); // ★ 1秒後spinは3回まで★★ガチャ終
+
+}
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+/* SSR */
+
+function SSR(){
+
+document.body.classList.add("rainbow")
+
+sound("winSound")
+
+particles()
+
+flash()
+
+setTimeout(()=>{
+document.body.classList.remove("rainbow")
+},2000)
+
+}
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+
+/* フラッシュ */
+
+function flash(){
+const f=document.getElementById("flash")
+f.style.opacity=1
+setTimeout(()=>f.style.opacity=0,100)
+}
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+
+/* パーティクル */
+
+function particles(){
+
+for(let i=0;i<40;i++){
+
+const p=document.createElement("div")
+p.className="particle"
+p.innerText="✨"
+
+p.style.left="50%"
+p.style.top="50%"
+
+p.style.setProperty("--x",(Math.random()*600-300)+"px")
+p.style.setProperty("--y",(Math.random()*400-200)+"px")
+
+document.body.appendChild(p)
+
+setTimeout(()=>p.remove(),1000)
+
+}
+
+}
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+/* 音 */
+
+function sound(id){
+const a=document.getElementById(id)
+a.currentTime=0
+a.play().catch(()=>{})
+}
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+/* 保存 */
+
+function save(){
+localStorage.setItem("coins",coins)
+update()
 }
 
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
