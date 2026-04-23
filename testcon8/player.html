@@ -200,7 +200,12 @@ let closeLevel = null;   // 1〜5（×が押されなかった場合は null）
 function closeWithReason(level) {
   closeLevel = level;    // ← ここが重要
   //saveLog();//★
-  location.href = "index444.html";
+
+  //location.href = "index444.html";   //★
+  let durgacha= Date.now() - startTime;   //★
+  if(durgacha>10000){location.href = "gacha.html";   //★視聴時間大でスロット
+  }else{location.href = "index444.html";}   //★
+
 }
 </script>
 
