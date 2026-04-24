@@ -2,429 +2,170 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>動画をみる</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>動画</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-#player {     /* 1.5 倍速 */
-  position: fixed; 
-  top: 0;
-  left: 0;
-  width: 100vw; 
-  height: 100vh;
-}
-.vol {
-  position: fixed;
-  top: 50px;
-  z-index: 10002;   /* ★これが必須 */
-  font-size: 14px;
-  padding: 6px 8px;
-  margin: 8px;
-  background: #fff;
-  border-radius: 6px;
-}
-.v1 { left: 10px; }
-.v2 { left: 60px; }
-.v3 { left: 110px; }  /* ← 数値表示 */
-
-.vol.active {         /* 1.5 倍速  CSS（選択中を見える化） */
-  background: #4CAF50;
-  color: #fff;
-  font-weight: bold;
-}
-
 html, body {
-  margin: 0;
-  padding: 0;
-  background: #000;
-  height: 100%;
-  overflow: hidden;
-  font-family: sans-serif;
+  margin:0; padding:0;
+  background:#000;
+  height:100%;
+  overflow:hidden;
 }
 
-/* 戻るボタン */
-#back {
-  position: fixed;
-  top: 50px;
-  left: 8px;
-  z-index: 10000;
-  background: rgba(0,0,0,0.7);
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 16px;
-  text-decoration: none;
+#player {
+  position:fixed;
+  top:0; left:0;
+  width:100vw; height:100vh;
+  background:#000;
 }
 
-/* 閉じるボタン */
-.close {
-  position: fixed;
-  top: 50px;
-  right: 10px;
-  z-index: 10001;
-  font-size: 14px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
+/* 倍速 */
+.speed {
+  position:fixed;
+  top:50px;
+  z-index:1000;
+  padding:6px 8px;
+  background:#fff;
+  border-radius:6px;
 }
-.lv1 { right: 10px; }
-.lv2 { right: 90px; }
-.lv3 { right: 170px; }
-.lv4 { right: 250px; }
-.lv5 { right: 330px; }
+.s1{left:10px;} .s2{left:70px;} .s3{left:130px;}
 
-
-/* 広告注意表示 */
-#notice {
-  position: fixed;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  background: rgba(255,255,255,0.9);
-  color: #000;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 10px;
-  text-align: center;
+.active {
+  background:#4CAF50;
+  color:#fff;
 }
-#player iframe {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  border: 0;
-}
-
 </style>
 </head>
 
-<!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
 <body>
-<!--
-<button class="vol v1" onclick="setVol(-5)">−</button>
-<button class="vol v2" onclick="setVol(+5)">+</button>
-<div id="volValue" class="vol v3">50</div>
--->
-<script>
-let volume = 50; // 初期音量（安全域）
 
-//端末名を乱数でzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-function getDeviceId() {
-  let id = localStorage.getItem("deviceId");
-  if (!id) {
-    id = crypto.randomUUID(); // 例: "c3a1e9b4-..."
-    localStorage.setItem("deviceId", id);
-  }
-  return id;
-}  
-//ボリューム設定zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-function setVol(delta) {
-  //volume = Math.min(60, Math.max(30, volume + delta));
-  volume = Math.min(90, Math.max(30, volume + delta));
-  document.getElementById("volValue").textContent = volume;
-  if (window.fully && fully.setVolume) {
-    fully.setVolume(volume);
-  } else {
-    //alert("fully.setVolume が使えません");
-  }
-  //alert("fully = " + typeof window.fully + "\n" +"setVolume = " + (window.fully && typeof fully.setVolume));
-}
-//保存関数を独立させるzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-  function saveLog() {
-  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-  logs.push({
-    deviceId,
-    video: selectedV,
-    child,
-    subje,
-    level: closeLevel,
-    duration: Date.now() - startTime,
-    pointima,
-    pointimas,
-    pointimah,
-    pointima2  //★    
-  });
-  localStorage.setItem("studyLogs", JSON.stringify(logs));
-}
-</script>
+<button class="speed s1" onclick="setSpeed(1)">1.0×</button>
+<button class="speed s2 active" onclick="setSpeed(1.5)">1.5×</button>
+<button class="speed s3" onclick="setSpeed(2)">2.0×</button>
 
-<!-- 1.5倍速ボタンを追加 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<button class="vol v1" onclick="setSpeed(1)">1.0×</button>
-<button class="vol v2 active" onclick="setSpeed(1.5)">1.5×</button>
-<button class="vol v3" onclick="setSpeed(2)">2.0×</button>
-
-<script>
-let sec=0; //★
-function onPlayerReady(e) {
-  videoDuration = player.getDuration();
-  sec = Math.floor(player.getDuration());//★ビデオの長さ
-  //alert(sec + " 秒");
-  player.setPlaybackRate(1.5);   // ★デフォルト 1.5倍
-  setActiveSpeed(1.5);
-}
-function setSpeed(rate) {
-  if (!player || !player.setPlaybackRate) return;
-
-  player.setPlaybackRate(rate);
-  setActiveSpeed(rate);
-}
-
-function setActiveSpeed(rate) {
-  document.querySelectorAll(".vol").forEach(btn => {
-    btn.classList.remove("active");
-    if (btn.textContent.startsWith(rate)) {
-      btn.classList.add("active");
-    }
-  });
-}
-</script>
-
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-<!-- 戻る 
-<a id="back" href="index444.html">← 一覧に戻る</a>
--->
-<!-- 閉じる
-<a class="close" href="index444.html">×</a>
--->
-<button class="close lv1" onclick="closeWithReason(1)">×簡単すぎ</button>
-<button class="close lv2" onclick="closeWithReason(2)">×かんたん</button>
-<button class="close lv3" onclick="closeWithReason(3)">×ちょうど</button>
-<button class="close lv4" onclick="closeWithReason(4)">×むずかしい</button>
-<button class="close lv5" onclick="closeWithReason(5)">×難しすぎ</button>
-
-<script>
-let closeLevel = null;   // 1〜5（×が押されなかった場合は null）
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-function closeWithReason(level) {
-  closeLevel = level;    // ← ここが重要
-  //saveLog();//★
-
-  //location.href = "index444.html";   //★
-  let durgacha= Date.now() - startTime;   //★
-  if(durgacha>60000){location.href = "gacha.html";   //★視聴時間大60秒以上でスロット
-  }else{location.href = "index444.html";}   //★
-
-}
-</script>
-
-<!-- ■■  広告注意zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<div id="notice">
-※ こうこくがでたらおわるまでまって。0211 1920
-</div>
-<!-- ■■  バッテリzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<div id="battery"
-     style="position:fixed; bottom:10px; left:200px;
-            background:rgba(0,0,0,0.6);
-            color:#fff; padding:6px 10px;
-            border-radius:8px;
-            z-index:10000; font-size:14px;">
-🔋 --
-</div>
-
-<script>
-if ('getBattery' in navigator) {
-  navigator.getBattery().then(battery => {
-    function update() {
-      const level = Math.round(battery.level * 100);
-      document.getElementById('battery').textContent =
-        '🔋 ' + level + '%';
-    }
-    update();
-    battery.addEventListener('levelchange', update);
-  });
-}
-</script>
- 
-<!-- デバッグ表示（不要なら消してOK）zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<p id="video" style="display:none"></p>
-  
-<script>
-let startTime = Date.now();
-</script>
-
-<!-- 何割（％）まで見たか  zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<script src="https://www.youtube.com/iframe_api"></script>
 <div id="player"></div>
 
 <script>
-let player;
-let videoDuration = 0;
-let maxWatched = 0;   // 最大到達秒（重要）
-
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    videoId: selectedV,
-    events: {
-      onReady: onPlayerReady,
-      onStateChange: onPlayerStateChange
-    }
-  });
-}
-
-</script>
-
-<!-- 動画ID配列         zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<script>
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
-// 乱数部削除
+// ========= 初期 =========
 const params = new URLSearchParams(location.search);
-selectedV = params.get("v");
-if (!selectedV) {location.href = "index444.html";} //★
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
-/*
-// iframe設定
-if (selectedV) {
-  document.getElementById("video").textContent = "v=" + selectedV;    // 削除か　前に出すか　このままか
-  document.getElementById("yt").src =
-    "https://www.youtube.com/embed/" + selectedV +
-    "?rel=0&modestbranding=1&fs=0&iv_load_policy=3";
-} else {
-  location.href = "index444.html";
-}
-*/
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
-let watchTimer = null;
+const selectedV = params.get("v");
+if (!selectedV) location.href = "index444.html";
 
-function onPlayerStateChange(e) {
-  if (e.data === YT.PlayerState.PLAYING) {
-    watchTimer = setInterval(() => {
-      const t = player.getCurrentTime();
-      if (t > maxWatched) maxWatched = t;
-    }, 1000);
+// ========= ユーザ情報 =========
+const child   = localStorage.getItem("childName") || "未選択";
+const childno = localStorage.getItem("childNo") || "0";
+const byou    = Number(localStorage.getItem("byou") || 1);
+const subje   = localStorage.getItem("subjeName") || "未選択";
+
+// ========= 状態 =========
+let player;
+let startTime = Date.now();
+let videoDuration = 0;
+let maxWatched = 0;
+
+// ========= YouTube遅延 =========
+function loadYT(){
+  const tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.body.appendChild(tag);
+}
+
+function onYouTubeIframeAPIReady(){
+  setTimeout(()=>{
+    player = new YT.Player('player',{
+      videoId:selectedV,
+      playerVars:{ autoplay:1, playsinline:1 },
+      events:{
+        onReady:onReady,
+        onStateChange:onStateChange
+      }
+    });
+  },200);
+}
+
+function onReady(){
+  videoDuration = player.getDuration();
+  player.setPlaybackRate(1.5);
+}
+
+// ========= 視聴時間トラッキング =========
+let timer=null;
+function onStateChange(e){
+  if(e.data===YT.PlayerState.PLAYING){
+    timer=setInterval(()=>{
+      const t=player.getCurrentTime();
+      if(t>maxWatched) maxWatched=t;
+    },1000);
   } else {
-    clearInterval(watchTimer);
+    clearInterval(timer);
   }
 }
-  
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
-/* ★追加①：入室ログ */
-//const startTime = new Date().toISOString();   //削除した　　
-const child = localStorage.getItem("childName") || "未選択";
-const childno = localStorage.getItem("childNo") || "未選択";//■■0-3
-const byou = localStorage.getItem("byou") || "未選択";//■■ byou =1point
 
-const subje = localStorage.getItem("subjeName") || "未選択";
-const logId = Date.now();
-let logged = false; 
-let level = 0;//■■
-//let perc = 0;//■■ パーセント
-let pointima = 0;//■■ ポイント
-let pointimas = 0;//■■ ポイント
-let pointimah = 0;//■■ ポイント
-let pointima2 = 0;//■■ ポイント
-let watchedRatio = 0;//■■
-const deviceId = getDeviceId();//■■端末乱数
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
-window.addEventListener("beforeunload", () => {//■■
-  if (logged) return;
-  logged = true;
-  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-  let pointpre = Number(logs.at(-1)?.pointima ?? 0); //■■ 
-  let pointpres = Number(logs.at(-1)?.pointimas ?? 0); //■■ 
-  let pointpreh = Number(logs.at(-1)?.pointimah ?? 0); //■■ 
-  let pointpre2 = Number(logs.at(-1)?.pointima2 ?? 0); //■■ 
-  
-  let mang=1/Number(byou); //■■
-  console.log("mang =", mang); //■■
-  if(subje==='漫画') mang=-1; //■■
-  pointima = Math.round(pointpre); //■■
-  pointimas= Math.round(pointpres); //■■
-  pointimah= Math.round(pointpreh); //■■
-  pointima2= Math.round(pointpre2); //■■
-  const secmin = Math.min(sec/1.5,Math.round((Date.now() - startTime)/1000)); // ← ★max  秒
- //const secmin = Math.min(sec,Math.round((Date.now() - startTime)/1000),1200); // ← ★max1200秒
- //const secmin = Math.min(Math.round((Date.now() - startTime)/1000),600); // ← ★max600秒
-  
-  if     ((childno === 0) || (childno === '0')){pointima=Math.round(secmin*mang+ pointpre);}  // ← ★ ポイント　秒
-  else if((childno === 1) || (childno === '1')){pointimas=Math.round(secmin*mang+ pointpres);}  // ← ★ ポイント　秒
-  else if((childno === 2) || (childno === '2')){pointimah=Math.round(secmin*mang+ pointpreh);}  // ← ★ ポイント　秒
-  else if((childno === 3) || (childno === '3')){pointima2=Math.round(secmin*mang+ pointpre2);}  // ← ★ ポイント　秒
-  
-  
-  console.log("childno =",childno);  // ← ★
-  console.log("secmin =", secmin);  // ← ★
-  console.log("sec =", sec);  // ← ★
-  console.log("mang =", mang);  // ← ★
-  console.log("pointima =", pointima);  // ← ★
-  console.log("pointpre =", pointpre);  // ← ★
-  console.log("pointimas =", pointimas);  // ← ★
-  console.log("pointpres =", pointpres);  // ← ★
-  
-  
-  //alert(child+'  '+Date.now()+'  '+startTime+'  '+mang+'  '+pointpre+'  '+pointpre2+'  '+pointima+'  '+pointima2); //  ★
-  watchedRatio = videoDuration
-    ? Math.round((maxWatched / videoDuration) * 100)
-    : null;    //★
-  logs.push({
-    deviceId: deviceId,
-    id: logId,
-    //page: "player.html",
-    video: selectedV,
-    child: child,
-    subje: subje, 
-    start: startTime,
-    end: Date.now(),
-    level: closeLevel,   // ← ★追加（1〜5 or null）
-    watchedRatio: watchedRatio,      // ← ★ 何割見たか（％）
-    duration: Date.now() - startTime,
-    pointima: pointima,    // ← ★ ポイント　秒
-    pointimas: pointimas,  // ← ★ ポイント　秒
-    pointimah: pointimah,   // ← ★ ポイント　秒
-    pointima2: pointima2  // ← ★ ポイント　秒
+// ========= 倍速 =========
+function setSpeed(rate){
+  if(!player) return;
+  player.setPlaybackRate(rate);
+  document.querySelectorAll(".speed").forEach(b=>{
+    b.classList.remove("active");
+    if(b.textContent.startsWith(rate)) b.classList.add("active");
   });
+}
+
+// ========= ログ保存（軽量版） =========
+function saveLog(){
+
+  const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+  const prev = logs.at(-1) || {};
+
+  let pointima = Number(prev.pointima||0);
+  let pointimas= Number(prev.pointimas||0);
+  let pointimah= Number(prev.pointimah||0);
+  let pointima2= Number(prev.pointima2||0);
+
+  const sec = Math.min(
+    videoDuration/1.5,
+    Math.round((Date.now()-startTime)/1000)
+  );
+
+  let mang = 1/byou;
+  if(subje==='漫画') mang = -1;
+
+  if(childno==0) pointima += Math.round(sec*mang);
+  if(childno==1) pointimas+= Math.round(sec*mang);
+  if(childno==2) pointimah+= Math.round(sec*mang);
+  if(childno==3) pointima2+= Math.round(sec*mang);
+
+  const watchedRatio = videoDuration
+    ? Math.round((maxWatched/videoDuration)*100)
+    : 0;
+
+  logs.push({
+    video:selectedV,
+    child, subje,
+    start:startTime,
+    end:Date.now(),
+    duration:Date.now()-startTime,
+    watchedRatio,
+    pointima, pointimas, pointimah, pointima2
+  });
+
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 
-// GitHubへCSV追記 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
-const csvLine = [
-  deviceId,
-  child,
-  subje,
-  selectedV,
-  new Date(startTime).toLocaleString(),
-  new Date().toLocaleString(),
-  closeLevel,
-  watchedRatio,
-  Math.round((Date.now() - startTime) / 1000),
-  pointima,
-  pointimas,
-  pointimah,
-  pointima2
-].join(",");
-
-const ok = navigator.sendBeacon(   //■■
-//navigator.sendBeacon(
-  //"https://script.google.com/macros/s/XXXX/exec",     //■■
-  //"https://script.google.com/macros/s/AKfycbwZShmRZUAGnZSVQqnOjDqXx34WnNeiuyUV94lFEGnNpC6nBba7c8V11IpjNOLQSEo38g/exec", //■■
-  "https://script.google.com/macros/s/AKfycbxD0bv5iR_cJXlKqHEyLlKRGFab9Hzj50zvOy0Pefw2lJDiqBCfSEKWxR4cVCst4c25/exec", //■■
-  new URLSearchParams({ text: csvLine })
-);
-console.log("sendBeacon result =", ok);   //■■
-});
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
-// 広告注意は5秒で消す
-setTimeout(() => {
-  document.getElementById("notice").style.display = "none";
-}, 5000);
-//alert(Object.keys(localStorage).join("\n"));       //■■
-</script>
-
-<!-- Consoleの表示を消去 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-<button onclick="clearcons()">Consoleを消去</button>
-<script>
-function clearcons() {
-  //console.clear();
-  //logs.clear();
-  localStorage.removeItem("studyLogs");   //■■
+  // ★軽量送信（失敗しても無視）
+  try{
+    navigator.sendBeacon("/log", JSON.stringify(logs.at(-1)));
+  }catch(e){}
 }
+
+// ========= 離脱時 =========
+window.addEventListener("pagehide", saveLog); // beforeunloadより軽い
+
+// ========= 起動 =========
+window.addEventListener("load", ()=>{
+  setTimeout(loadYT,300);
+});
 </script>
--->
-  
-<!--  log_viewer.html を「自動で一瞬だけ開く」 zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-<script>
-//alert("JS 最後まで動いてます");
-</script>
- 
+
 </body>
 </html>
