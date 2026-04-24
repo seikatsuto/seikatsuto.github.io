@@ -88,7 +88,17 @@ let startTime = Date.now();
 let videoDuration = 0;
 let maxWatched = 0;
 let closeLevel = null; // ★追加
+const deviceId = getDeviceId();//■■端末乱数
 
+//端末名を乱数で■■端末乱数zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+function getDeviceId() {
+  let id = localStorage.getItem("deviceId");
+  if (!id) {
+    id = crypto.randomUUID(); // 例: "c3a1e9b4-..."
+    localStorage.setItem("deviceId", id);
+  }
+  return id;
+}  
 // ========= YouTube遅延 =========
 function loadYT(){
   const tag = document.createElement('script');
@@ -180,9 +190,36 @@ function saveLog(){
 
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 
+  //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  
+  
+  // GitHubへCSV追記 ■■zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz  
+  const csvLine = [
+    deviceId,
+    child,
+    subje,
+    selectedV,
+    new Date(startTime).toLocaleString(),
+    new Date().toLocaleString(),
+    closeLevel,
+    watchedRatio,
+    Math.round((Date.now() - startTime) / 1000),
+    pointima,
+    pointimas,
+    pointimah,
+    pointima2
+  ].join(",");
+  
+  
   try{
-    navigator.sendBeacon("/log", JSON.stringify(logs.at(-1)));
+  //  navigator.sendBeacon("/log", JSON.stringify(logs.at(-1)));
+    const ok = navigator.sendBeacon(   //■■
+      "https://script.google.com/macros/s/AKfycbxD0bv5iR_cJXlKqHEyLlKRGFab9Hzj50zvOy0Pefw2lJDiqBCfSEKWxR4cVCst4c25/exec", //■■
+      new URLSearchParams({ text: csvLine })
+    );
   }catch(e){}
+  
+  
 }
 
 // ========= ★ボタン処理 =========
