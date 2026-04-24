@@ -13,6 +13,7 @@ html, body {
   overflow:hidden;
 }
 
+/* プレイヤー */
 #player {
   position:fixed;
   top:0; left:0;
@@ -35,14 +36,37 @@ html, body {
   background:#4CAF50;
   color:#fff;
 }
+
+/* 難易度ボタン */
+.close {
+  position:fixed;
+  top:50px;
+  z-index:1001;
+  font-size:14px;
+  padding:6px 8px;
+  border-radius:6px;
+}
+.lv1 { right:10px; }
+.lv2 { right:90px; }
+.lv3 { right:170px; }
+.lv4 { right:250px; }
+.lv5 { right:330px; }
 </style>
 </head>
 
 <body>
 
+<!-- 倍速 -->
 <button class="speed s1" onclick="setSpeed(1)">1.0×</button>
 <button class="speed s2 active" onclick="setSpeed(1.5)">1.5×</button>
 <button class="speed s3" onclick="setSpeed(2)">2.0×</button>
+
+<!-- ★難易度ボタン -->
+<button class="close lv1" onclick="closeWithReason(1)">×簡単すぎ</button>
+<button class="close lv2" onclick="closeWithReason(2)">×かんたん</button>
+<button class="close lv3" onclick="closeWithReason(3)">×ちょうど</button>
+<button class="close lv4" onclick="closeWithReason(4)">×むずかしい</button>
+<button class="close lv5" onclick="closeWithReason(5)">×難しすぎ</button>
 
 <div id="player"></div>
 
@@ -63,6 +87,7 @@ let player;
 let startTime = Date.now();
 let videoDuration = 0;
 let maxWatched = 0;
+let closeLevel = null; // ★追加
 
 // ========= YouTube遅延 =========
 function loadYT(){
@@ -89,7 +114,7 @@ function onReady(){
   player.setPlaybackRate(1.5);
 }
 
-// ========= 視聴時間トラッキング =========
+// ========= 視聴時間 =========
 let timer=null;
 function onStateChange(e){
   if(e.data===YT.PlayerState.PLAYING){
@@ -112,7 +137,7 @@ function setSpeed(rate){
   });
 }
 
-// ========= ログ保存（軽量版） =========
+// ========= ログ =========
 function saveLog(){
 
   const logs = JSON.parse(localStorage.getItem("studyLogs") || "[]");
@@ -143,6 +168,7 @@ function saveLog(){
   logs.push({
     video:selectedV,
     child, subje,
+    level: closeLevel, // ★ここに入る
     start:startTime,
     end:Date.now(),
     duration:Date.now()-startTime,
@@ -150,16 +176,32 @@ function saveLog(){
     pointima, pointimas, pointimah, pointima2
   });
 
+  if(logs.length>100) logs.shift();
+
   localStorage.setItem("studyLogs", JSON.stringify(logs));
 
-  // ★軽量送信（失敗しても無視）
   try{
     navigator.sendBeacon("/log", JSON.stringify(logs.at(-1)));
   }catch(e){}
 }
 
-// ========= 離脱時 =========
-window.addEventListener("pagehide", saveLog); // beforeunloadより軽い
+// ========= ★ボタン処理 =========
+function closeWithReason(level){
+  closeLevel = level;
+
+  saveLog(); // ★押した瞬間に保存
+
+  const dur = Date.now() - startTime;
+
+  if(dur > 60000){
+    location.href = "gacha.html";
+  } else {
+    location.href = "index444.html";
+  }
+}
+
+// ========= 離脱 =========
+window.addEventListener("pagehide", saveLog);
 
 // ========= 起動 =========
 window.addEventListener("load", ()=>{
