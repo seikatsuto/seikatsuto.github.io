@@ -238,8 +238,7 @@ function closeWithReason(level){
 }
 
 // ========= 離脱 =========
-window.addEventListener("pagehide", saveLog);
-
+//window.addEventListener("pagehide", saveLog);//★二重保存
 // ========= 起動 =========
 window.addEventListener("load", ()=>{
   setTimeout(loadYT,300);
