@@ -203,6 +203,7 @@ document.querySelectorAll(".child-btn").forEach((btn, i) => {
 <script>  
   document.getElementById("byouinp").textContent = "漫画以外は１０秒(今はサービス期間中で "+byou+"秒)見ると１ポイントアップ。<br>"
     +"３００ポイント以上で漫画が見られ１秒見ると１ポイントダウン";
+
 </script>
   
 <button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')">算1</button>
@@ -251,9 +252,20 @@ let pointimas = 0;       // 通常ポイント 惺太郎君
 let pointimah = 0;      // 別枠ポイント 日花里君
 let pointima2 = 0;      // 別枠ポイント 啓人君
 
-  
+
 let gbegin = 1;
 let gend = 600;
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+//           "算1","算2","算3","算4","算5","算6","国1","国2","国3","国4","国5","国6","英語","生物","地学","物理","化学","地理","歴史","公民","漫画"
+const sno = [  50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   100,   100,   100,   100,   100,   100,   100,   100,   219]; //★科目毎の動画数
+let gb = [];
+let ge = [];
+gb[0]=1;
+for (let i = 0; i <= 20; i++) {ge[i]=gb[i]+sno[i]-1; gb[i+1]=ge[i]+1;}
+
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+
 
 /* ===== 表示制御（先に定義） =====zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz */
 function updateListDisplay() {
@@ -290,17 +302,22 @@ function setChild(btn, name) {
   updatePointView();   // ★ これだけ追加
   //setSubjemang();   // ★ 名前が変わっても漫画の表示数変わらずのため追加
   
-  if      (subject === '漫画' && dare===datas[0] && pointima<=299)  { gbegin = 1401; gend = 1401; }//★  
-  else if (subject === '漫画' && dare===datas[1] && pointimas<=299) { gbegin = 1401; gend = 1401; }//★  
-  else if (subject === '漫画' && dare===datas[2] && pointimah<=299) { gbegin = 1401; gend = 1401; }//★  
-  else if (subject === '漫画' && dare===datas[3] && pointima2<=299) { gbegin = 1401; gend = 1401; }//★  
-  else if (subject === '漫画') { gbegin = 1401; gend = 1619; }
+
+
+  if      (subject === '漫画' && dare===datas[0] && pointima<=299)  { gbegin= gb[20]; gend= gb[20];}    //{ gbegin = 1401; gend = 1401; }//★  
+  else if (subject === '漫画' && dare===datas[1] && pointimas<=299) { gbegin= gb[20]; gend= gb[20];}    //{ gbegin = 1401; gend = 1401; }//★  
+  else if (subject === '漫画' && dare===datas[2] && pointimah<=299) { gbegin= gb[20]; gend= gb[20];}    //{ gbegin = 1401; gend = 1401; }//★  
+  else if (subject === '漫画' && dare===datas[3] && pointima2<=299) { gbegin= gb[20]; gend= gb[20];}    //{ gbegin = 1401; gend = 1401; }//★  
+  else if (subject === '漫画') { gbegin= gb[20]; gend= ge[20];}                                         //{ gbegin = 1401; gend = 1619; }
+
+
   
   updateListDisplay();   // ← ★これを追加するだけ
   applyStatus();
 }
   
 //setSubje は今のままでOK（最後だけ確認）zzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+
 function setSubje(btn, name) {
   // ボタンの色リセット
   document.querySelectorAll('.subje-btn').forEach(b => {
@@ -310,32 +327,32 @@ function setSubje(btn, name) {
   // 選択内容を保存
   localStorage.setItem("subjeName", name);
   // ===== 学年ごとの範囲指定 =====
-  if (name === '算数1年') { gbegin = 1;   gend = 50;  }
-  else if (name === '算数2年') { gbegin = 51;  gend = 100; }
-  else if (name === '算数3年') { gbegin = 101; gend = 150; }
-  else if (name === '算数4年') { gbegin = 151; gend = 200; }
-  else if (name === '算数5年') { gbegin = 201; gend = 250; }
-  else if (name === '算数6年') { gbegin = 251; gend = 300; }
-  else if (name === '国語1年') { gbegin = 301; gend = 350; }
-  else if (name === '国語2年') { gbegin = 351; gend = 400; }
-  else if (name === '国語3年') { gbegin = 401; gend = 450; }
-  else if (name === '国語4年') { gbegin = 451; gend = 500; }
-  else if (name === '国語5年') { gbegin = 501; gend = 550; }
-  else if (name === '国語6年') { gbegin = 551; gend = 600; }
-  else if (name === '英語') { gbegin = 601; gend = 700; }
-  else if (name === '生物') { gbegin = 701; gend = 800; }
-  else if (name === '地学') { gbegin = 801; gend = 900; }
-  else if (name === '物理') { gbegin = 901; gend = 1000; }
-  else if (name === '化学') { gbegin = 1001; gend = 1100; }
-  else if (name === '地理') { gbegin = 1101; gend = 1200; }
-  else if (name === '歴史') { gbegin = 1201; gend = 1300; }
-  else if (name === '公民') { gbegin = 1301; gend = 1400; }
+  if      (name === '算数1年') { gbegin= gb[0]; gend= ge[0];}
+  else if (name === '算数2年') { gbegin= gb[1]; gend= ge[1];}    //{ gbegin = 51;  gend = 100; }
+  else if (name === '算数3年') { gbegin= gb[2]; gend= ge[2];}    //{ gbegin = 101; gend = 150; }
+  else if (name === '算数4年') { gbegin= gb[3]; gend= ge[3];}    //{ gbegin = 151; gend = 200; }
+  else if (name === '算数5年') { gbegin= gb[4]; gend= ge[4];}    //{ gbegin = 201; gend = 250; }
+  else if (name === '算数6年') { gbegin= gb[5]; gend= ge[5];}    //{ gbegin = 251; gend = 300; }
+  else if (name === '国語1年') { gbegin= gb[6]; gend= ge[6];}    //{ gbegin = 301; gend = 350; }
+  else if (name === '国語2年') { gbegin= gb[7]; gend= ge[7];}    //{ gbegin = 351; gend = 400; }
+  else if (name === '国語3年') { gbegin= gb[8]; gend= ge[8];}    //{ gbegin = 401; gend = 450; }
+  else if (name === '国語4年') { gbegin= gb[9]; gend= ge[9];}    //{ gbegin = 451; gend = 500; }
+  else if (name === '国語5年') { gbegin= gb[10]; gend= ge[10];}  //{ gbegin = 501; gend = 550; }
+  else if (name === '国語6年') { gbegin= gb[11]; gend= ge[11];}  //{ gbegin = 551; gend = 600; }
+  else if (name === '英語') { gbegin= gb[12]; gend= ge[12];}    //{ gbegin = 601; gend = 700; }
+  else if (name === '生物') { gbegin= gb[13]; gend= ge[13];}    //{ gbegin = 701; gend = 800; }
+  else if (name === '地学') { gbegin= gb[14]; gend= ge[14];}    //{ gbegin = 801; gend = 900; }
+  else if (name === '物理') { gbegin= gb[15]; gend= ge[15];}    //{ gbegin = 901; gend = 1000; }
+  else if (name === '化学') { gbegin= gb[16]; gend= ge[16];}    //{ gbegin = 1001; gend = 1100; }
+  else if (name === '地理') { gbegin= gb[17]; gend= ge[17];}    //{ gbegin = 1101; gend = 1200; }
+  else if (name === '歴史') { gbegin= gb[18]; gend= ge[18];}    //{ gbegin = 1201; gend = 1300; }
+  else if (name === '公民') { gbegin= gb[19]; gend= ge[19];}    //{ gbegin = 1301; gend = 1400; }
  
-  else if (name === '漫画' && dare===datas[0] && pointima<=299)  { gbegin = 1401; gend = 1401; }//★  
-  else if (name === '漫画' && dare===datas[1] && pointimas<=299) { gbegin = 1401; gend = 1401; }//★  
-  else if (name === '漫画' && dare===datas[2] && pointimah<=299) { gbegin = 1401; gend = 1401; }//★  
-  else if (name === '漫画' && dare===datas[3] && pointima2<=299) { gbegin = 1401; gend = 1401; }//★  
-  else if (name === '漫画') { gbegin = 1401; gend = 1619; }
+  else if (name === '漫画' && dare===datas[0] && pointima<=299)  { gbegin= gb[20]; gend= gb[20];}    //{ gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画' && dare===datas[1] && pointimas<=299) { gbegin= gb[20]; gend= gb[20];}    //{ gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画' && dare===datas[2] && pointimah<=299) { gbegin= gb[20]; gend= gb[20];}    //{ gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画' && dare===datas[3] && pointima2<=299) { gbegin= gb[20]; gend= gb[20];}    //{ gbegin = 1401; gend = 1401; }//★  
+  else if (name === '漫画') { gbegin= gb[20]; gend= ge[20];}                                         //{ gbegin = 1401; gend = 1619; }
   
   subject=name;    //★科目名をsubjectに
   //console.log("表示範囲:", gbegin, "〜", gend);
@@ -458,6 +475,7 @@ window.addEventListener("load", () => {
   applyStatus();
 });
 </script>
+
 
 
 <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
