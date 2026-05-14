@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>HTML結合</title>
+</head>
+
+<body>
+
+<button onclick="merge()">結合して保存</button>
+
+<script>
+
+async function merge(){
+
+    // 結合するファイル名
+    const files = [
+        "part1.html",
+        "part2.html",
+        "part3.html"
+    ];
+
+    let result = "";
+
+    for(const file of files){
+
+        const response = await fetch(file);
+
+        const text = await response.text();
+
+        result += text + "\n\n";
+    }
+
+    // merged.html保存
+    const blob = new Blob([result], {
+        type:"text/html"
+    });
+
+    const a = document.createElement("a");
+
+    a.href = URL.createObjectURL(blob);
+
+    a.download = "merged.html";
+
+    a.click();
+}
+
+</script>
+
+</body>
+</html>
