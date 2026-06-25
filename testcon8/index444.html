@@ -263,15 +263,15 @@ const logs3 = JSON.parse(localStorage.getItem("studyLogs") || "[]");
 const last3 = logs.at(-1) || {};
 id3 = localStorage.getItem("deviceId");
 const fs = require('fs');
-
+let vL3;
 if (fs.existsSync('vList3-'+id3+'.html')) {
     vL3 = 'vList3-'+id3+'.html';
 } else {
     vL3 = 'vList3.html';
 }
 
-const text = fs.readFileSync(vL3, 'utf8');
-const lineCount = text.trimEnd().split(/\r?\n/).length;
+const text3 = fs.readFileSync(vL3, 'utf8');
+const lineCount = text3.trimEnd().split(/\r?\n/).length;
 console.log(lineCount);
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 //           "算1","算2","算3","算4","算5","算6","国1","国2","国3","国4","国5","国6","英語","生物","地学","物理","化学","地理","歴史","公民","漫画","推薦"
