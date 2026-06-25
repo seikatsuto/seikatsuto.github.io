@@ -170,7 +170,7 @@ else{document.getElementById("title").textContent = "📘 ひみつの五次元(
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;"></textarea>
 <script>
 const text =
-    "こんにちは、ぼくドラちゃんです。2108 むにゃむにゃ...\n" +
+    "こんにちは、ぼくドラちゃんです。2140 むにゃむにゃ...\n" +
     "きみは "+ hito +"？ "+ futa +"？ "+ sann +"？ "+ yoni +"？ \n" +
     "名前(なまえ)をえらんでください。";
 document.getElementById("introText").value = text;
@@ -262,17 +262,23 @@ let gend = 600;
 const logs3 = JSON.parse(localStorage.getItem("studyLogs") || "[]");
 const last3 = logs3.at(-1) || {};
 id3 = localStorage.getItem("deviceId");
-const fs = require('fs');
-let vL3;
-if (fs.existsSync('vList3-'+id3+'.html')) {
-    vL3 = 'vList3-'+id3+'.html';
-} else {
-    vL3 = 'vList3.html';
+
+async function loadCsv() {
+    let vL3 = 'vList3.html';
+    try {
+        const r = await fetch('vList3-'+id3+'.html', { method: 'HEAD' });
+        if (r.ok) vL3 = 'vList3-'+id3+'.html';
+    } catch (e) {}
+    const response = await fetch(vL3);
+    const text3 = await response.text();
+    console.log('使用ファイル:', vL3);
+    console.log('行数:', text3.trimEnd().split(/\r?\n/).length);
+    const lineCount = text3.trimEnd().split(/\r?\n/).length;
+    console.log(lineCount);
 }
 
-const text3 = fs.readFileSync(vL3, 'utf8');
-const lineCount = text3.trimEnd().split(/\r?\n/).length;
-console.log(lineCount);
+loadCsv();
+
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 //           "算1","算2","算3","算4","算5","算6","国1","国2","国3","国4","国5","国6","英語","生物","地学","物理","化学","地理","歴史","公民","漫画","推薦"
 const sno = [  50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   100,   100,   100,   100,   100,   100,   100,   100,   219,lineCount]; //★科目毎の動画数
