@@ -206,6 +206,8 @@ document.querySelectorAll(".child-btn").forEach((btn, i) => {
 
 </script>
   
+<button class="subje-btn" data-subje="推薦"  onclick="setSubje(this, '推薦')">推薦</button>
+<br>  
 <button class="subje-btn" data-subje="算数1年"  onclick="setSubje(this, '算数1年')">算1</button>
 <button class="subje-btn" data-subje="算数2年"  onclick="setSubje(this, '算数2年')">算2</button>
 <button class="subje-btn" data-subje="算数3年"  onclick="setSubje(this, '算数3年')">算3</button>
@@ -255,14 +257,30 @@ let pointima2 = 0;      // 別枠ポイント 啓人君
 
 let gbegin = 1;
 let gend = 600;
-
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-//           "算1","算2","算3","算4","算5","算6","国1","国2","国3","国4","国5","国6","英語","生物","地学","物理","化学","地理","歴史","公民","漫画"
-const sno = [  50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   100,   100,   100,   100,   100,   100,   100,   100,   219]; //★科目毎の動画数
+// 機器IDを読む
+const logs3 = JSON.parse(localStorage.getItem("studyLogs") || "[]");
+const last3 = logs.at(-1) || {};
+id3 = localStorage.getItem("deviceId");
+const fs = require('fs');
+
+if (fs.existsSync('vList3-'+id3+'.html')) {
+    vL3 = 'vList3-'+id3+'.html';
+} else {
+    vL3 = 'vList3.html';
+}
+
+const text = fs.readFileSync(vL3, 'utf8');
+const lineCount = text.trimEnd().split(/\r?\n/).length;
+console.log(lineCount);
+//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+//           "算1","算2","算3","算4","算5","算6","国1","国2","国3","国4","国5","国6","英語","生物","地学","物理","化学","地理","歴史","公民","漫画","推薦"
+const sno = [  50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   100,   100,   100,   100,   100,   100,   100,   100,   219,lineCount]; //★科目毎の動画数
 let gb = [];
 let ge = [];
 gb[0]=1;
-for (let i = 0; i <= 20; i++) {ge[i]=gb[i]+sno[i]-1; gb[i+1]=ge[i]+1;}
+//for (let i = 0; i <= 20; i++) {ge[i]=gb[i]+sno[i]-1; gb[i+1]=ge[i]+1;}
+for (let i = 0; i <= sno.length -1; i++) {ge[i]=gb[i]+sno[i]-1; gb[i+1]=ge[i]+1;}
 
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 
@@ -487,7 +505,7 @@ async function loadLists() {
     const files = [
         "vList1.html",
         "vList2.html",
-        "vList3.html"
+        vL3                             //  "vList3.html"
     ];
     for (const file of files) {
         const response = await fetch(file);
