@@ -170,7 +170,7 @@ else{document.getElementById("title").textContent = "📘 ひみつの五次元(
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;"></textarea>
 <script>
 const text =
-    "こんにちは、ぼくドラちゃんです。2205 むにゃむにゃ...\n" +
+    "こんにちは、ぼくドラちゃんです。2220 むにゃむにゃ...\n" +
     "きみは "+ hito +"？ "+ futa +"？ "+ sann +"？ "+ yoni +"？ \n" +
     "名前(なまえ)をえらんでください。";
 document.getElementById("introText").value = text;
@@ -277,20 +277,20 @@ async function loadCsv() {
     console.log('行数:', text3.trimEnd().split(/\r?\n/).length);
     lineCount = text3.trimEnd().split(/\r?\n/).length;
     console.log(lineCount);
+
+    //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+    //           "算1","算2","算3","算4","算5","算6","国1","国2","国3","国4","国5","国6","英語","生物","地学","物理","化学","地理","歴史","公民","漫画","推薦"
+    const sno = [  50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   100,   100,   100,   100,   100,   100,   100,   100,   219,lineCount]; //★科目毎の動画数
+    let gb = [];
+    let ge = [];
+    gb[0]=1;
+    //for (let i = 0; i <= 20; i++) {ge[i]=gb[i]+sno[i]-1; gb[i+1]=ge[i]+1;}
+    for (let i = 0; i <= sno.length -1; i++) {ge[i]=gb[i]+sno[i]-1; gb[i+1]=ge[i]+1;}
+
+    //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 }
 
 loadCsv();
-
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-//           "算1","算2","算3","算4","算5","算6","国1","国2","国3","国4","国5","国6","英語","生物","地学","物理","化学","地理","歴史","公民","漫画","推薦"
-const sno = [  50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   100,   100,   100,   100,   100,   100,   100,   100,   219,lineCount]; //★科目毎の動画数
-let gb = [];
-let ge = [];
-gb[0]=1;
-//for (let i = 0; i <= 20; i++) {ge[i]=gb[i]+sno[i]-1; gb[i+1]=ge[i]+1;}
-for (let i = 0; i <= sno.length -1; i++) {ge[i]=gb[i]+sno[i]-1; gb[i+1]=ge[i]+1;}
-
-//zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 
 
 /* ===== 表示制御（先に定義） =====zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz */
