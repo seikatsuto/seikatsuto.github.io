@@ -260,7 +260,7 @@ let gend = 600;
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 // 機器IDを読む
 const logs3 = JSON.parse(localStorage.getItem("studyLogs") || "[]");
-const last3 = logs.at(-1) || {};
+const last3 = logs3.at(-1) || {};
 id3 = localStorage.getItem("deviceId");
 const fs = require('fs');
 let vL3;
