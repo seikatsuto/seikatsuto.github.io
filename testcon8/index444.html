@@ -259,6 +259,9 @@ let gbegin = 1;
 let gend = 600;
 let vL3 = 'vList3.html';
 let lineCount =1;
+let sno;
+let gb;
+let ge;  
 //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 // 機器IDを読む
 const logs3 = JSON.parse(localStorage.getItem("studyLogs") || "[]");
@@ -280,9 +283,9 @@ async function loadCsv() {
 
     //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
     //           "算1","算2","算3","算4","算5","算6","国1","国2","国3","国4","国5","国6","英語","生物","地学","物理","化学","地理","歴史","公民","漫画","推薦"
-    const sno = [  50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   100,   100,   100,   100,   100,   100,   100,   100,   219,lineCount]; //★科目毎の動画数
-    let gb = [];
-    let ge = [];
+    sno = [  50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   100,   100,   100,   100,   100,   100,   100,   100,   219,lineCount]; //★科目毎の動画数
+    gb = [];
+    ge = [];
     gb[0]=1;
     //for (let i = 0; i <= 20; i++) {ge[i]=gb[i]+sno[i]-1; gb[i+1]=ge[i]+1;}
     //for (let i = 0; i <= sno.length -1; i++) {ge[i]=gb[i]+sno[i]-1; gb[i+1]=ge[i]+1;}
