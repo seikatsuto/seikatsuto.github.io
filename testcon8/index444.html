@@ -170,7 +170,7 @@ else{document.getElementById("title").textContent = "📘 ひみつの五次元(
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;"></textarea>
 <script>
 const text =
-    "こんにちは、ぼくドラちゃんです。1740 むにゃむにゃ...\n" +
+    "こんにちは、ぼくドラちゃんです。1800 むにゃむにゃ...\n" +
     "きみは "+ hito +"？ "+ futa +"？ "+ sann +"？ "+ yoni +"？ \n" +
     "名前(なまえ)をえらんでください。";
 document.getElementById("introText").value = text;
@@ -268,17 +268,13 @@ const logs3 = JSON.parse(localStorage.getItem("studyLogs") || "[]");
 const last3 = logs3.at(-1) || {};
 id3 = localStorage.getItem("deviceId");
 
-async function loadCsv() {
+//zzz  推薦ファイルの行数をデータで与えたzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+
+function loadCsv() {
     
-    try {
-        const r = await fetch('vList3-'+id3+'.html', { method: 'HEAD' });
-        if (r.ok) vL3 = 'vList3-'+id3+'.html';
-    } catch (e) {}
-    const response = await fetch(vL3);
-    const text3 = await response.text();
+    vL3 = 'vList3-'+id3+'.html';
     console.log('使用ファイル:', vL3);
-    console.log('行数:', text3.trimEnd().split(/\r?\n/).length);
-    lineCount = text3.trimEnd().split(/\r?\n/).length;
+    lineCount = 5;
     console.log(lineCount);
 
     //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
@@ -297,7 +293,6 @@ async function loadCsv() {
 }
 
 loadCsv();
-
 
 /* ===== 表示制御（先に定義） =====zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz */
 function updateListDisplay() {
