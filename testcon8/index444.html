@@ -170,7 +170,7 @@ else{document.getElementById("title").textContent = "📘 ひみつの五次元(
 <textarea id="introText" rows="3" cols="60" style="font-size:16px; line-height: 1.6;"></textarea>
 <script>
 const text =
-    "こんにちは、ぼくドラちゃんです。1800 むにゃむにゃ...\n" +
+    "こんにちは、ぼくドラちゃんです。1730 むにゃむにゃ...\n" +
     "きみは "+ hito +"？ "+ futa +"？ "+ sann +"？ "+ yoni +"？ \n" +
     "名前(なまえ)をえらんでください。";
 document.getElementById("introText").value = text;
@@ -268,16 +268,16 @@ const logs3 = JSON.parse(localStorage.getItem("studyLogs") || "[]");
 const last3 = logs3.at(-1) || {};
 id3 = localStorage.getItem("deviceId");
 
-//zzz  推薦ファイルの行数をデータで与えたzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+// 推薦ファイルの行数をデータで与えたzzzzzzzzzz
 
 function loadCsv() {
     
     vL3 = 'vList3-'+id3+'.html';
     console.log('使用ファイル:', vL3);
-    lineCount = 5;
+    lineCount = 5;                       //★★
     console.log(lineCount);
 
-    //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+    //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
     //           "算1","算2","算3","算4","算5","算6","国1","国2","国3","国4","国5","国6","英語","生物","地学","物理","化学","地理","歴史","公民","漫画","推薦"
     sno = [  50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   50,   100,   100,   100,   100,   100,   100,   100,   100,   219,lineCount]; //★科目毎の動画数
     //gb = [];
@@ -289,7 +289,6 @@ function loadCsv() {
     console.log(sno.length);
     //updateListDisplay();   // ← ★これを追加するだけ
  
-  //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 }
 
 loadCsv();
@@ -475,7 +474,8 @@ window.addEventListener("load", () => {
   if (dare) {
     document.querySelectorAll(".child-btn").forEach(btn => {
       if (btn.textContent.trim() === dare) {
-        btn.classList.add("active");
+        setChild(btn, dare);              // ← ★
+        //btn.classList.add("active");
         if     (dare===hito2){childno2=0;}// ← ★
         else if(dare===futa2){childno2=1;}
         else if(dare===sann2){childno2=2;}
