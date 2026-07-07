@@ -295,6 +295,14 @@ loadCsv();
 
 /* ===== 表示制御（先に定義） =====zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz */
 function updateListDisplay() {
+  console.log("gbegin =", gbegin, "gend =", gend); //★
+　console.log(
+    "updateListDisplay",
+    gbegin,
+    gend,
+    document.querySelectorAll("#videoList li").length
+  ); //★
+  
   const items = document.querySelectorAll("#videoList li");
   if (!items.length) return;
   items.forEach((li, index) => {
@@ -522,6 +530,10 @@ async function loadLists() {
         const data = await response.text();
         document.getElementById("videoList").innerHTML += data;
     }
+    // ★ここで初めてリストが完成
+    updateListDisplay();
+    applyStatus();
+
 }
 loadLists();
 </script>
